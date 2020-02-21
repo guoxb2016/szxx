@@ -145,7 +145,7 @@ jeecg :
      accessKeyId: ??
      accessKeySecret: ??
   shiro:
-     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
+     excludeUrls: /sys/permission/getUserPermissionByToken,/test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
   #阿里云oss存储配置
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
