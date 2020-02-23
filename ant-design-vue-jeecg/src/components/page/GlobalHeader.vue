@@ -18,7 +18,7 @@
         @click.native="toggle"/>
 
       <span v-if="device === 'desktop'">欢迎进入疫情防控信息上报平台</span>
-      <span v-else>Jeecg-Boot</span>
+      <span v-else>南昌市</span>
 
       <user-menu :theme="theme"/>
     </div>
