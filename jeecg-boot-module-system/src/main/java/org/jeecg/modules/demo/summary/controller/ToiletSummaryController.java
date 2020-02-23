@@ -1,14 +1,17 @@
 package org.jeecg.modules.demo.summary.controller;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
@@ -27,6 +30,8 @@ import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.view.JeecgEntityExcelView;
 import org.jeecg.common.system.base.controller.JeecgController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -45,7 +50,7 @@ import com.alibaba.fastjson.JSON;
 public class ToiletSummaryController extends JeecgController<ToiletSummary, IToiletSummaryService> {
 	@Autowired
 	private IToiletSummaryService toiletSummaryService;
-	
+
 	/**
 	 * 分页列表查询
 	 *
@@ -65,7 +70,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		IPage<ToiletSummary> pageList = toiletSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 *   添加
 	 *
@@ -77,7 +82,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		toiletSummaryService.save(toiletSummary);
 		return Result.ok("添加成功！");
 	}
-	
+
 	/**
 	 *  编辑
 	 *
@@ -89,7 +94,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		toiletSummaryService.updateById(toiletSummary);
 		return Result.ok("编辑成功!");
 	}
-	
+
 	/**
 	 *   通过id删除
 	 *
@@ -101,7 +106,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		toiletSummaryService.removeById(id);
 		return Result.ok("删除成功!");
 	}
-	
+
 	/**
 	 *  批量删除
 	 *
@@ -113,7 +118,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		this.toiletSummaryService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.ok("批量删除成功!");
 	}
-	
+
 	/**
 	 * 通过id查询
 	 *
@@ -140,6 +145,57 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
         return super.exportXls(request, toiletSummary, ToiletSummary.class, "新建公厕统计明细表");
     }
 
+	 @RequestMapping(value = "/exportXls2")
+	 public void exportXls2(HttpServletRequest request, ToiletSummary toiletSummary, HttpServletResponse response) {
+		 //return super.exportXls(request, toiletSummary, ToiletSummary.class, "新建公厕统计明细表");
+		 List<ToiletSummary> list = toiletSummaryService.list();
+
+		 String title = "城管防疫汇总表";
+		 String template = "E:\\JetBrains\\workspace-001\\szxx\\jeecg-boot-module-system\\src\\main\\java\\org\\jeecg\\modules\\demo\\summary\\template\\南昌市“厕所革命”行动新建公厕统计明细表.xls";
+		 InputStream in;
+		 try {
+			 in = new FileInputStream(new File(template));
+			 HSSFWorkbook book = null;
+			 book = new HSSFWorkbook(in);
+			 HSSFSheet sheet = book.getSheetAt(0);
+			 for(int i=0; i < list.size(); i++){
+				 ToiletSummary toilet = list.get(i);
+				 sheet.getRow(4+i).getCell(0).setCellValue(i);
+				 sheet.getRow(4+i).getCell(1).setCellValue(toilet.getXianqu());
+				 sheet.getRow(4+i).getCell(2).setCellValue(toilet.getLeixing());
+				 sheet.getRow(4+i).getCell(3).setCellValue(toilet.getBianhao());
+				 sheet.getRow(4+i).getCell(4).setCellValue(toilet.getMingcheng());
+				 sheet.getRow(4+i).getCell(5).setCellValue(toilet.getDizhi());
+				 sheet.getRow(4+i).getCell(6).setCellValue(toilet.getLeibie());
+				 sheet.getRow(4+i).getCell(7).setCellValue(toilet.getQiyongNianyue());
+				 sheet.getRow(4+i).getCell(8).setCellValue(toilet.getKaigongNianyue());
+				 sheet.getRow(4+i).getCell(9).setCellValue(toilet.getMianji());
+				 sheet.getRow(4+i).getCell(10).setCellValue(toilet.getJianzhuDuli());
+				 sheet.getRow(4+i).getCell(11).setCellValue(toilet.getJianzhuFushu());
+				 sheet.getRow(4+i).getCell(12).setCellValue(toilet.getJiegouTujian());
+				 sheet.getRow(4+i).getCell(13).setCellValue(toilet.getJiegouZhuangpei());
+				 sheet.getRow(4+i).getCell(14).setCellValue(toilet.getNan());
+				 sheet.getRow(4+i).getCell(15).setCellValue(toilet.getNv());
+				 sheet.getRow(4+i).getCell(16).setCellValue(toilet.getTongyong());
+				 sheet.getRow(4+i).getCell(17).setCellValue(toilet.getWuzhangai());
+				 sheet.getRow(4+i).getCell(18).setCellValue(toilet.getXiaobiandou());
+				 sheet.getRow(4+i).getCell(19).setCellValue(toilet.getFushe());
+				 sheet.getRow(4+i).getCell(20).setCellValue(toilet.getKongtiao());
+				 sheet.getRow(4+i).getCell(21).setCellValue(toilet.getZhihui());
+				 sheet.getRow(4+i).getCell(22).setCellValue(toilet.getRemarks());
+			 }
+
+			 response.setContentType("application/vnd.ms-excel");
+			 response.setHeader("content-disposition", "attachment;filename=" + title);
+			 ServletOutputStream out = response.getOutputStream();
+			 book.write(out);
+			 out.flush();
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+
+	 }
+
     /**
       * 通过excel导入数据
     *
@@ -151,5 +207,17 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, ToiletSummary.class);
     }
+
+	 @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public void test() {
+		 try {
+			 String path = ResourceUtils.getURL("classpath:").getPath();
+			 String path1 = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+			 System.out.println(path);
+			 System.out.println(path1);
+		 } catch (FileNotFoundException e) {
+			 e.printStackTrace();
+		 }
+	 }
 
 }

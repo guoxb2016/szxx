@@ -16,4 +16,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 @Service
 public class CitymanagerEpSummaryServiceImpl extends ServiceImpl<CitymanagerEpSummaryMapper, CitymanagerEpSummary> implements ICitymanagerEpSummaryService {
 
+    @Override
+    public CitymanagerEpSummary summaryByOrg() {
+        return baseMapper.summaryByOrg();
+    }
 }

@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jeecg.modules.demo.summary.mapper.CitymanagerEpSummaryMapper">
+    <sql id="column">
+        a.id as "id",
+        a.create_by as "createBy",
+        a.create_time as "createTime",
+        a.update_by as "updateBy",
+        a.update_time as "updateTime",
+        a.sys_org_code as "sysOrgCode",
+        a.person_time as "personTime",
+        a.strvend_poultry as "strvendPoultry",
+        a.strvend_wildlife as "strvendWildlife",
+        a.strvend_other as "strvendOther",
+        a.remarks as "remarks"
+    </sql>
+    <sql id="summaryColumn">
+        a.id as "id",
+        a.create_by as "createBy",
+        a.create_time as "createTime",
+        a.update_by as "updateBy",
+        a.update_time as "updateTime",
+        a.sys_org_code as "sysOrgCode",
+        SUM(a.person_time) as "personTime",
+        SUM(a.strvend_poultry) as "strvendPoultry",
+        SUM(a.strvend_wildlife) as "strvendWildlife",
+        SUM(a.strvend_other) as "strvendOther",
+        GROUP_CONCAT(a.remarks) as "remarks"
+    </sql>
 
+    <select id="summaryByOrg" resultType="org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary">
+        SELECT
+            <include refid="summaryColumn"/>
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    (
+                        SELECT
+                            a1.*,
+                            @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+                            @a := a1.sys_org_code
+                        FROM
+                            citymanager_ep_summary a1
+                        ORDER BY
+                            a1.sys_org_code, a1.create_time DESC
+                    ) a2,
+                    (SELECT @rank := 1 ,@a := NULL) tt
+                WHERE
+                    rank = 1
+            ) a
+    </select>
 </mapper>

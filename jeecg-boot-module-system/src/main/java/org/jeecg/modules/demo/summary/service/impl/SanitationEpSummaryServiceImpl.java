@@ -16,4 +16,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 @Service
 public class SanitationEpSummaryServiceImpl extends ServiceImpl<SanitationEpSummaryMapper, SanitationEpSummary> implements ISanitationEpSummaryService {
 
+    @Override
+    public SanitationEpSummary summary() {
+        return baseMapper.sumarry();
+    }
 }

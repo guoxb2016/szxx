@@ -13,5 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @Version: V1.0
  */
 public interface SanitationEpSummaryMapper extends BaseMapper<SanitationEpSummary> {
-
+    public SanitationEpSummary sumarry();
 }

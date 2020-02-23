@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jeecg.modules.demo.summary.mapper.SanitationEpSummaryMapper">
+    <sql id="column">
+        a.id AS "id",
+        a.create_by AS "createBy",
+        a.create_time AS "createTime",
+        a.update_by AS "updateBy",
+        a.update_time AS "updateTime",
+        a.sys_org_code AS "sysOrgCode",
+        a.vehicle AS "vehicle",
+        a.person_time AS "personTime",
+        a.garbage_disposal AS "garbageDisposal",
+        a.kz_kouzh_feiqt AS "kzKouzhFeiqt",
+        a.kz_yunsl AS "kzYunsl",
+        a.xs_gongc AS "xsGongc",
+        a.xs_lajz AS "xsLajz",
+        a.xs_huanwcc AS "xsHuanwcc",
+        a.xs_guokx AS "xsGuokx",
+        a.hjws_lajcl AS "hjwsLajcl",
+        a.hjws_xiaoscc AS "hjwsXiaoscc",
+        a.hjws_hubei_jiecqk AS "hjws_hubei_jiecqk",
+        a.fywz_kouzh AS "fywzKouzh",
+        a.fywz_jiuj AS "fywzJiuj",
+        a.fywz_wendj AS "fywzWendj",
+        a.fywz_xiaody AS "fywzXiaody",
+        a.gongy_fyqk AS "gongyFyqk",
+        a.other AS "other"
+    </sql>
 
+    <sql id="summaryColumn">
+        a.id AS "id",
+        a.create_by AS "createBy",
+        a.create_time AS "createTime",
+        a.update_by AS "updateBy",
+        a.update_time AS "updateTime",
+        a.sys_org_code AS "sysOrgCode",
+        SUM(a.vehicle) AS "vehicle",
+        SUM(a.person_time) AS "personTime",
+        SUM(a.garbage_disposal) AS "garbageDisposal",
+        SUM(a.kz_kouzh_feiqt) AS "kzKouzhFeiqt",
+        SUM(a.kz_yunsl) AS "kzYunsl",
+        SUM(a.xs_gongc) AS "xsGongc",
+        SUM(a.xs_lajz) AS "xsLajz",
+        SUM(a.xs_huanwcc) AS "xsHuanwcc",
+        SUM(a.xs_guokx) AS "xsGuokx",
+        SUM(a.hjws_lajcl) AS "hjwsLajcl",
+        SUM(a.hjws_xiaoscc) AS "hjwsXiaoscc",
+        GROUP_CONCAT(a.hjws_hubei_jiecqk) AS "hjws_hubei_jiecqk",
+        SUM(a.fywz_kouzh) AS "fywzKouzh",
+        SUM(a.fywz_jiuj) AS "fywzJiuj",
+        SUM(a.fywz_wendj) AS "fywzWendj",
+        SUM(a.fywz_xiaody) AS "fywzXiaody",
+        GROUP_CONCAT(a.gongy_fyqk) AS "gongyFyqk",
+        GROUP_CONCAT(a.other) AS "other"
+    </sql>
+
+    <select id="sumarry" resultType="org.jeecg.modules.demo.summary.entity.SanitationEpSummary">
+        SELECT
+          <include refid="summaryColumn"/>
+        FROM
+		(
+            SELECT
+                    *
+            FROM
+            (
+                SELECT
+                    a1.*,
+                    @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+                    @a := a1.sys_org_code
+                FROM
+                    sanitation_ep_summary a1
+                ORDER BY
+                    a1.sys_org_code, a1.create_time DESC
+            ) a2,
+            (SELECT @rank := 1 ,@a := NULL) tt
+            WHERE
+                    rank = 1
+		) a
+    </select>
 </mapper>

@@ -1,19 +1,23 @@
 package org.jeecg.modules.demo.summary.controller;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary;
 import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
+import org.jeecg.modules.demo.summary.service.ICitymanagerEpSummaryService;
 import org.jeecg.modules.demo.summary.service.ISanitationEpSummaryService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -46,7 +50,9 @@ import com.alibaba.fastjson.JSON;
 public class SanitationEpSummaryController extends JeecgController<SanitationEpSummary, ISanitationEpSummaryService> {
 	@Autowired
 	private ISanitationEpSummaryService sanitationEpSummaryService;
-	
+	@Autowired
+	private ICitymanagerEpSummaryService citymanagerEpSummaryService;
+
 	/**
 	 * 分页列表查询
 	 *
@@ -66,7 +72,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		IPage<SanitationEpSummary> pageList = sanitationEpSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 *   添加
 	 *
@@ -78,7 +84,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		sanitationEpSummaryService.save(sanitationEpSummary);
 		return Result.ok("添加成功！");
 	}
-	
+
 	/**
 	 *  编辑
 	 *
@@ -90,7 +96,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		sanitationEpSummaryService.updateById(sanitationEpSummary);
 		return Result.ok("编辑成功!");
 	}
-	
+
 	/**
 	 *   通过id删除
 	 *
@@ -102,7 +108,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		sanitationEpSummaryService.removeById(id);
 		return Result.ok("删除成功!");
 	}
-	
+
 	/**
 	 *  批量删除
 	 *
@@ -114,7 +120,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		this.sanitationEpSummaryService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.ok("批量删除成功!");
 	}
-	
+
 	/**
 	 * 通过id查询
 	 *
@@ -150,6 +156,55 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
     public ModelAndView exportXls(HttpServletRequest request, SanitationEpSummary sanitationEpSummary) {
         return super.exportXls(request, sanitationEpSummary, SanitationEpSummary.class, "环卫防疫汇总表");
     }
+
+	 @RequestMapping(value = "/exportXls2")
+	 public void exportXls2(HttpServletRequest request, CitymanagerEpSummary citymanagerEpSummary, HttpServletResponse response) {
+		 //return super.exportXls(request, citymanagerEpSummary, CitymanagerEpSummary.class, "城管防疫汇总表");
+		 // Step.1 组装查询条件
+		 String title = "城管防疫汇总表";
+		 String template = "E:\\JetBrains\\workspace-001\\szxx\\jeecg-boot-module-system\\src\\main\\java\\org\\jeecg\\modules\\demo\\summary\\template\\template.xls";
+		 CitymanagerEpSummary citySummary = citymanagerEpSummaryService.summaryByOrg();
+		 SanitationEpSummary sanitaSummary = sanitationEpSummaryService.summary();
+		 InputStream in;
+		 try {
+			 in = new FileInputStream(new File(template));
+			 HSSFWorkbook book = null;
+			 book = new HSSFWorkbook(in);
+			 HSSFSheet sheet = book.getSheetAt(0);
+			 sheet.getRow(1).getCell(5).setCellValue(citySummary.getPersonTime());
+			 sheet.getRow(2).getCell(5).setCellValue(citySummary.getStrvendPoultry());
+			 sheet.getRow(3).getCell(5).setCellValue(citySummary.getStrvendWildlife());
+			 sheet.getRow(4).getCell(5).setCellValue(citySummary.getStrvendOther());
+			 sheet.getRow(5).getCell(5).setCellValue(citySummary.getStrvendOther());
+
+			 sheet.getRow(6).getCell(5).setCellValue(sanitaSummary.getVehicle());
+			 sheet.getRow(7).getCell(5).setCellValue(sanitaSummary.getGarbageDisposal());
+			 sheet.getRow(8).getCell(5).setCellValue(sanitaSummary.getKzKouzhFeiqt());
+			 sheet.getRow(9).getCell(5).setCellValue(sanitaSummary.getKzYunsl());
+			 sheet.getRow(10).getCell(5).setCellValue(sanitaSummary.getXsGongc());
+			 sheet.getRow(11).getCell(5).setCellValue(sanitaSummary.getXsLajz());
+			 sheet.getRow(12).getCell(5).setCellValue(sanitaSummary.getXsHuanwcc());
+			 sheet.getRow(13).getCell(5).setCellValue(sanitaSummary.getXsGuokx());
+			 sheet.getRow(14).getCell(5).setCellValue(sanitaSummary.getHjwsLajcl());
+			 sheet.getRow(15).getCell(5).setCellValue(sanitaSummary.getHjwsXiaoscc());
+			 sheet.getRow(16).getCell(4).setCellValue(sanitaSummary.getHjwsHubeiJiecqk());
+			 sheet.getRow(17).getCell(5).setCellValue(sanitaSummary.getFywzKouzh());
+			 sheet.getRow(18).getCell(5).setCellValue(sanitaSummary.getFywzJiuj());
+			 sheet.getRow(20).getCell(5).setCellValue(sanitaSummary.getFywzXiaody());
+			 sheet.getRow(19).getCell(5).setCellValue(sanitaSummary.getFywzWendj());
+			 sheet.getRow(21).getCell(5).setCellValue(sanitaSummary.getGongyFyqk());
+			 sheet.getRow(22).getCell(4).setCellValue(sanitaSummary.getOther());
+
+			 response.setContentType("application/vnd.ms-excel");
+			 response.setHeader("content-disposition", "attachment;filename=" + title);
+			 ServletOutputStream out = response.getOutputStream();
+			 book.write(out);
+			 out.flush();
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+		 //return mv;
+	 }
 
     /**
       * 通过excel导入数据

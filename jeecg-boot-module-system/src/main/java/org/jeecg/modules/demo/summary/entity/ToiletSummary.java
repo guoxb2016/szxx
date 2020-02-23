@@ -23,7 +23,7 @@ import org.jeecg.common.aspect.annotation.Dict;
 @TableName("toilet_summary")
 public class ToiletSummary implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
     private java.lang.String id;
@@ -116,4 +116,228 @@ public class ToiletSummary implements Serializable {
 	/**备注（进展情况）*/
 	@Excel(name = "备注（进展情况）", width = 15)
     private java.lang.String remarks;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getSysOrgCode() {
+		return sysOrgCode;
+	}
+
+	public void setSysOrgCode(String sysOrgCode) {
+		this.sysOrgCode = sysOrgCode;
+	}
+
+	public String getXianqu() {
+		return xianqu;
+	}
+
+	public void setXianqu(String xianqu) {
+		this.xianqu = xianqu;
+	}
+
+	public String getLeixing() {
+		return leixing;
+	}
+
+	public void setLeixing(String leixing) {
+		this.leixing = leixing;
+	}
+
+	public String getBianhao() {
+		return bianhao;
+	}
+
+	public void setBianhao(String bianhao) {
+		this.bianhao = bianhao;
+	}
+
+	public String getMingcheng() {
+		return mingcheng;
+	}
+
+	public void setMingcheng(String mingcheng) {
+		this.mingcheng = mingcheng;
+	}
+
+	public String getDizhi() {
+		return dizhi;
+	}
+
+	public void setDizhi(String dizhi) {
+		this.dizhi = dizhi;
+	}
+
+	public String getLeibie() {
+		return leibie;
+	}
+
+	public void setLeibie(String leibie) {
+		this.leibie = leibie;
+	}
+
+	public Date getQiyongNianyue() {
+		return qiyongNianyue;
+	}
+
+	public void setQiyongNianyue(Date qiyongNianyue) {
+		this.qiyongNianyue = qiyongNianyue;
+	}
+
+	public Date getKaigongNianyue() {
+		return kaigongNianyue;
+	}
+
+	public void setKaigongNianyue(Date kaigongNianyue) {
+		this.kaigongNianyue = kaigongNianyue;
+	}
+
+	public Double getMianji() {
+		return mianji;
+	}
+
+	public void setMianji(Double mianji) {
+		this.mianji = mianji;
+	}
+
+	public String getJianzhuDuli() {
+		return jianzhuDuli;
+	}
+
+	public void setJianzhuDuli(String jianzhuDuli) {
+		this.jianzhuDuli = jianzhuDuli;
+	}
+
+	public String getJianzhuFushu() {
+		return jianzhuFushu;
+	}
+
+	public void setJianzhuFushu(String jianzhuFushu) {
+		this.jianzhuFushu = jianzhuFushu;
+	}
+
+	public String getJiegouTujian() {
+		return jiegouTujian;
+	}
+
+	public void setJiegouTujian(String jiegouTujian) {
+		this.jiegouTujian = jiegouTujian;
+	}
+
+	public String getJiegouZhuangpei() {
+		return jiegouZhuangpei;
+	}
+
+	public void setJiegouZhuangpei(String jiegouZhuangpei) {
+		this.jiegouZhuangpei = jiegouZhuangpei;
+	}
+
+	public Integer getNan() {
+		return nan;
+	}
+
+	public void setNan(Integer nan) {
+		this.nan = nan;
+	}
+
+	public Integer getNv() {
+		return nv;
+	}
+
+	public void setNv(Integer nv) {
+		this.nv = nv;
+	}
+
+	public Integer getTongyong() {
+		return tongyong;
+	}
+
+	public void setTongyong(Integer tongyong) {
+		this.tongyong = tongyong;
+	}
+
+	public Integer getWuzhangai() {
+		return wuzhangai;
+	}
+
+	public void setWuzhangai(Integer wuzhangai) {
+		this.wuzhangai = wuzhangai;
+	}
+
+	public Integer getXiaobiandou() {
+		return xiaobiandou;
+	}
+
+	public void setXiaobiandou(Integer xiaobiandou) {
+		this.xiaobiandou = xiaobiandou;
+	}
+
+	public String getFushe() {
+		return fushe;
+	}
+
+	public void setFushe(String fushe) {
+		this.fushe = fushe;
+	}
+
+	public String getKongtiao() {
+		return kongtiao;
+	}
+
+	public void setKongtiao(String kongtiao) {
+		this.kongtiao = kongtiao;
+	}
+
+	public String getZhihui() {
+		return zhihui;
+	}
+
+	public void setZhihui(String zhihui) {
+		this.zhihui = zhihui;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 }
