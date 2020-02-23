@@ -118,6 +118,9 @@ public class SanitationSummary implements Serializable {
 	/**二类环卫公厕*/
 	@Excel(name = "二类环卫公厕", width = 15)
     private java.lang.Integer shshHuanwgcErl;
+	/**三类环卫公厕*/
+	@Excel(name = "三类环卫公厕", width = 15)
+    private java.lang.Integer shshHuanwgcSl;
 	/**社会公厕*/
 	@Excel(name = "社会公厕", width = 15)
     private java.lang.Integer shshShehgc;
@@ -197,7 +200,7 @@ public class SanitationSummary implements Serializable {
 	@Excel(name = "服务外包经费标准", width = 15)
     private java.lang.String bjWaibJinfbzh;
 	/**环卫市场化类别*/
-	@Excel(name = "环卫市场化类别", width = 15)
+	@Excel(name = "环卫市场化类别（道路清扫保洁）", width = 15)
     private java.lang.String shichhLeib;
 	/**环卫市场化作业单位*/
 	@Excel(name = "环卫市场化作业单位", width = 15)
@@ -205,6 +208,53 @@ public class SanitationSummary implements Serializable {
 	/**经费标准*/
 	@Excel(name = "经费标准", width = 15)
     private java.lang.String shichhJinfeiBiaozh;
+	
+	/**环卫市场化类别*/
+	@Excel(name = "环卫市场化类别（公厕管理）", width = 15)
+    private java.lang.String shichhgcLeib;
+	/**环卫市场化作业单位*/
+	@Excel(name = "环卫市场化作业单位", width = 15)
+    private java.lang.String shichhgcZuiyeDanwei;
+	/**经费标准*/
+	@Excel(name = "经费标准", width = 15)
+    private java.lang.String shichhgcJinfeiBiaozh;
+	/**环卫市场化类别*/
+	@Excel(name = "环卫市场化类别（垃圾站清扫保洁）", width = 15)
+    private java.lang.String shichhljzLeib;
+	/**环卫市场化作业单位*/
+	@Excel(name = "环卫市场化作业单位", width = 15)
+    private java.lang.String shichhljzZuiyeDanwei;
+	/**经费标准*/
+	@Excel(name = "经费标准", width = 15)
+    private java.lang.String shichhljzJinfeiBiaozh;
+	/**环卫市场化类别*/
+	@Excel(name = "环卫市场化类别（垃圾运输清扫保洁）", width = 15)
+    private java.lang.String shichhljysLeib;
+	/**环卫市场化作业单位*/
+	@Excel(name = "环卫市场化作业单位", width = 15)
+    private java.lang.String shichhljysZuiyeDanwei;
+	/**经费标准*/
+	@Excel(name = "经费标准", width = 15)
+    private java.lang.String shichhljysJinfeiBiaozh;
+	/**环卫市场化类别*/
+	@Excel(name = "环卫市场化类别（垃圾分类清扫保洁）", width = 15)
+    private java.lang.String shichhljflLeib;
+	/**环卫市场化作业单位*/
+	@Excel(name = "环卫市场化作业单位", width = 15)
+    private java.lang.String shichhljflZuiyeDanwei;
+	/**经费标准*/
+	@Excel(name = "经费标准", width = 15)
+    private java.lang.String shichhljflJinfeiBiaozh;
+	/**环卫市场化类别*/
+	@Excel(name = "环卫市场化类别（其他）", width = 15)
+    private java.lang.String shichhqtLeib;
+	/**环卫市场化作业单位*/
+	@Excel(name = "环卫市场化作业单位", width = 15)
+    private java.lang.String shichhqtZuiyeDanwei;
+	/**经费标准*/
+	@Excel(name = "经费标准", width = 15)
+    private java.lang.String shichhqtJinfeiBiaozh;
+	
 	/**单位组织体检人数*/
 	@Excel(name = "单位组织体检人数", width = 15)
     private java.lang.Integer fulTijian;
