@@ -65,14 +65,14 @@ public class ToiletSummary implements Serializable {
 	@Excel(name = "公厕类别", width = 15)
     private java.lang.String leibie;
 	/**启用年月*/
-	@Excel(name = "启用年月", width = 15, format = "yyyy-MM-dd")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@Excel(name = "启用年月", width = 15, format = "yyyy-MM")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM")
+    @DateTimeFormat(pattern="yyyy-MM")
     private java.util.Date qiyongNianyue;
 	/**开工年月*/
-	@Excel(name = "开工年月", width = 15, format = "yyyy-MM-dd")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@Excel(name = "开工年月", width = 15, format = "yyyy-MM")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM")
+    @DateTimeFormat(pattern="yyyy-MM")
     private java.util.Date kaigongNianyue;
 	/**建筑面积（㎡)*/
 	@Excel(name = "建筑面积（㎡)", width = 15)

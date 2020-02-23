@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
+import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
 import org.jeecg.modules.demo.summary.entity.SanitationSummary;
 import org.jeecg.modules.demo.summary.service.ISanitationSummaryService;
 
@@ -128,7 +129,17 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 		}
 		return Result.ok(sanitationSummary);
 	}
-
+	/**
+	 * 查询最新上报的数据
+	 * @return
+	 */
+	@GetMapping(value = "/queryByNew")
+	public Result<?> queryByNew(SanitationSummary cs,HttpServletRequest req){
+		QueryWrapper<SanitationSummary> queryWrapper = QueryGenerator.initQueryWrapper(cs, req.getParameterMap());
+		queryWrapper.last("order by create_time desc limit 1");
+		SanitationSummary sanitationSummary = sanitationSummaryService.getOne(queryWrapper);
+		return  Result.ok(sanitationSummary);
+	}
     /**
     * 导出excel
     *

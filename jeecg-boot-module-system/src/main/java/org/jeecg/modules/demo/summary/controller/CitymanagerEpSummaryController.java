@@ -14,7 +14,9 @@ import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary;
 import org.jeecg.modules.demo.summary.service.ICitymanagerEpSummaryService;
+import org.jeecg.modules.system.entity.SysDict;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -128,7 +130,17 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 		}
 		return Result.ok(citymanagerEpSummary);
 	}
-
+	/**
+	 * 查询最新上报的数据
+	 * @return
+	 */
+	@GetMapping(value = "/queryByNew")
+	public Result<?> queryByNew(CitymanagerEpSummary cs,HttpServletRequest req){
+		QueryWrapper<CitymanagerEpSummary> queryWrapper = QueryGenerator.initQueryWrapper(cs, req.getParameterMap());
+		queryWrapper.last("order by create_time desc limit 1");
+		CitymanagerEpSummary citymanagerEpSummary = citymanagerEpSummaryService.getOne(queryWrapper);
+		return  Result.ok(citymanagerEpSummary);
+	}
     /**
     * 导出excel
     *
