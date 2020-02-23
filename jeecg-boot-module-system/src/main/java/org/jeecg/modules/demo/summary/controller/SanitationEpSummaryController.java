@@ -162,7 +162,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		 //return super.exportXls(request, citymanagerEpSummary, CitymanagerEpSummary.class, "城管防疫汇总表");
 		 // Step.1 组装查询条件
 		 String title = "城管防疫汇总表";
-		 String template = "E:\\JetBrains\\workspace-001\\szxx\\jeecg-boot-module-system\\src\\main\\java\\org\\jeecg\\modules\\demo\\summary\\template\\template.xls";
+		 String template = "C:/szxxTemplate/template.xls";
 		 CitymanagerEpSummary citySummary = citymanagerEpSummaryService.summaryByOrg();
 		 SanitationEpSummary sanitaSummary = sanitationEpSummaryService.summary();
 		 InputStream in;
