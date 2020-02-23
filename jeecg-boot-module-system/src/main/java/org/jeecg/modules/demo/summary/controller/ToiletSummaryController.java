@@ -151,7 +151,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		 List<ToiletSummary> list = toiletSummaryService.list();
 
 		 String title = "城管防疫汇总表";
-		 String template = "C:/szxxTemplate/南昌市“厕所革命”行动新建公厕统计明细表.xls";
+		 String template = "C:/szxxTemplate/toiletTemplate.xls";
 		 InputStream in;
 		 try {
 			 in = new FileInputStream(new File(template));

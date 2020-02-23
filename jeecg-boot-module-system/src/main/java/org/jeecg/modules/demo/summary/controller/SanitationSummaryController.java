@@ -163,7 +163,7 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 		 List<SanitationSummary> list = sanitationSummaryService.list();
 
 		 String title = "城管防疫汇总表";
-		 String template = "C:/szxxTemplate/环卫信息统计表.xls";
+		 String template = "C:/szxxTemplate/sanitationTemplate.xls";
 		 InputStream in;
 		 try {
 			 in = new FileInputStream(new File(template));
