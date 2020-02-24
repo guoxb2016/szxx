@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+body {
+	margin: 15px;
+}
+
+body .layui-input-block {
+	display: inline;
+}
+
+body .layui-form-label {
+	text-align: left;
+}
+
+.header .logo {
+	width: 60%;
+}
+
+.header .welcome {
+	text-align: center;
+}
+
+.header .welcome img {
+	width: 60%;
+}
+
+.header .welcome .tips {
+	text-align: left;
+	font-size: 12px;
+	text-decoration: none;
+	color: #00CD2D;
+}
+.nav_process {
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: baseline;
+	align-items: baseline;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 10px auto 20px
+}
+
+.nav_process .nav_process_item {
+	position: relative;
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column;
+	-webkit-box-flex: 1;
+	flex: 1 1 0%;
+	text-align: center;
+	color: #7b7b7b;
+	padding: 0 12px
+}
+
+.nav_step {
+	-webkit-box-pack: center;
+	justify-content: center;
+	margin: 10px 0;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	max-height: 30px;
+	border-radius: 50%;
+	background-color: #C7C9D0;
+	color: #fff;
+	font-weight: 500
+}
+
+.nav_process_item.complete .nav_step {
+	background-color: #4099EF
+}
+
+.nav_process_item.complete .nav_step i {
+	color: #fff
+}
+
+.nav_process_item.processing .nav_step {
+	background-color: #4099ef
+}
+
+.nav_process_item.processing {
+	color: #434343
+}
+
+.nav_title {
+	font-size: 13px
+}
+
+.nav_process_item .nav_step:before {
+	content: '';
+	position: absolute;
+	left: calc(-50% + 26px);
+	right: calc(50% + 26px);
+	height: 2px;
+	margin-top: 14px;
+	background-color: #eaeaea;
+	cursor: default
+}
+
+.nav_process_item.processing .nav_step:before,.nav_process_item.complete .nav_step:before {
+	background-color: #4099EF
+}
+
+.nav_process .nav_process_item:first-child .nav_step:before {
+	display: none
+}
+
+.btn {
+	color: #fff;
+	width : 100%;
+	background: inherit;
+	background-color: rgba(0, 205, 45, 1);
+	width: 100%;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<meta
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+	name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>公厕详情</title>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="css/loanDetail.css">
+<link rel="stylesheet" href="layui/css/layui.css">
+<link rel="stylesheet" href="layui/css/modules/layer/default/layer.css">
+<link rel="stylesheet" href="ystep/css/ystep.css">
+<link rel="stylesheet" href="css/wx/weui.min.css">
+<link rel="stylesheet" href="css/wx/jquery-weui.min.css">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="http://work.weixin.qq.com/wework_admin/jweixin"></script>
+<script src="js/wx/jquery-2.1.4.js"></script>
+<script src="ystep/js/ystep.js"></script>
+<script src="layui/lay/modules/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script src="js/wx/jquery-weui.min.js"></script>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="header">
+			<div class="u">
+				<div class="weui-form-preview__bd">
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">公厕类型：</label> <span
+							class="weui-form-preview__value" v-text="loan.leixing"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">公厕编号：</label> <span
+							class="weui-form-preview__value" v-text="loan.bianhao"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">公厕名称：</label> <span class="weui-form-preview__value" v-text="loan.mingcheng"></span>
+					</div>
+						<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">地址：</label> <span
+							class="weui-form-preview__value" v-text="loan.dizhi"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">公厕类别：</label> <span
+							class="weui-form-preview__value" v-text="loan.leibie"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">启用年月：</label> <span
+							class="weui-form-preview__value" v-text="loan.qiyongNianyue"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">开工年月：</label> <span
+							class="weui-form-preview__value" v-text="loan.kaigongNianyue"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">建筑面积：</label> <span
+							class="weui-form-preview__value" v-text="loan.mianji"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">独立：</label> <span
+							class="weui-form-preview__value" v-text="loan.jianzhuDuli"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">附属</label> <span
+							class="weui-form-preview__value" v-text="loan.jianzhuFushu"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">土建式：</label> <span
+							class="weui-form-preview__value" v-text="loan.jiegouTujian"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">装配式：</label> <span
+							class="weui-form-preview__value" v-text="loan.jiegouZhuangpei"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">男蹲位数量：</label> <span
+							class="weui-form-preview__value" v-text="loan.nan"></span>
+					</div>
+
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">女蹲位数量：</label> <span
+							class="weui-form-preview__value" v-text="loan.nv"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">通用蹲位数量：</label> <span
+							class="weui-form-preview__value" v-text="loan.tongyong"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">无障碍蹲位数量：</label> <span
+							class="weui-form-preview__value" v-text="loan.wuzhangai"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">小便斗数量：</label> <span
+							class="weui-form-preview__value" v-text="loan.xiaobiandou"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">附设功能（驿站、垃圾站、环卫管理用房等）：</label> <span
+							class="weui-form-preview__value" v-text="loan.fushe"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">是否安装空调：</label> <span
+							class="weui-form-preview__value" v-text="loan.kongtiao"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">是否安装智慧系统：</label> <span
+							class="weui-form-preview__value" v-text="loan.zhihui"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">备注（进展情况）：</label> <span
+							class="weui-form-preview__value" v-text="loan.remarks"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/config.js"></script>
+	<script>
+		document.write("<script src='js/wcDetail.js?v="
+				+ new Date().getTime() + "'><\/script>");
+	</script>
+</body>
+</html>

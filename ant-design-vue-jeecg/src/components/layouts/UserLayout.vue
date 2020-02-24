@@ -5,11 +5,11 @@
         <div class="header">
           <a href="/">
            <!-- <img src="~@/assets/logo.svg" class="logo" alt="logo">-->
-            <span class="title">南昌市疫情防控信息上报平台</span>
+            <span class="title">南昌市城管局疫情防控信息上报平台</span>
           </a>
         </div>
         <div class="desc">
-          南昌市疫情防控信息上报平台
+          南昌市城管局疫情防控信息上报平台
         </div>
       </div>
 
@@ -22,7 +22,7 @@
           <a href="http://www.htphy.com" target="_blank">条款</a>
         </div>
         <div class="copyright">
-          Copyright &copy; 2019 <a href="http://www.htphy.com" target="_blank">江西航天鄱湖云科技有限公司</a> 出品
+          Copyright &copy; 2020 <a href="http://www.htphy.com" target="_blank">江西航天鄱湖云科技有限公司</a> 技术支持
         </div>
       </div>
     </div>

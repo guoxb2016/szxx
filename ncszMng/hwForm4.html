@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <meta
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <title>南昌市城管局疫情防控上报系统</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css">
+    <link rel="stylesheet" href="css/loanForm.css">
+    <script src="js/wx/jquery-2.1.4.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="layui/lay/modules/layer.js"></script>
+</head>
+<body>
+<div class="header">
+    <!--<div>
+        <img alt="logo" class="logo" src="images/u111.png">
+    </div>-->
+    <div class="welcome">
+        <div class="tips">
+            <div>温馨提示：</div>
+            <div>请准确填写相关信息，以便数据统计准确</div>
+        </div>
+        <ul class="nav_process">
+            <li class="nav_process_item processing">
+                <a class="nav_step" href="#">
+                    1
+                </a>
+                <span class="nav_title">环卫管理人员</span>
+            </li>
+            <li class="nav_process_item processing">
+                <a class="nav_step" href="#">
+                    2
+                </a>
+                <span class="nav_title">环卫车辆</span>
+            </li>
+            <li class="nav_process_item processing">
+                <a class="nav_step" href="#">
+                    3
+                </a>
+                <span class="nav_title">环卫设施</span>
+            </li>
+            <li class="nav_process_item processing">
+                <a class="nav_step" href="#">
+                    4
+                </a>
+                <span class="nav_title">道路清扫</span>
+            </li>
+            <li class="nav_process_item">
+                <a class="nav_step" href="#">
+                    5
+                </a>
+                <span class="nav_title">环卫市场化</span>
+            </li>
+            <li class="nav_process_item">
+                <a class="nav_step" href="#">
+                    6
+                </a>
+                <span class="nav_title">环卫人工福利</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container" id="container">
+    <form class="layui-form" action="" method="post" style="margin-top: 10px;">
+        <input type="hidden" name="id" value="">
+        <input type="hidden" name="createBy" value="">
+        <input type="hidden" name="sysOrgCode" value="">
+        <input type="hidden" name="createTime" value="">
+        <input type="hidden" name="updateBy" value="">
+        <input type="hidden" name="updateTime" value="">
+        <input type="hidden" name="grBaojy" value="">
+        <input type="hidden" name="grSijiSais" value="">
+        <input type="hidden" name="grSijiLajysh" value="">
+        <input type="hidden" name="grNan" value="">
+        <input type="hidden" name="grNv" value="">
+        <input type="hidden" name="grLessand45" value="">
+        <input type="hidden" name="grMore45" value="">
+        <input type="hidden" name="grLingshg" value="">
+        <input type="hidden" name="grZhengshg" value="">
+        <input type="hidden" name="grHuanwgl" value="">
+        <input type="hidden" name="chlGans" value="">
+        <input type="hidden" name="chlXis" value="">
+        <input type="hidden" name="chlXich" value="">
+        <input type="hidden" name="chlSaodXiao" value="">
+        <input type="hidden" name="chlSaodDa" value="">
+        <input type="hidden" name="chlSashXiao" value="">
+        <input type="hidden" name="chlSashDa" value="">
+        <input type="hidden" name="chlWuc" value="">
+        <input type="hidden" name="chlLajysh" value="">
+        <input type="hidden" name="chlDiandbj" value="">
+
+        <input type="hidden" name="shshLajzh" value="">
+        <input type="hidden" name="shshFenleilajzh" value="">
+        <input type="hidden" name="shshHuanwgcYil" value="">
+        <input type="hidden" name="shshHuanwgcErl" value="">
+        <input type="hidden" name="shshHuanwgcSl" value="">
+        <input type="hidden" name="shshShehgc" value="">
+        <input type="hidden" name="shshGuokx" value="">
+        <input type="hidden" name="shshLajt" value="">
+
+        <div style="display: inline-block">
+            <fieldset class="layui-elem-field">
+                <legend>严控区道路</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">数量<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="bjYlShul" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">长度<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjYlChangd" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入长度" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">面积<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjYlMianj" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入面积" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">经费标准<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjYlJinfbzh" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>控制区道路</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">数量<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="bjErlShul" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">长度<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjErlChangd" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入长度" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">面积<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjErlMianj" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入面积" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">经费标准<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjErlJinfbzh" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>一般区道路</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">数量<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="bjSslShul" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">长度<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjSslChangd" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入长度" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">面积<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjSslMianj" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入面积" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">经费标准<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjSslJinfbzh" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>开放式社区</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">数量<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="bjShqShul" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">面积<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjShqMianj" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入面积" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label">经费标准<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="bjShqJinfbzh" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="layui-form-item">
+                <label class="layui-form-label">道路总面积<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjZongmj" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入面积" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">服务外包面积<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjWaibmj" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入面积" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">机械清扫面积<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjJixhQingsMianj" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入面积" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">机械清扫长度<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjJixhQingsCang" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入长度" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">市场化率<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjShichh" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">机械化率<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjJixieh" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">市场化作业单位<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjShichDanwei" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">服务外包经费标准<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <input type="number" name="bjWaibJinfbzh" lay-verify="required|number" lay-reqtext="验证不通过"
+                           placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="">
+                <button type="submit"
+                        class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius btn"
+                        lay-submit="" lay-filter="form">下一步
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--container-end-->
+<script src="js/config.js"></script>
+<script src="js/hwForm4.js"></script>
+</body>
+</html>

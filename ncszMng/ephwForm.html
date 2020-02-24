@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <meta
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <title>南昌市城管局疫情防控上报系统</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/modules/layer/default/layer.css">
+    <link rel="stylesheet" href="css/loanForm.css">
+    <script src="js/wx/jquery-2.1.4.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="layui/lay/modules/layer.js"></script>
+</head>
+<body>
+<div class="header">
+    <!--<div>
+        <img alt="logo" class="logo" src="images/u111.png">
+    </div>-->
+    <div class="welcome">
+        <div class="tips">
+            <div>温馨提示：</div>
+            <div>请准确填写相关信息，以便数据统计准确</div>
+        </div>
+    </div>
+</div>
+<div class="container" id="container">
+    <form class="layui-form" action="" method="post" style="margin-top: 10px;">
+        <input type="hidden" name="createBy" value="">
+        <input type="hidden" name="sysOrgCode" value="">
+        <div style="display: inline">
+            <fieldset class="layui-elem-field">
+                <legend>环境卫生清理</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">环卫作业车辆（车次）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="vehicle" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">环卫作业人员（人次）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="personTime" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">生活垃圾无害化处理（吨）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="garbageDisposal" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>废弃口罩收集</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">口罩专用废弃桶<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="kzKouzhFeiqt" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">口罩运输量（车/桶）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="kzYunsl" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>消杀情况</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公厕（座）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="xsGongc" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">垃圾站（座）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="xsLajz" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">环卫作业车辆<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="xsHuanwcc" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">果壳箱及垃圾桶<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="xsGuokx" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>单位管辖范围的环境卫生</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">生活垃圾无害化处理<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="hjwsLajcl" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单位内部疫情防控、消杀情况<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="hjwsXiaoscc" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">本单位职工涉湖北接触情况<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="hjwsHubeiJiecqk" lay-verify="required"
+                                   lay-reqtext="验证不通过" placeholder="请输入"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>防疫物资储备情况</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">口罩<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="fywzKouzh" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">酒精（公斤）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="fywzJiuj" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">温度计<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="fywzWendj" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">消毒液（公斤）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="number" name="fywzXiaody" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>公园广场景区</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">人流量消杀及运行情况<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="gongyFyqk" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="layui-form-item">
+                <label class="layui-form-label">其他<span style="color: red">*</span></label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="other"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="">
+                    <button type="submit"
+                            class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius btn"
+                            lay-submit="" lay-filter="form">提&emsp; &emsp; 交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--container-end-->
+<script src="js/config.js"></script>
+<script src="js/ephwForm.js"></script>
+</body>
+</html>

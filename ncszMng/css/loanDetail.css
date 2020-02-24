@@ -1,0 +1,25 @@
+@charset "utf-8";
+.header .u div label,.header .u div span{
+	color: #000;
+}
+
+.weui-form-preview__item{
+	margin-bottom: 5px;
+	border-bottom: #D9D9D9 solid 0.1px;
+}
+.weui-form-preview__label{
+	min-width:0em;
+}
+.text{
+	font-size:.7em;
+}
+.footer,.container{
+	margin: 20px;
+}
+
+.footer fieldset legend{
+	font-size:16px;
+}
+.ystep .ystep-container-steps li{
+	font-size:.7em;
+}

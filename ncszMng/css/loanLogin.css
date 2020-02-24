@@ -1,0 +1,187 @@
+@charset "utf-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "MicrosoftYaHei","Arial";
+	font-size: 14px
+}
+
+.main-body {
+	width: 100%;
+	height: 576px;
+	top: 50%;
+	left: 45%;
+	position: absolute;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	overflow: hidden
+}
+
+.main-body .hide {
+	display: none!important
+}
+
+.no-border-radius-2 {
+	border-radius: 12px 0 0 0!important
+}
+
+.no-border-radius-4 {
+	border-radius: 0 0 0 12px!important
+}
+
+.new-login {
+	width: 108%;
+	position: relative;
+	float: left
+}
+
+.new-login .top {
+	height: 117px;
+	border-radius: 12px 12px 0 0;
+	font-family: SourceHanSansCN-Regular;
+	font-size: 30px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0;
+	line-height: 117px;
+	text-align: center;
+	overflow: hidden;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg)
+}
+
+.new-login .top .bg1 {
+	display: inline-block;
+	width: 74px;
+	height: 74px;
+	background: #fff;
+	opacity: .1;
+	border-radius: 0 74px 0 0;
+	position: absolute;
+	left: 0;
+	top: 43px
+}
+
+.new-login .top .bg2 {
+	display: inline-block;
+	width: 94px;
+	height: 94px;
+	background: #fff;
+	opacity: .1;
+	border-radius: 50%;
+	position: absolute;
+	right: -16px;
+	top: -16px
+}
+
+.new-login .bottom {
+	width: 428px;
+	background: #fff;
+	border-radius: 0 0 12px 12px;
+	padding-bottom: 53px
+}
+
+.new-login .bottom .center {
+	width: 288px;
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 15px;
+	position: relative
+}
+
+.new-login .bottom .center .item {
+	width: 288px;
+	height: 35px;
+	border-bottom: 1px solid #dae1e6;
+	margin-bottom: 35px
+}
+
+.new-login .bottom .center .item .validateImg {
+	position: absolute;
+	right: 36px;
+	cursor: pointer
+}
+
+.new-login .bottom .center .item input {
+	display: inline-block;
+	width: 227px;
+	height: 22px;
+	padding: 0;
+	position: absolute;
+	border: 0;
+	outline: 0;
+	font-size: 14px;
+	letter-spacing: 0
+}
+
+.new-login .bottom .tip {
+	clear: both;
+	height: 16px;
+	line-height: 16px;
+	width: 288px;
+	margin: 0 auto
+}
+
+.new-login .bottom .tip .icon-nocheck {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	border: solid 1px #9abcda;
+	position: relative;
+	top: 2px;
+	margin: 1px 8px 1px 1px;
+	cursor: pointer
+}
+
+.new-login .bottom .tip .icon-check {
+	margin: 0 7px 0 0;
+	width: 14px;
+	height: 14px;
+	border: 0;
+	background: url(../images/icon-login.png?v=201808271650) no-repeat -111px -48px
+}
+
+.new-login .bottom .tip .login-tip {
+	font-family: MicrosoftYaHei;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0;
+	color: #9abcda;
+	cursor: pointer
+}
+
+.new-login .bottom .tip .no-pwd {
+	font-stretch: normal;
+	letter-spacing: 0;
+	color: #1391ff;
+	text-decoration: none;
+	position: absolute;
+	right: 62px
+}
+
+.new-login .bottom .deal {
+	width: 288px;
+	height: 45px;
+	background-color: #0371d1;
+	border-radius: 16px;
+	margin: 24px auto 0;
+	text-align: center;
+	line-height: 45px;
+	color: #fff;
+	font-size: 16px;
+	letter-spacing: 0;
+	cursor: pointer
+}
+
+
+
+
