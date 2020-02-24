@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <title>公厕列表</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="css/wx/weui.min.css">
+    <link rel="stylesheet" href="css/wx/jquery-weui.min.css">
+    <script src="js/wx/jquery-2.1.4.js"></script>
+</head>
+<body>
+<header class="header" id="header"
+        style="background-color: #fff !important;">
+    <div class="weui-search-bar" id="searchBar" style="width: 100%;">
+        <form class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i> <input type="search"
+                                                        class="weui-search-bar__input" id="searchInput" placeholder="搜索"
+                                                        required=""> <a href="javascript:" class="weui-icon-clear"
+                                                                        id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText"> <i
+                    class="weui-icon-search"></i> <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn"
+           id="searchCancel" style="color: #999;">取消</a>
+    </div>
+</header>
+<!--header-end-->
+<div class="container" id="container" style="margin-top: 55px;">
+    <div id="my-order" class="my-order">
+        <div id="menu_con"></div>
+        <div class="weui-loadmore more">
+            <i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+        <div class="weui-loadmore weui-loadmore_line none">
+            <span class="weui-loadmore__tips">我是有底线的</span>
+        </div>
+        <!--全部客户结束-->
+    </div>
+</div>
+<footer class="footer" id="footer">
+    <div class="min-price-order">
+        <a href="ephwForm.html" style="color: white">添加</a>
+    </div>
+</footer>
+</body>
+<script src="js/config.js"></script>
+<script src="js/wx/jquery-weui.min.js"></script>
+<script src="js/ephwList.js"></script>
+<!--<script>
+    document.write("<script src='js/wcList.js?v=" + new Date().getTime() + "'><\/script>");
+</script>-->
+</html>

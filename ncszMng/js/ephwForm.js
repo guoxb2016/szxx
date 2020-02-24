@@ -5,7 +5,9 @@
 $(function(){
     //查询最新上报的数据回填
 	var storage = window.localStorage;
-	$.ajax({
+	$('input[name="createBy"]').val(storage['userid'].toString());
+	$('input[name="sysOrgCode"]').val(storage['orgCode'].toString());
+	/*$.ajax({
 		url:config.weburl+'summary/sanitationEpSummary/queryByNew',
 		type:'get',
 		dataType:'json',
@@ -30,7 +32,7 @@ $(function(){
 		error:function (e) {
 			layer.msg("获取失败,请联系管理员!");
 		}
-	});
+	});*/
 	//监听提交
 	layui.use(['form', 'layedit', 'laydate'], function(){
 		var form = layui.form

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<meta
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+	name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>上报详情</title>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="css/loanDetail.css">
+<link rel="stylesheet" href="layui/css/layui.css">
+<link rel="stylesheet" href="layui/css/modules/layer/default/layer.css">
+<link rel="stylesheet" href="ystep/css/ystep.css">
+<link rel="stylesheet" href="css/wx/weui.min.css">
+<link rel="stylesheet" href="css/wx/jquery-weui.min.css">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="http://work.weixin.qq.com/wework_admin/jweixin"></script>
+<script src="js/wx/jquery-2.1.4.js"></script>
+<script src="ystep/js/ystep.js"></script>
+<script src="layui/lay/modules/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script src="js/wx/jquery-weui.min.js"></script>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="header">
+			<div class="u">
+				<div class="weui-form-preview__bd">
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">环卫作业车辆：</label> <span
+							class="weui-form-preview__value" v-text="loan.vehicle"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">环卫作业人员：</label> <span
+							class="weui-form-preview__value" v-text="loan.personTime"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">生活垃圾无害化处理：</label> <span class="weui-form-preview__value" v-text="loan.garbageDisposal"></span>
+					</div>
+						<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">口罩废弃桶：</label> <span
+							class="weui-form-preview__value" v-text="loan.kzKouzhFeiqt"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">运输量：</label> <span
+							class="weui-form-preview__value" v-text="loan.kzYunsl"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">消杀-公厕：</label> <span
+							class="weui-form-preview__value" v-text="loan.xsGongc"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">消杀-垃圾站：</label> <span
+							class="weui-form-preview__value" v-text="loan.xsLajz"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">消杀-环卫作业车辆：</label> <span
+							class="weui-form-preview__value" v-text="loan.xsHuanwcc"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">消杀-果壳箱与垃圾桶：</label> <span
+							class="weui-form-preview__value" v-text="loan.xsGuokx"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">生活垃圾无害化处理</label> <span
+							class="weui-form-preview__value" v-text="loan.hjwsLajcl"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">单位内部疫情防控消杀处理情况：</label> <span
+							class="weui-form-preview__value" v-text="loan.hjwsXiaoscc"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">本单位职工涉湖北接触情况：</label> <span
+							class="weui-form-preview__value" v-text="loan.hjwsHubeiJiecqk"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">口罩：</label> <span
+							class="weui-form-preview__value" v-text="loan.fywzKouzh"></span>
+					</div>
+
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">酒精：</label> <span
+							class="weui-form-preview__value" v-text="loan.fywzJiuj"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">温度计：</label> <span
+							class="weui-form-preview__value" v-text="loan.fywzWendj"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">消毒液：</label> <span
+							class="weui-form-preview__value" v-text="loan.fywzXiaody"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">人流量，设施消杀及运行情况：</label> <span
+							class="weui-form-preview__value" v-text="loan.gongyFyqk"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">其它：</label> <span
+							class="weui-form-preview__value" v-text="loan.other"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/config.js"></script>
+	<script>
+		document.write("<script src='js/ephwDetail.js?v="
+				+ new Date().getTime() + "'><\/script>");
+	</script>
+</body>
+</html>

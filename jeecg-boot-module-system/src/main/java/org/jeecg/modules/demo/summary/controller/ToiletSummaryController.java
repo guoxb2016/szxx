@@ -80,7 +80,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody ToiletSummary toiletSummary) {
 		toiletSummaryService.save(toiletSummary);
-		return Result.ok("添加成功！");
+		return Result.ok(toiletSummary.getId());
 	}
 
 	/**
@@ -89,10 +89,10 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 	 * @param toiletSummary
 	 * @return
 	 */
-	@PutMapping(value = "/edit")
+	@PostMapping(value = "/edit")
 	public Result<?> edit(@RequestBody ToiletSummary toiletSummary) {
 		toiletSummaryService.updateById(toiletSummary);
-		return Result.ok("编辑成功!");
+		return Result.ok(toiletSummary.getId());
 	}
 
 	/**

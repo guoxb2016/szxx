@@ -282,6 +282,8 @@ public class SanitationSummary implements Serializable {
 	/**经费标准*/
 	@Excel(name = "经费标准_其它", width = 15)
 	private java.lang.String shichhqtJinfeiBiaozh;
+	//完成进度1、2、3、4、5、6
+	private java.lang.String step;
 
 	public String getId() {
 		return id;
@@ -946,4 +948,5 @@ public class SanitationSummary implements Serializable {
 	public void setShshHuanwgcSl(Integer shshHuanwgcSl) {
 		this.shshHuanwgcSl = shshHuanwgcSl;
 	}
+	
 }

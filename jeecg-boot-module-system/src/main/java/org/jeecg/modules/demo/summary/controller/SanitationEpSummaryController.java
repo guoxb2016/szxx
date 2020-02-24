@@ -82,7 +82,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody SanitationEpSummary sanitationEpSummary) {
 		sanitationEpSummaryService.save(sanitationEpSummary);
-		return Result.ok("添加成功！");
+		return Result.ok(sanitationEpSummary.getId());
 	}
 
 	/**
@@ -91,10 +91,10 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 	 * @param sanitationEpSummary
 	 * @return
 	 */
-	@PutMapping(value = "/edit")
+	@PostMapping(value = "/edit")
 	public Result<?> edit(@RequestBody SanitationEpSummary sanitationEpSummary) {
 		sanitationEpSummaryService.updateById(sanitationEpSummary);
-		return Result.ok("编辑成功!");
+		return Result.ok(sanitationEpSummary.getId());
 	}
 
 	/**

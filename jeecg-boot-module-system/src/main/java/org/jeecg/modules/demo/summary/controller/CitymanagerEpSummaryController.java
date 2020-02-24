@@ -89,7 +89,7 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody CitymanagerEpSummary citymanagerEpSummary) {
 		citymanagerEpSummaryService.save(citymanagerEpSummary);
-		return Result.ok("添加成功！");
+		return Result.ok(citymanagerEpSummary.getId());
 	}
 
 	/**
@@ -98,10 +98,10 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	 * @param citymanagerEpSummary
 	 * @return
 	 */
-	@PutMapping(value = "/edit")
+	@PostMapping(value = "/edit")
 	public Result<?> edit(@RequestBody CitymanagerEpSummary citymanagerEpSummary) {
 		citymanagerEpSummaryService.updateById(citymanagerEpSummary);
-		return Result.ok("编辑成功!");
+		return Result.ok(citymanagerEpSummary.getId());
 	}
 
 	/**

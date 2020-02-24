@@ -106,7 +106,9 @@ body .layui-form-label {
 .nav_process_item.processing .nav_step:before,.nav_process_item.complete .nav_step:before {
 	background-color: #4099EF
 }
-
+.process .nav_step{
+	background-color: rgba(0, 205, 45, 1) !important;
+}
 .nav_process .nav_process_item:first-child .nav_step:before {
 	display: none
 }
