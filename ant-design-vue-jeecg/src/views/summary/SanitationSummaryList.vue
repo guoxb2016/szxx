@@ -452,3 +452,21 @@
 <style scoped>
   @import '~@assets/less/common.less'
 </style>
+<style scope>
+  td{
+    white-space: nowrap;
+  }
+  .ant-table-body{
+    overflow-x: scroll;
+  }
+  /*th{
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }*/
+  th div{
+    white-space: normal;
+    min-width: 100px;
+  }
+</style>

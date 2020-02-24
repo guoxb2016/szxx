@@ -48,7 +48,7 @@
                     ) a2,
                     (SELECT @rank := 1 ,@a := NULL) tt
                 WHERE
-                    rank = 1
+                    a2.rank = 1
             ) a
     </select>
 </mapper>
