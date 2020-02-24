@@ -188,6 +188,7 @@
           {
             title:'县区',
             align:"center",
+            width:60,
             dataIndex: 'xianqu',
             customRender:(text)=>{
               if(!text){
@@ -200,6 +201,7 @@
           {
             title:'公厕类型',
             align:"center",
+            width:80,
             dataIndex: 'leixing',
             customRender:(text)=>{
               if(!text){
@@ -212,6 +214,7 @@
           {
             title:'公厕编号',
             align:"center",
+            width:160,
             dataIndex: 'bianhao'
           },
           {
@@ -361,6 +364,7 @@
             title: '操作',
             dataIndex: 'action',
             align:"center",
+            width: 120,
             scopedSlots: { customRender: 'action' }
           }
         ],
@@ -436,5 +440,24 @@
   }
 </script>
 <style scoped>
-  @import '~@assets/less/common.less'
+  @import '~@assets/less/common.less';
+</style>
+<style scope>
+  td{
+    white-space: nowrap;
+  }
+  /*th{
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }*/
+  .ant-table-body{
+    overflow-x: scroll;
+  }
+  th div{
+    white-space: normal;
+    min-width: 80px;
+  }
+
 </style>
