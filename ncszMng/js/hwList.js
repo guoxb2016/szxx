@@ -59,7 +59,7 @@ function loadMore(code,orgCode){
 						var t = d.split(",");
 						if(t.length == 6){
 							status = '完成';
-							url = "";
+							url = "hwDetail.html";
 						}
 					}
 					$("#menu_con").append('<a href="'+url+'?id='+ret.result.records[i].id+'">'
