@@ -32,6 +32,22 @@ $(function(){
     		loadMore($('#searchInput').val(),storage['orgCode'].toString());
         }  
 	});
+	//删除
+	$("body").on('click','.delete-swipeout',function(){
+		var id = $(this).attr('data');
+		$.ajax({
+			url: config.weburl + '/summary/toiletSummary/delete',
+			dataType: 'json',
+			type: 'delete',
+			data: {
+				id: id
+			},
+			success: function (ret) {
+				$.alert("数据删除成功!");
+				window.location.reload();
+			}
+		});
+	});
 });
 /**
  * 根据页码和页数加载
@@ -52,7 +68,10 @@ function loadMore(code,orgCode){
 			if(ret.success&&ret.result != null){
 				for(var i=0;i<ret.result.records.length;i++){
 					count ++;
-					$("#menu_con").append('<a href="wcDetail.html?id='+ret.result.records[i].id+'">'
+					$("#menu_con").append(
+						   '<div class="weui-cell weui-cell_swiped">'
+							+' <div class="weui-cell__bd">'
+							+'<a href="wcDetail.html?id='+ret.result.records[i].id+'">'
 							+'<div class="weui-form-preview">'
 							+'<div class="weui-form-preview__hd" style="margin-top: 0.3em;">'
 							+'<label class="weui-form-preview__label">名称：'+ret.result.records[i].mingcheng+'</label> <em'
@@ -77,7 +96,12 @@ function loadMore(code,orgCode){
 							+'</div>'
 							+'</div>'
 							+'</div>'
-							+'</a>');
+							+'</a>'
+							+'</div>'
+							+'<div class="weui-cell__ft">'
+							+'<a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" data='+ret.result.records[i].id+' href="javascript:">删除</a>'
+							+'</div>'
+							+'</div>');
 				}
 				//已加载完成
 				if(count == ret.result.total){
@@ -89,6 +113,7 @@ function loadMore(code,orgCode){
 					//显示加载完成指示器
 					$('.none').css("display",'display');
 				}
+				$('.weui-cell_swiped').swipeout();
 				pageNo ++;
 				loading = false;
 			}
