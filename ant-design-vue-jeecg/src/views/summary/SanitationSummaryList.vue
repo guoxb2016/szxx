@@ -24,7 +24,7 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
@@ -562,7 +562,7 @@
           list: "/summary/sanitationSummary/list",
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
-          exportXlsUrl: "/summary/sanitationSummary/exportXls",
+          exportXlsUrl: "/summary/sanitationSummary/exportXls3",
           importExcelUrl: "summary/sanitationSummary/importExcel",
         },
         dictOptions:{
@@ -584,7 +584,7 @@
           }
         })
       }
-       
+
     }
   }
 </script>
