@@ -19,7 +19,7 @@ import java.util.Objects;
  * <p>
  * 部门表
  * <p>
- * 
+ *
  * @Author Steve
  * @Since  2019-01-22
  */
@@ -27,7 +27,7 @@ import java.util.Objects;
 @TableName("sys_depart")
 public class SysDepart implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
 	/**ID*/
 	@TableId(type = IdType.ID_WORKER_STR)
 	private String id;
@@ -88,7 +88,167 @@ public class SysDepart implements Serializable {
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getDepartName() {
+		return departName;
+	}
+
+	public void setDepartName(String departName) {
+		this.departName = departName;
+	}
+
+	public String getDepartNameEn() {
+		return departNameEn;
+	}
+
+	public void setDepartNameEn(String departNameEn) {
+		this.departNameEn = departNameEn;
+	}
+
+	public String getDepartNameAbbr() {
+		return departNameAbbr;
+	}
+
+	public void setDepartNameAbbr(String departNameAbbr) {
+		this.departNameAbbr = departNameAbbr;
+	}
+
+	public Integer getDepartOrder() {
+		return departOrder;
+	}
+
+	public void setDepartOrder(Integer departOrder) {
+		this.departOrder = departOrder;
+	}
+
+	public Object getDescription() {
+		return description;
+	}
+
+	public void setDescription(Object description) {
+		this.description = description;
+	}
+
+	public String getOrgCategory() {
+		return orgCategory;
+	}
+
+	public void setOrgCategory(String orgCategory) {
+		this.orgCategory = orgCategory;
+	}
+
+	public String getOrgType() {
+		return orgType;
+	}
+
+	public void setOrgType(String orgType) {
+		this.orgType = orgType;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	/**
 	 * 重写equals方法
 	 */
@@ -132,9 +292,9 @@ public class SysDepart implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, parentId, departName, 
-        		departNameEn, departNameAbbr, departOrder, description,orgCategory, 
-        		orgType, orgCode, mobile, fax, address, memo, status, 
+        return Objects.hash(super.hashCode(), id, parentId, departName,
+        		departNameEn, departNameAbbr, departOrder, description,orgCategory,
+        		orgType, orgCode, mobile, fax, address, memo, status,
         		delFlag, createBy, createTime, updateBy, updateTime);
     }
 }
