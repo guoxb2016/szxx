@@ -4,16 +4,31 @@
     <div class="table-page-search-wrapper">
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
+          <a-col :md="6" :sm="8">
+            <a-form-item label="所属区县">
+              <a-input placeholder="请输入所属区县" v-model="queryParam.sysOrgCode"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8" >
+            <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
+              <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
+              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <a @click="handleToggleSearch" style="margin-left: 8px">
+                {{ toggleSearchStatus ? '收起' : '展开' }}
+                <a-icon :type="toggleSearchStatus ? 'up' : 'down'"/>
+              </a>
+            </span>
+          </a-col>
 
         </a-row>
       </a-form>
     </div>
     <!-- 查询区域-END -->
-
+    
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
-      <a-button type="primary" icon="download" @click="handleExportXls('环卫信息汇总表')">导出</a-button>
+      <a-button type="primary" icon="download" @click="handleExportXls('环卫信息表')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>
@@ -42,7 +57,7 @@
         :pagination="ipagination"
         :loading="loading"
         :rowSelection="{fixed:true,selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-
+        :scroll="tableScroll"
         @change="handleTableChange">
 
         <template slot="htmlSlot" slot-scope="text">
@@ -101,7 +116,7 @@
     },
     data () {
       return {
-        description: '环卫信息汇总表管理页面',
+        description: '环卫信息表管理页面',
         // 表头
         columns: [
           {
@@ -113,6 +128,23 @@
             customRender:function (t,r,index) {
               return parseInt(index)+1;
             }
+          },
+          {
+            title:'所属区县',
+            align:"center",
+            dataIndex: 'sysOrgCode',
+            customRender:(text)=>{
+              if(!text){
+                return ''
+              }else{
+                return filterMultiDictText(this.dictOptions['sysOrgCode'], text+"")
+              }
+            }
+          },
+          {
+            title:'环卫管理人员',
+            align:"center",
+            dataIndex: 'hwglry'
           },
           {
             title:'保洁员（操作工）',
@@ -215,6 +247,16 @@
             dataIndex: 'chlDiandbj'
           },
           {
+            title:'移动厕所车',
+            align:"center",
+            dataIndex: 'ydcsc'
+          },
+          {
+            title:'护栏清洗车',
+            align:"center",
+            dataIndex: 'hlqxc'
+          },
+          {
             title:'普通垃圾站',
             align:"center",
             dataIndex: 'shshLajzh'
@@ -235,6 +277,11 @@
             dataIndex: 'shshHuanwgcErl'
           },
           {
+            title:'三类环卫公厕',
+            align:"center",
+            dataIndex: 'shshHuanwgcSl'
+          },
+          {
             title:'社会公厕',
             align:"center",
             dataIndex: 'shshShehgc'
@@ -250,62 +297,62 @@
             dataIndex: 'shshLajt'
           },
           {
-            title:'一类道路数量',
+            title:'严控区道路数量',
             align:"center",
             dataIndex: 'bjYlShul'
           },
           {
-            title:'一类道路长度',
+            title:'严控区道路长度（m）',
             align:"center",
             dataIndex: 'bjYlChangd'
           },
           {
-            title:'一类道路面积',
+            title:'严控区道路面积（m²）',
             align:"center",
             dataIndex: 'bjYlMianj'
           },
           {
-            title:'一类道路经费标准',
+            title:'严控区道路经费标准（元）',
             align:"center",
             dataIndex: 'bjYlJinfbzh'
           },
           {
-            title:'二类道路数量',
+            title:'控制区道路数量',
             align:"center",
             dataIndex: 'bjErlShul'
           },
           {
-            title:'二类道路长度',
+            title:'控制区道路长度（m）',
             align:"center",
             dataIndex: 'bjErlChangd'
           },
           {
-            title:'二类道路面积',
+            title:'控制区道路面积（m²）',
             align:"center",
             dataIndex: 'bjErlMianj'
           },
           {
-            title:'二类道路经费标准',
+            title:'控制区道路经费标准（元）',
             align:"center",
             dataIndex: 'bjErlJinfbzh'
           },
           {
-            title:'三四类道路数量',
+            title:'一般区道路数量',
             align:"center",
             dataIndex: 'bjSslShul'
           },
           {
-            title:'三四类道路长度',
+            title:'一般区道路长度（m）',
             align:"center",
             dataIndex: 'bjSslChangd'
           },
           {
-            title:'三四类道路面积',
+            title:'一般区道路面积（m²）',
             align:"center",
             dataIndex: 'bjSslMianj'
           },
           {
-            title:'三四类道路经费标准',
+            title:'一般区道路经费标准（元）',
             align:"center",
             dataIndex: 'bjSslJinfbzh'
           },
@@ -315,32 +362,32 @@
             dataIndex: 'bjShqShul'
           },
           {
-            title:'社区面积',
+            title:'社区面积（m²）',
             align:"center",
             dataIndex: 'bjShqMianj'
           },
           {
-            title:'社区经费标准',
+            title:'社区经费标准（元）',
             align:"center",
             dataIndex: 'bjShqJinfbzh'
           },
           {
-            title:'道路总面积',
+            title:'道路总面积（m²）',
             align:"center",
             dataIndex: 'bjZongmj'
           },
           {
-            title:'服务外包面积',
+            title:'服务外包面积（m²）',
             align:"center",
             dataIndex: 'bjWaibmj'
           },
           {
-            title:'机械化清扫面积',
+            title:'机械化清扫面积（m²）',
             align:"center",
             dataIndex: 'bjJixhQingsMianj'
           },
           {
-            title:'机械化清扫长度',
+            title:'机械化清扫长度（m）',
             align:"center",
             dataIndex: 'bjJixhQingsCang'
           },
@@ -360,12 +407,12 @@
             dataIndex: 'bjShichDanwei'
           },
           {
-            title:'服务外包经费标准',
+            title:'服务外包经费标准（m）',
             align:"center",
             dataIndex: 'bjWaibJinfbzh'
           },
           {
-            title:'环卫市场化类别',
+            title:'道路清扫保洁环卫市场化类别',
             align:"center",
             dataIndex: 'shichhLeib'
           },
@@ -375,9 +422,84 @@
             dataIndex: 'shichhZuiyeDanwei'
           },
           {
-            title:'经费标准',
+            title:'经费标准（元）',
             align:"center",
             dataIndex: 'shichhJinfeiBiaozh'
+          },
+          {
+            title:'公厕管理环卫市场化',
+            align:"center",
+            dataIndex: 'shichhgcLeib'
+          },
+          {
+            title:'环卫市场化作业单位',
+            align:"center",
+            dataIndex: 'shichhgcZuiyeDanwei'
+          },
+          {
+            title:'经费标准（元）',
+            align:"center",
+            dataIndex: 'shichhgcJinfeiBiaozh'
+          },
+          {
+            title:'垃圾站环卫市场化',
+            align:"center",
+            dataIndex: 'shichhljzLeib'
+          },
+          {
+            title:'环卫市场化作业单位',
+            align:"center",
+            dataIndex: 'shichhljzZuiyeDanwei'
+          },
+          {
+            title:'经费标准（元）',
+            align:"center",
+            dataIndex: 'shichhljzJinfeiBiaozh'
+          },
+          {
+            title:'垃运输环卫市场化',
+            align:"center",
+            dataIndex: 'shichhljysLeib'
+          },
+          {
+            title:'环卫市场化作业单位',
+            align:"center",
+            dataIndex: 'shichhljysZuiyeDanwei'
+          },
+          {
+            title:'经费标准（元）',
+            align:"center",
+            dataIndex: 'shichhljysJinfeiBiaozh'
+          },
+          {
+            title:'垃圾分类环卫市场化',
+            align:"center",
+            dataIndex: 'shichhljflLeib'
+          },
+          {
+            title:'环卫市场化作业单位',
+            align:"center",
+            dataIndex: 'shichhljflZuiyeDanwei'
+          },
+          {
+            title:'经费标准（元）',
+            align:"center",
+            dataIndex: 'shichhljflJinfeiBiaozh'
+          },
+          {
+            title:'其他环卫市场化',
+            align:"center",
+            dataIndex: 'shichhqtLeib'
+          },
+          {
+            title:'环卫市场化作业单位',
+            align:"center",
+            dataIndex: 'shichhqtZuiyeDanwei'
+          },
+          {
+            title:'经费标准（元）',
+            align:"center",
+            dataIndex: 'shichhqtJinfeiBiaozh'
           },
           {
             title:'单位组织体检人数',
@@ -385,7 +507,7 @@
             dataIndex: 'fulTijian'
           },
           {
-            title:'节日福利标准（包括春节、端午节、中秋节及环卫工人节）	',
+            title:'一年四节节日福利标准',
             align:"center",
             dataIndex: 'fulJiejia'
           },
@@ -400,17 +522,17 @@
             dataIndex: 'fulShehuiBaoxian'
           },
           {
-            title:'意外伤害险购买金额',
+            title:'意外伤害险购买金额（元）',
             align:"center",
             dataIndex: 'fulYiwaiBaoxianJinge'
           },
           {
-            title:'基础工资标准',
+            title:'基础工资标准（元）',
             align:"center",
             dataIndex: 'fulGongzbiaozh'
           },
           {
-            title:'工龄工资 标准',
+            title:'工龄工资标准（元）',
             align:"center",
             dataIndex: 'fulGonglgzbiaozh'
           },
@@ -423,6 +545,8 @@
             title: '操作',
             dataIndex: 'action',
             align:"center",
+            fixed:"right",
+            width:147,
             scopedSlots: { customRender: 'action' }
           }
         ],
@@ -430,11 +554,13 @@
           list: "/summary/sanitationSummary/list",
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
-          exportXlsUrl: "/summary/sanitationSummary/exportXls2",
+          exportXlsUrl: "/summary/sanitationSummary/exportXls",
           importExcelUrl: "summary/sanitationSummary/importExcel",
         },
         dictOptions:{
+         sysOrgCode:[],
         },
+        tableScroll:{x :81*147+50}
       }
     },
     computed: {
@@ -444,27 +570,26 @@
     },
     methods: {
       initDictConfig(){
+        initDictOptions('sys_depart,depart_name,id').then((res) => {
+          if (res.success) {
+            this.$set(this.dictOptions, 'sysOrgCode', res.result)
+          }
+        })
       }
-
+       
     }
   }
 </script>
 <style scoped>
   @import '~@assets/less/common.less'
 </style>
-<style scope>
+<style>
   td{
     white-space: nowrap;
   }
   .ant-table-body{
     overflow-x: scroll;
   }
-  /*th{
-    white-space: nowrap;
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }*/
   th div{
     white-space: normal;
     min-width: 100px;

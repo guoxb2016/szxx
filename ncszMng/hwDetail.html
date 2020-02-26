@@ -27,15 +27,15 @@
     </div>-->
     <div class="welcome">
         <div class="tips">
-           <!-- <div>温馨提示：</div>
-            <div>请准确填写相关信息，以便数据统计准确</div>-->
+            <!-- <div>温馨提示：</div>
+             <div>请准确填写相关信息，以便数据统计准确</div>-->
         </div>
         <ul class="nav_process">
             <li class="nav_process_item processing">
                 <a class="nav_step" href="hwDetail.html">
                     1
                 </a>
-                <span class="nav_title">环卫一线职工</span>
+                <span class="nav_title">环卫职工</span>
             </li>
             <li class="nav_process_item">
                 <a class="nav_step" href="hwDetail2.html">
@@ -150,73 +150,91 @@
         <input type="hidden" name="fulGonglgzbiaozh" value="">
         <input type="hidden" name="fulGongjijing" value="">
         <div style="display: inline">
-            <div class="layui-form-item">
-                <label class="layui-form-label">保洁工（操作工）<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grBaojy" lay-verify="required|number"
-                           lay-reqtext="验证不通过" placeholder="请输入数量"
-                           autocomplete="off" class="layui-input">
+            <fieldset class="layui-elem-field">
+                <legend>环卫管理人员</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">管理人员数量<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="hwglry" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">洒水（机扫）司机<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grSijiSais" lay-verify="required|number"
-                           lay-reqtext="验证不通过" placeholder="请输入数量" autocomplete="off"
-                           class="layui-input">
+            </fieldset>
+            <fieldset class="layui-elem-field">
+                <legend>环卫一线职工</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">保洁工（操作工）<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grBaojy" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">洒水（机扫）司机<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grSijiSais" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">垃圾运输司机<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grSijiLajysh" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">男<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grNan" lay-verify="required|number"
+                                   lay-reqtext="验证不通过" placeholder="请输入数量"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">女<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grNv" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">45岁以下<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grLessand45" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">45岁以上<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grMore45" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">临时工<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grLingshg" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">正式工<span style="color: red">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="tel" name="grZhengshg" lay-verify="required|number" lay-reqtext="验证不通过"
+                                   placeholder="请输入数量" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">垃圾运输司机<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grSijiLajysh" lay-verify="required|number"
-                           lay-reqtext="验证不通过" placeholder="请输入数量"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">男<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grNan" lay-verify="required|number"
-                           lay-reqtext="验证不通过" placeholder="请输入数量"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">女<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grNv" lay-verify="required|number" lay-reqtext="验证不通过"
-                           placeholder="请输入数量" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">45岁以下<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grLessand45" lay-verify="required|number" lay-reqtext="验证不通过"
-                           placeholder="请输入数量" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">45岁以上<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grMore45" lay-verify="required|number" lay-reqtext="验证不通过"
-                           placeholder="请输入数量" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">临时工<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grLingshg" lay-verify="required|number" lay-reqtext="验证不通过"
-                           placeholder="请输入数量" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">正式工<span style="color: red">*</span></label>
-                <div class="layui-input-block">
-                    <input type="tel" name="grZhengshg" lay-verify="required|number" lay-reqtext="验证不通过"
-                           placeholder="请输入数量" autocomplete="off" class="layui-input">
-                </div>
-            </div>
+            </fieldset>
         </div>
         <div class="layui-form-item">
             <div class="">
