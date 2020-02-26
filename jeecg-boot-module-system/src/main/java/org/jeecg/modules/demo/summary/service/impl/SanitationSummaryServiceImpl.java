@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.List;
+
 /**
  * @Description: 环卫信息汇总表
  * @Author: jeecg-boot
@@ -19,5 +21,10 @@ public class SanitationSummaryServiceImpl extends ServiceImpl<SanitationSummaryM
     @Override
     public SanitationSummary summaryByOrg() {
         return baseMapper.summaryByOrg();
+    }
+
+    @Override
+    public List<SanitationSummary> findGroupByOrg() {
+        return baseMapper.findGroupByOrg();
     }
 }

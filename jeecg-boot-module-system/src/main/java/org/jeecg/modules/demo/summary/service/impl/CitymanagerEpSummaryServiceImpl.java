@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.List;
+
 /**
  * @Description: 城管防疫汇总表
  * @Author: jeecg-boot
@@ -19,5 +21,10 @@ public class CitymanagerEpSummaryServiceImpl extends ServiceImpl<CitymanagerEpSu
     @Override
     public CitymanagerEpSummary summaryByOrg() {
         return baseMapper.summaryByOrg();
+    }
+
+    @Override
+    public List<CitymanagerEpSummary> findGroupBy() {
+        return baseMapper.findGroupByOrg();
     }
 }

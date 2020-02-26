@@ -3,6 +3,8 @@ package org.jeecg.modules.demo.summary.service;
 import org.jeecg.modules.demo.summary.entity.SanitationSummary;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * @Description: 环卫信息汇总表
  * @Author: jeecg-boot
@@ -11,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISanitationSummaryService extends IService<SanitationSummary> {
     public SanitationSummary summaryByOrg();
+
+    public List<SanitationSummary> findGroupByOrg();
 }

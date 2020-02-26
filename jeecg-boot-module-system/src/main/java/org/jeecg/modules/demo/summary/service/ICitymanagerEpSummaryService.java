@@ -3,6 +3,8 @@ package org.jeecg.modules.demo.summary.service;
 import org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * @Description: 城管防疫汇总表
  * @Author: jeecg-boot
@@ -11,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICitymanagerEpSummaryService extends IService<CitymanagerEpSummary> {
     public CitymanagerEpSummary summaryByOrg();
+
+    public List<CitymanagerEpSummary> findGroupBy();
 }

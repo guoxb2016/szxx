@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.SecurityUtils;
@@ -61,7 +61,7 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	private ICitymanagerEpSummaryService citymanagerEpSummaryService;
 	@Autowired
 	private ISanitationEpSummaryService sanitationEpSummaryService;
-	
+
 	@Autowired
     private ISysDepartService sysDepartService;
 
@@ -224,6 +224,62 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 		 //return mv;
 	 }
 
+	 @RequestMapping(value = "/exportXls3")
+	 public void exportXls3(HttpServletRequest request, CitymanagerEpSummary citymanagerEpSummary, HttpServletResponse response) {
+		 String title = "城管防疫汇总表";
+		 String template = "C:/szxxTemplate/template1.1.xls";
+		 List<CitymanagerEpSummary> citys = citymanagerEpSummaryService.findGroupBy();
+		 List<SanitationEpSummary> sans = sanitationEpSummaryService.findGroupBy();
+		 InputStream in;
+		 try {
+			 in = new FileInputStream(new File(template));
+			 HSSFWorkbook book = null;
+			 book = new HSSFWorkbook(in);
+			 HSSFSheet sheet1 = book.getSheetAt(0);
+			 HSSFSheet sheet2 = book.getSheetAt(1);
+			 for(int i=0; i<citys.size(); i++) {
+			 	CitymanagerEpSummary citySummary = citys.get(i);
+				 this.createCell(sheet1,4+i , 0, 4).setCellValue(i+1);
+				 this.createCell(sheet1,4+i , 1, 4).setCellValue(citySummary.getSysOrgName());
+				 this.createCell(sheet1,4+i , 2, 4).setCellValue(citySummary.getPersonTime());
+				 this.createCell(sheet1,4+i , 3, 4).setCellValue(citySummary.getStrvendPoultry());
+				 this.createCell(sheet1,4+i , 4, 4).setCellValue(citySummary.getStrvendWildlife());
+				 this.createCell(sheet1,4+i , 5, 4).setCellValue(citySummary.getStrvendOther());
+			 }
+			 for(int i=0; i<sans.size(); i++){
+				 SanitationEpSummary sanitaSummary = sans.get(i);
+				 this.createCell(sheet2,3+i , 0, 3).setCellValue(i+1);
+				 this.createCell(sheet2,3+i , 1, 3).setCellValue(sanitaSummary.getSysOrgName());
+				 this.createCell(sheet2,3+i , 2, 3).setCellValue(sanitaSummary.getVehicle());
+				 this.createCell(sheet2,3+i , 3, 3).setCellValue(sanitaSummary.getPersonTime());
+				 this.createCell(sheet2,3+i , 4, 3).setCellValue(sanitaSummary.getGarbageDisposal());
+				 this.createCell(sheet2,3+i , 5, 3).setCellValue(sanitaSummary.getKzKouzhFeiqt());
+				 this.createCell(sheet2,3+i , 6, 3).setCellValue(sanitaSummary.getKzYunsl());
+				 this.createCell(sheet2,3+i , 7, 3).setCellValue(sanitaSummary.getXsGongc());
+				 this.createCell(sheet2,3+i , 8, 3).setCellValue(sanitaSummary.getXsLajz());
+				 this.createCell(sheet2,3+i , 9, 3).setCellValue(sanitaSummary.getXsHuanwcc());
+				 this.createCell(sheet2,3+i , 10, 3).setCellValue(sanitaSummary.getXsGuokx());
+				 this.createCell(sheet2,3+i , 11, 3).setCellValue(sanitaSummary.getHjwsLajcl());
+				 this.createCell(sheet2,3+i , 12, 3).setCellValue(sanitaSummary.getHjwsXiaoscc());
+				 this.createCell(sheet2,3+i , 13, 3).setCellValue(sanitaSummary.getHjwsHubeiJiecqk());
+				 this.createCell(sheet2,3+i , 14, 3).setCellValue(sanitaSummary.getFywzKouzh());
+				 this.createCell(sheet2,3+i , 15, 3).setCellValue(sanitaSummary.getFywzJiuj());
+				 this.createCell(sheet2,3+i , 17, 3).setCellValue(sanitaSummary.getFywzXiaody());
+				 this.createCell(sheet2,3+i , 16, 3).setCellValue(sanitaSummary.getFywzWendj());
+				 this.createCell(sheet2,3+i , 18, 3).setCellValue(sanitaSummary.getGongyFyqk());
+				 this.createCell(sheet2,3+i , 19, 3).setCellValue(sanitaSummary.getOther());
+			 }
+
+			 response.setContentType("application/vnd.ms-excel");
+			 response.setHeader("content-disposition", "attachment;filename=" + title);
+			 ServletOutputStream out = response.getOutputStream();
+			 book.write(out);
+			 out.flush();
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+	 }
+
     /**
       * 通过excel导入数据
     *
@@ -235,5 +291,15 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, CitymanagerEpSummary.class);
     }
+
+	 public Cell createCell(Sheet sheet, int rowNum, int column, int styleRow){
+		 int rowIndex = sheet.getLastRowNum() + 1;
+		 Row row = sheet.getRow(rowNum) == null?sheet.createRow(rowIndex):sheet.getRow(rowNum);
+		 Cell cell=row.getCell(column)==null?row.createCell(column):row.getCell(column);  // 创建单元格
+
+		 CellStyle cellStyle=sheet.getRow(styleRow).getCell(column).getCellStyle();
+		 cell.setCellStyle(cellStyle);
+		 return cell;
+	 }
 
 }
