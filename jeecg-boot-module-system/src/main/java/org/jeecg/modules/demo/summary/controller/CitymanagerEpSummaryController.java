@@ -22,7 +22,9 @@ import org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary;
 import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
 import org.jeecg.modules.demo.summary.service.ICitymanagerEpSummaryService;
 import org.jeecg.modules.demo.summary.service.ISanitationEpSummaryService;
+import org.jeecg.modules.system.entity.SysDepart;
 import org.jeecg.modules.system.entity.SysDict;
+import org.jeecg.modules.system.service.ISysDepartService;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -59,6 +61,9 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	private ICitymanagerEpSummaryService citymanagerEpSummaryService;
 	@Autowired
 	private ISanitationEpSummaryService sanitationEpSummaryService;
+	
+	@Autowired
+    private ISysDepartService sysDepartService;
 
 	/**
 	 * 分页列表查询
@@ -89,7 +94,11 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody CitymanagerEpSummary citymanagerEpSummary) {
 		//增加组织名称
-		String orgCode = citymanagerEpSummary.getSysOrgCode();
+		List<SysDepart> departs = sysDepartService.queryUserDeparts(citymanagerEpSummary.getCreateBy());
+		if (departs != null && !departs.isEmpty()) {
+			citymanagerEpSummary.setSysOrgCode(departs.get(0).getOrgCode());
+			citymanagerEpSummary.setSysOrgName(departs.get(0).getDepartName());
+		}
 		citymanagerEpSummaryService.save(citymanagerEpSummary);
 		return Result.ok(citymanagerEpSummary.getId());
 	}

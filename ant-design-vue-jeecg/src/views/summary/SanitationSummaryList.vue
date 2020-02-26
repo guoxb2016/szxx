@@ -5,8 +5,8 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
           <a-col :md="6" :sm="8">
-            <a-form-item label="所属区县">
-              <a-input placeholder="请输入所属区县" v-model="queryParam.sysOrgCode"></a-input>
+            <a-form-item label="所属区县编码">
+              <a-input placeholder="请输入所属区县编码" v-model="queryParam.sysOrgCode"></a-input>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8" >
@@ -130,7 +130,7 @@
             }
           },
           {
-            title:'所属区县',
+            title:'所属区县编码',
             align:"center",
             dataIndex: 'sysOrgCode',
             customRender:(text)=>{
@@ -140,6 +140,11 @@
                 return filterMultiDictText(this.dictOptions['sysOrgCode'], text+"")
               }
             }
+          },
+          {
+            title:'所属区县',
+            align:"center",
+            dataIndex: 'sysOrgName'
           },
           {
             title:'环卫管理人员',
@@ -560,7 +565,7 @@
         dictOptions:{
          sysOrgCode:[],
         },
-        tableScroll:{x :81*147+50}
+        tableScroll:{x :82*147+50}
       }
     },
     computed: {
@@ -582,16 +587,4 @@
 </script>
 <style scoped>
   @import '~@assets/less/common.less'
-</style>
-<style>
-  td{
-    white-space: nowrap;
-  }
-  .ant-table-body{
-    overflow-x: scroll;
-  }
-  th div{
-    white-space: normal;
-    min-width: 100px;
-  }
 </style>

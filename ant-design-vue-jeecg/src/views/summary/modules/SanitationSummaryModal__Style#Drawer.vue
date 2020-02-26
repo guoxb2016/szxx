@@ -10,8 +10,11 @@
     <a-spin :spinning="confirmLoading">
       <a-form :form="form">
 
-        <a-form-item label="所属区县" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        <a-form-item label="所属区县编码" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-select-depart v-decorator="['sysOrgCode', validatorRules.sysOrgCode]" :trigger-change="true"/>
+        </a-form-item>
+        <a-form-item label="所属区县" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input v-decorator="[ 'sysOrgName', validatorRules.sysOrgName]" placeholder="请输入所属区县"></a-input>
         </a-form-item>
         <a-form-item label="环卫管理人员" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'hwglry', validatorRules.hwglry]" placeholder="请输入环卫管理人员"></a-input>
@@ -292,6 +295,8 @@
         validatorRules: {
           sysOrgCode: {rules: [
           ]},
+          sysOrgName: {rules: [
+          ]},
           hwglry: {rules: [
           ]},
           grBaojy: {rules: [
@@ -470,7 +475,7 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model,'sysOrgCode','hwglry','grBaojy','grSijiSais','grSijiLajysh','grNan','grNv','grLessand45','grMore45','grLingshg','grZhengshg','grHuanwgl','chlGans','chlXis','chlXich','chlSaodXiao','chlSaodDa','chlSashXiao','chlSashDa','chlWuc','chlLajysh','chlDiandbj','ydcsc','hlqxc','shshLajzh','shshFenleilajzh','shshHuanwgcYil','shshHuanwgcErl','shshHuanwgcSl','shshShehgc','shshGuokx','shshLajt','bjYlShul','bjYlChangd','bjYlMianj','bjYlJinfbzh','bjErlShul','bjErlChangd','bjErlMianj','bjErlJinfbzh','bjSslShul','bjSslChangd','bjSslMianj','bjSslJinfbzh','bjShqShul','bjShqMianj','bjShqJinfbzh','bjZongmj','bjWaibmj','bjJixhQingsMianj','bjJixhQingsCang','bjShichh','bjJixieh','bjShichDanwei','bjWaibJinfbzh','shichhLeib','shichhZuiyeDanwei','shichhJinfeiBiaozh','shichhgcLeib','shichhgcZuiyeDanwei','shichhgcJinfeiBiaozh','shichhljzLeib','shichhljzZuiyeDanwei','shichhljzJinfeiBiaozh','shichhljysLeib','shichhljysZuiyeDanwei','shichhljysJinfeiBiaozh','shichhljflLeib','shichhljflZuiyeDanwei','shichhljflJinfeiBiaozh','shichhqtLeib','shichhqtZuiyeDanwei','shichhqtJinfeiBiaozh','fulTijian','fulJiejia','fulYiwaiBaoxian','fulShehuiBaoxian','fulYiwaiBaoxianJinge','fulGongzbiaozh','fulGonglgzbiaozh','fulGongjijing'))
+          this.form.setFieldsValue(pick(this.model,'sysOrgCode','sysOrgName','hwglry','grBaojy','grSijiSais','grSijiLajysh','grNan','grNv','grLessand45','grMore45','grLingshg','grZhengshg','grHuanwgl','chlGans','chlXis','chlXich','chlSaodXiao','chlSaodDa','chlSashXiao','chlSashDa','chlWuc','chlLajysh','chlDiandbj','ydcsc','hlqxc','shshLajzh','shshFenleilajzh','shshHuanwgcYil','shshHuanwgcErl','shshHuanwgcSl','shshShehgc','shshGuokx','shshLajt','bjYlShul','bjYlChangd','bjYlMianj','bjYlJinfbzh','bjErlShul','bjErlChangd','bjErlMianj','bjErlJinfbzh','bjSslShul','bjSslChangd','bjSslMianj','bjSslJinfbzh','bjShqShul','bjShqMianj','bjShqJinfbzh','bjZongmj','bjWaibmj','bjJixhQingsMianj','bjJixhQingsCang','bjShichh','bjJixieh','bjShichDanwei','bjWaibJinfbzh','shichhLeib','shichhZuiyeDanwei','shichhJinfeiBiaozh','shichhgcLeib','shichhgcZuiyeDanwei','shichhgcJinfeiBiaozh','shichhljzLeib','shichhljzZuiyeDanwei','shichhljzJinfeiBiaozh','shichhljysLeib','shichhljysZuiyeDanwei','shichhljysJinfeiBiaozh','shichhljflLeib','shichhljflZuiyeDanwei','shichhljflJinfeiBiaozh','shichhqtLeib','shichhqtZuiyeDanwei','shichhqtJinfeiBiaozh','fulTijian','fulJiejia','fulYiwaiBaoxian','fulShehuiBaoxian','fulYiwaiBaoxianJinge','fulGongzbiaozh','fulGonglgzbiaozh','fulGongjijing'))
         })
       },
       close () {
@@ -513,7 +518,7 @@
         this.close()
       },
       popupCallback(row){
-        this.form.setFieldsValue(pick(row,'sysOrgCode','hwglry','grBaojy','grSijiSais','grSijiLajysh','grNan','grNv','grLessand45','grMore45','grLingshg','grZhengshg','grHuanwgl','chlGans','chlXis','chlXich','chlSaodXiao','chlSaodDa','chlSashXiao','chlSashDa','chlWuc','chlLajysh','chlDiandbj','ydcsc','hlqxc','shshLajzh','shshFenleilajzh','shshHuanwgcYil','shshHuanwgcErl','shshHuanwgcSl','shshShehgc','shshGuokx','shshLajt','bjYlShul','bjYlChangd','bjYlMianj','bjYlJinfbzh','bjErlShul','bjErlChangd','bjErlMianj','bjErlJinfbzh','bjSslShul','bjSslChangd','bjSslMianj','bjSslJinfbzh','bjShqShul','bjShqMianj','bjShqJinfbzh','bjZongmj','bjWaibmj','bjJixhQingsMianj','bjJixhQingsCang','bjShichh','bjJixieh','bjShichDanwei','bjWaibJinfbzh','shichhLeib','shichhZuiyeDanwei','shichhJinfeiBiaozh','shichhgcLeib','shichhgcZuiyeDanwei','shichhgcJinfeiBiaozh','shichhljzLeib','shichhljzZuiyeDanwei','shichhljzJinfeiBiaozh','shichhljysLeib','shichhljysZuiyeDanwei','shichhljysJinfeiBiaozh','shichhljflLeib','shichhljflZuiyeDanwei','shichhljflJinfeiBiaozh','shichhqtLeib','shichhqtZuiyeDanwei','shichhqtJinfeiBiaozh','fulTijian','fulJiejia','fulYiwaiBaoxian','fulShehuiBaoxian','fulYiwaiBaoxianJinge','fulGongzbiaozh','fulGonglgzbiaozh','fulGongjijing'))
+        this.form.setFieldsValue(pick(row,'sysOrgCode','sysOrgName','hwglry','grBaojy','grSijiSais','grSijiLajysh','grNan','grNv','grLessand45','grMore45','grLingshg','grZhengshg','grHuanwgl','chlGans','chlXis','chlXich','chlSaodXiao','chlSaodDa','chlSashXiao','chlSashDa','chlWuc','chlLajysh','chlDiandbj','ydcsc','hlqxc','shshLajzh','shshFenleilajzh','shshHuanwgcYil','shshHuanwgcErl','shshHuanwgcSl','shshShehgc','shshGuokx','shshLajt','bjYlShul','bjYlChangd','bjYlMianj','bjYlJinfbzh','bjErlShul','bjErlChangd','bjErlMianj','bjErlJinfbzh','bjSslShul','bjSslChangd','bjSslMianj','bjSslJinfbzh','bjShqShul','bjShqMianj','bjShqJinfbzh','bjZongmj','bjWaibmj','bjJixhQingsMianj','bjJixhQingsCang','bjShichh','bjJixieh','bjShichDanwei','bjWaibJinfbzh','shichhLeib','shichhZuiyeDanwei','shichhJinfeiBiaozh','shichhgcLeib','shichhgcZuiyeDanwei','shichhgcJinfeiBiaozh','shichhljzLeib','shichhljzZuiyeDanwei','shichhljzJinfeiBiaozh','shichhljysLeib','shichhljysZuiyeDanwei','shichhljysJinfeiBiaozh','shichhljflLeib','shichhljflZuiyeDanwei','shichhljflJinfeiBiaozh','shichhqtLeib','shichhqtZuiyeDanwei','shichhqtJinfeiBiaozh','fulTijian','fulJiejia','fulYiwaiBaoxian','fulShehuiBaoxian','fulYiwaiBaoxianJinge','fulGongzbiaozh','fulGonglgzbiaozh','fulGongjijing'))
       }
       
     }

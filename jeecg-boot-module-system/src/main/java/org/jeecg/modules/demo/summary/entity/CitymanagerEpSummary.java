@@ -16,14 +16,14 @@ import org.jeecg.common.aspect.annotation.Dict;
 /**
  * @Description: 城管防疫汇总表
  * @Author: jeecg-boot
- * @Date:   2020-02-21
+ * @Date:   2020-02-26
  * @Version: V1.0
  */
 @Data
 @TableName("citymanager_ep_summary")
 public class CitymanagerEpSummary implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
     private java.lang.String id;
@@ -46,6 +46,9 @@ public class CitymanagerEpSummary implements Serializable {
 	/**所属部门*/
 	@Excel(name = "所属部门", width = 15)
     private java.lang.String sysOrgCode;
+	/**所属部门*/
+	@Excel(name = "所属部门", width = 15)
+    private java.lang.String sysOrgName;
 	/**出动执法人员次数*/
 	@Excel(name = "出动执法人员次数", width = 15)
     private java.lang.Integer personTime;
@@ -61,92 +64,4 @@ public class CitymanagerEpSummary implements Serializable {
 	/**备注*/
 	@Excel(name = "备注", width = 15)
     private java.lang.String remarks;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public String getSysOrgCode() {
-		return sysOrgCode;
-	}
-
-	public void setSysOrgCode(String sysOrgCode) {
-		this.sysOrgCode = sysOrgCode;
-	}
-
-	public Integer getPersonTime() {
-		return personTime;
-	}
-
-	public void setPersonTime(Integer personTime) {
-		this.personTime = personTime;
-	}
-
-	public Integer getStrvendPoultry() {
-		return strvendPoultry;
-	}
-
-	public void setStrvendPoultry(Integer strvendPoultry) {
-		this.strvendPoultry = strvendPoultry;
-	}
-
-	public Integer getStrvendWildlife() {
-		return strvendWildlife;
-	}
-
-	public void setStrvendWildlife(Integer strvendWildlife) {
-		this.strvendWildlife = strvendWildlife;
-	}
-
-	public Integer getStrvendOther() {
-		return strvendOther;
-	}
-
-	public void setStrvendOther(Integer strvendOther) {
-		this.strvendOther = strvendOther;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
 }
