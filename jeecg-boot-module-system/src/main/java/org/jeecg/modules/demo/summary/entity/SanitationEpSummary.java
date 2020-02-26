@@ -16,14 +16,14 @@ import org.jeecg.common.aspect.annotation.Dict;
 /**
  * @Description: 环卫防疫汇总表
  * @Author: jeecg-boot
- * @Date:   2020-02-26
+ * @Date:   2020-02-21
  * @Version: V1.0
  */
 @Data
 @TableName("sanitation_ep_summary")
 public class SanitationEpSummary implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
     private java.lang.String id;
@@ -46,9 +46,9 @@ public class SanitationEpSummary implements Serializable {
 	/**所属部门*/
 	@Excel(name = "所属部门", width = 15)
     private java.lang.String sysOrgCode;
-	/**所属区县*/
-	@Excel(name = "所属区县", width = 15)
-    private java.lang.String sysOrgName;
+	/**所属县区名称*/
+	@Excel(name = "所属县区名称", width = 15)
+	private java.lang.String sysOrgName;
 	/**环卫作业车辆*/
 	@Excel(name = "环卫作业车辆", width = 15)
     private java.lang.Integer vehicle;
@@ -103,4 +103,204 @@ public class SanitationEpSummary implements Serializable {
 	/**其它*/
 	@Excel(name = "其它", width = 15)
     private java.lang.String other;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getSysOrgCode() {
+		return sysOrgCode;
+	}
+
+	public void setSysOrgCode(String sysOrgCode) {
+		this.sysOrgCode = sysOrgCode;
+	}
+
+	public Integer getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Integer vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public Integer getPersonTime() {
+		return personTime;
+	}
+
+	public void setPersonTime(Integer personTime) {
+		this.personTime = personTime;
+	}
+
+	public Double getGarbageDisposal() {
+		return garbageDisposal;
+	}
+
+	public void setGarbageDisposal(Double garbageDisposal) {
+		this.garbageDisposal = garbageDisposal;
+	}
+
+	public Integer getKzKouzhFeiqt() {
+		return kzKouzhFeiqt;
+	}
+
+	public void setKzKouzhFeiqt(Integer kzKouzhFeiqt) {
+		this.kzKouzhFeiqt = kzKouzhFeiqt;
+	}
+
+	public Integer getKzYunsl() {
+		return kzYunsl;
+	}
+
+	public void setKzYunsl(Integer kzYunsl) {
+		this.kzYunsl = kzYunsl;
+	}
+
+	public Integer getXsGongc() {
+		return xsGongc;
+	}
+
+	public void setXsGongc(Integer xsGongc) {
+		this.xsGongc = xsGongc;
+	}
+
+	public Integer getXsLajz() {
+		return xsLajz;
+	}
+
+	public void setXsLajz(Integer xsLajz) {
+		this.xsLajz = xsLajz;
+	}
+
+	public Integer getXsHuanwcc() {
+		return xsHuanwcc;
+	}
+
+	public void setXsHuanwcc(Integer xsHuanwcc) {
+		this.xsHuanwcc = xsHuanwcc;
+	}
+
+	public Integer getXsGuokx() {
+		return xsGuokx;
+	}
+
+	public void setXsGuokx(Integer xsGuokx) {
+		this.xsGuokx = xsGuokx;
+	}
+
+	public Double getHjwsLajcl() {
+		return hjwsLajcl;
+	}
+
+	public void setHjwsLajcl(Double hjwsLajcl) {
+		this.hjwsLajcl = hjwsLajcl;
+	}
+
+	public Integer getHjwsXiaoscc() {
+		return hjwsXiaoscc;
+	}
+
+	public void setHjwsXiaoscc(Integer hjwsXiaoscc) {
+		this.hjwsXiaoscc = hjwsXiaoscc;
+	}
+
+	public String getHjwsHubeiJiecqk() {
+		return hjwsHubeiJiecqk;
+	}
+
+	public void setHjwsHubeiJiecqk(String hjwsHubeiJiecqk) {
+		this.hjwsHubeiJiecqk = hjwsHubeiJiecqk;
+	}
+
+	public Integer getFywzKouzh() {
+		return fywzKouzh;
+	}
+
+	public void setFywzKouzh(Integer fywzKouzh) {
+		this.fywzKouzh = fywzKouzh;
+	}
+
+	public Double getFywzJiuj() {
+		return fywzJiuj;
+	}
+
+	public void setFywzJiuj(Double fywzJiuj) {
+		this.fywzJiuj = fywzJiuj;
+	}
+
+	public Integer getFywzWendj() {
+		return fywzWendj;
+	}
+
+	public void setFywzWendj(Integer fywzWendj) {
+		this.fywzWendj = fywzWendj;
+	}
+
+	public Double getFywzXiaody() {
+		return fywzXiaody;
+	}
+
+	public void setFywzXiaody(Double fywzXiaody) {
+		this.fywzXiaody = fywzXiaody;
+	}
+
+	public String getGongyFyqk() {
+		return gongyFyqk;
+	}
+
+	public void setGongyFyqk(String gongyFyqk) {
+		this.gongyFyqk = gongyFyqk;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
+
+	public String getSysOrgName() {
+		return sysOrgName;
+	}
+
+	public void setSysOrgName(String sysOrgName) {
+		this.sysOrgName = sysOrgName;
+	}
 }

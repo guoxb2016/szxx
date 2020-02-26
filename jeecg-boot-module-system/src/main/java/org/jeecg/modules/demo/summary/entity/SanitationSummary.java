@@ -23,7 +23,7 @@ import org.jeecg.common.aspect.annotation.Dict;
 @TableName("sanitation_summary")
 public class SanitationSummary implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
     private java.lang.String id;
@@ -292,4 +292,711 @@ public class SanitationSummary implements Serializable {
 	/**完成步骤*/
 	@Excel(name = "完成步骤", width = 15)
     private java.lang.String step;
+    /*所属区县名称*/
+	//@Excel(name = "所属区县名称", width = 15)
+    private java.lang.String sysOrgName;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getSysOrgCode() {
+		return sysOrgCode;
+	}
+
+	public void setSysOrgCode(String sysOrgCode) {
+		this.sysOrgCode = sysOrgCode;
+	}
+
+	public String getHwglry() {
+		return hwglry;
+	}
+
+	public void setHwglry(String hwglry) {
+		this.hwglry = hwglry;
+	}
+
+	public Integer getGrBaojy() {
+		return grBaojy;
+	}
+
+	public void setGrBaojy(Integer grBaojy) {
+		this.grBaojy = grBaojy;
+	}
+
+	public Integer getGrSijiSais() {
+		return grSijiSais;
+	}
+
+	public void setGrSijiSais(Integer grSijiSais) {
+		this.grSijiSais = grSijiSais;
+	}
+
+	public Integer getGrSijiLajysh() {
+		return grSijiLajysh;
+	}
+
+	public void setGrSijiLajysh(Integer grSijiLajysh) {
+		this.grSijiLajysh = grSijiLajysh;
+	}
+
+	public Integer getGrNan() {
+		return grNan;
+	}
+
+	public void setGrNan(Integer grNan) {
+		this.grNan = grNan;
+	}
+
+	public Integer getGrNv() {
+		return grNv;
+	}
+
+	public void setGrNv(Integer grNv) {
+		this.grNv = grNv;
+	}
+
+	public Integer getGrLessand45() {
+		return grLessand45;
+	}
+
+	public void setGrLessand45(Integer grLessand45) {
+		this.grLessand45 = grLessand45;
+	}
+
+	public Integer getGrMore45() {
+		return grMore45;
+	}
+
+	public void setGrMore45(Integer grMore45) {
+		this.grMore45 = grMore45;
+	}
+
+	public Integer getGrLingshg() {
+		return grLingshg;
+	}
+
+	public void setGrLingshg(Integer grLingshg) {
+		this.grLingshg = grLingshg;
+	}
+
+	public Integer getGrZhengshg() {
+		return grZhengshg;
+	}
+
+	public void setGrZhengshg(Integer grZhengshg) {
+		this.grZhengshg = grZhengshg;
+	}
+
+	public Integer getGrHuanwgl() {
+		return grHuanwgl;
+	}
+
+	public void setGrHuanwgl(Integer grHuanwgl) {
+		this.grHuanwgl = grHuanwgl;
+	}
+
+	public Integer getChlGans() {
+		return chlGans;
+	}
+
+	public void setChlGans(Integer chlGans) {
+		this.chlGans = chlGans;
+	}
+
+	public Integer getChlXis() {
+		return chlXis;
+	}
+
+	public void setChlXis(Integer chlXis) {
+		this.chlXis = chlXis;
+	}
+
+	public Integer getChlXich() {
+		return chlXich;
+	}
+
+	public void setChlXich(Integer chlXich) {
+		this.chlXich = chlXich;
+	}
+
+	public Integer getChlSaodXiao() {
+		return chlSaodXiao;
+	}
+
+	public void setChlSaodXiao(Integer chlSaodXiao) {
+		this.chlSaodXiao = chlSaodXiao;
+	}
+
+	public Integer getChlSaodDa() {
+		return chlSaodDa;
+	}
+
+	public void setChlSaodDa(Integer chlSaodDa) {
+		this.chlSaodDa = chlSaodDa;
+	}
+
+	public Integer getChlSashXiao() {
+		return chlSashXiao;
+	}
+
+	public void setChlSashXiao(Integer chlSashXiao) {
+		this.chlSashXiao = chlSashXiao;
+	}
+
+	public Integer getChlSashDa() {
+		return chlSashDa;
+	}
+
+	public void setChlSashDa(Integer chlSashDa) {
+		this.chlSashDa = chlSashDa;
+	}
+
+	public Integer getChlWuc() {
+		return chlWuc;
+	}
+
+	public void setChlWuc(Integer chlWuc) {
+		this.chlWuc = chlWuc;
+	}
+
+	public Integer getChlLajysh() {
+		return chlLajysh;
+	}
+
+	public void setChlLajysh(Integer chlLajysh) {
+		this.chlLajysh = chlLajysh;
+	}
+
+	public Integer getChlDiandbj() {
+		return chlDiandbj;
+	}
+
+	public void setChlDiandbj(Integer chlDiandbj) {
+		this.chlDiandbj = chlDiandbj;
+	}
+
+	public String getYdcsc() {
+		return ydcsc;
+	}
+
+	public void setYdcsc(String ydcsc) {
+		this.ydcsc = ydcsc;
+	}
+
+	public String getHlqxc() {
+		return hlqxc;
+	}
+
+	public void setHlqxc(String hlqxc) {
+		this.hlqxc = hlqxc;
+	}
+
+	public Integer getShshLajzh() {
+		return shshLajzh;
+	}
+
+	public void setShshLajzh(Integer shshLajzh) {
+		this.shshLajzh = shshLajzh;
+	}
+
+	public Integer getShshFenleilajzh() {
+		return shshFenleilajzh;
+	}
+
+	public void setShshFenleilajzh(Integer shshFenleilajzh) {
+		this.shshFenleilajzh = shshFenleilajzh;
+	}
+
+	public Integer getShshHuanwgcYil() {
+		return shshHuanwgcYil;
+	}
+
+	public void setShshHuanwgcYil(Integer shshHuanwgcYil) {
+		this.shshHuanwgcYil = shshHuanwgcYil;
+	}
+
+	public Integer getShshHuanwgcErl() {
+		return shshHuanwgcErl;
+	}
+
+	public void setShshHuanwgcErl(Integer shshHuanwgcErl) {
+		this.shshHuanwgcErl = shshHuanwgcErl;
+	}
+
+	public String getShshHuanwgcSl() {
+		return shshHuanwgcSl;
+	}
+
+	public void setShshHuanwgcSl(String shshHuanwgcSl) {
+		this.shshHuanwgcSl = shshHuanwgcSl;
+	}
+
+	public Integer getShshShehgc() {
+		return shshShehgc;
+	}
+
+	public void setShshShehgc(Integer shshShehgc) {
+		this.shshShehgc = shshShehgc;
+	}
+
+	public Integer getShshGuokx() {
+		return shshGuokx;
+	}
+
+	public void setShshGuokx(Integer shshGuokx) {
+		this.shshGuokx = shshGuokx;
+	}
+
+	public Integer getShshLajt() {
+		return shshLajt;
+	}
+
+	public void setShshLajt(Integer shshLajt) {
+		this.shshLajt = shshLajt;
+	}
+
+	public Integer getBjYlShul() {
+		return bjYlShul;
+	}
+
+	public void setBjYlShul(Integer bjYlShul) {
+		this.bjYlShul = bjYlShul;
+	}
+
+	public Integer getBjYlChangd() {
+		return bjYlChangd;
+	}
+
+	public void setBjYlChangd(Integer bjYlChangd) {
+		this.bjYlChangd = bjYlChangd;
+	}
+
+	public Double getBjYlMianj() {
+		return bjYlMianj;
+	}
+
+	public void setBjYlMianj(Double bjYlMianj) {
+		this.bjYlMianj = bjYlMianj;
+	}
+
+	public Double getBjYlJinfbzh() {
+		return bjYlJinfbzh;
+	}
+
+	public void setBjYlJinfbzh(Double bjYlJinfbzh) {
+		this.bjYlJinfbzh = bjYlJinfbzh;
+	}
+
+	public Integer getBjErlShul() {
+		return bjErlShul;
+	}
+
+	public void setBjErlShul(Integer bjErlShul) {
+		this.bjErlShul = bjErlShul;
+	}
+
+	public Integer getBjErlChangd() {
+		return bjErlChangd;
+	}
+
+	public void setBjErlChangd(Integer bjErlChangd) {
+		this.bjErlChangd = bjErlChangd;
+	}
+
+	public Double getBjErlMianj() {
+		return bjErlMianj;
+	}
+
+	public void setBjErlMianj(Double bjErlMianj) {
+		this.bjErlMianj = bjErlMianj;
+	}
+
+	public Double getBjErlJinfbzh() {
+		return bjErlJinfbzh;
+	}
+
+	public void setBjErlJinfbzh(Double bjErlJinfbzh) {
+		this.bjErlJinfbzh = bjErlJinfbzh;
+	}
+
+	public Integer getBjSslShul() {
+		return bjSslShul;
+	}
+
+	public void setBjSslShul(Integer bjSslShul) {
+		this.bjSslShul = bjSslShul;
+	}
+
+	public Integer getBjSslChangd() {
+		return bjSslChangd;
+	}
+
+	public void setBjSslChangd(Integer bjSslChangd) {
+		this.bjSslChangd = bjSslChangd;
+	}
+
+	public Double getBjSslMianj() {
+		return bjSslMianj;
+	}
+
+	public void setBjSslMianj(Double bjSslMianj) {
+		this.bjSslMianj = bjSslMianj;
+	}
+
+	public Double getBjSslJinfbzh() {
+		return bjSslJinfbzh;
+	}
+
+	public void setBjSslJinfbzh(Double bjSslJinfbzh) {
+		this.bjSslJinfbzh = bjSslJinfbzh;
+	}
+
+	public Integer getBjShqShul() {
+		return bjShqShul;
+	}
+
+	public void setBjShqShul(Integer bjShqShul) {
+		this.bjShqShul = bjShqShul;
+	}
+
+	public Double getBjShqMianj() {
+		return bjShqMianj;
+	}
+
+	public void setBjShqMianj(Double bjShqMianj) {
+		this.bjShqMianj = bjShqMianj;
+	}
+
+	public Double getBjShqJinfbzh() {
+		return bjShqJinfbzh;
+	}
+
+	public void setBjShqJinfbzh(Double bjShqJinfbzh) {
+		this.bjShqJinfbzh = bjShqJinfbzh;
+	}
+
+	public Double getBjZongmj() {
+		return bjZongmj;
+	}
+
+	public void setBjZongmj(Double bjZongmj) {
+		this.bjZongmj = bjZongmj;
+	}
+
+	public Double getBjWaibmj() {
+		return bjWaibmj;
+	}
+
+	public void setBjWaibmj(Double bjWaibmj) {
+		this.bjWaibmj = bjWaibmj;
+	}
+
+	public Double getBjJixhQingsMianj() {
+		return bjJixhQingsMianj;
+	}
+
+	public void setBjJixhQingsMianj(Double bjJixhQingsMianj) {
+		this.bjJixhQingsMianj = bjJixhQingsMianj;
+	}
+
+	public Integer getBjJixhQingsCang() {
+		return bjJixhQingsCang;
+	}
+
+	public void setBjJixhQingsCang(Integer bjJixhQingsCang) {
+		this.bjJixhQingsCang = bjJixhQingsCang;
+	}
+
+	public Double getBjShichh() {
+		return bjShichh;
+	}
+
+	public void setBjShichh(Double bjShichh) {
+		this.bjShichh = bjShichh;
+	}
+
+	public Double getBjJixieh() {
+		return bjJixieh;
+	}
+
+	public void setBjJixieh(Double bjJixieh) {
+		this.bjJixieh = bjJixieh;
+	}
+
+	public String getBjShichDanwei() {
+		return bjShichDanwei;
+	}
+
+	public void setBjShichDanwei(String bjShichDanwei) {
+		this.bjShichDanwei = bjShichDanwei;
+	}
+
+	public String getBjWaibJinfbzh() {
+		return bjWaibJinfbzh;
+	}
+
+	public void setBjWaibJinfbzh(String bjWaibJinfbzh) {
+		this.bjWaibJinfbzh = bjWaibJinfbzh;
+	}
+
+	public String getShichhLeib() {
+		return shichhLeib;
+	}
+
+	public void setShichhLeib(String shichhLeib) {
+		this.shichhLeib = shichhLeib;
+	}
+
+	public String getShichhZuiyeDanwei() {
+		return shichhZuiyeDanwei;
+	}
+
+	public void setShichhZuiyeDanwei(String shichhZuiyeDanwei) {
+		this.shichhZuiyeDanwei = shichhZuiyeDanwei;
+	}
+
+	public String getShichhJinfeiBiaozh() {
+		return shichhJinfeiBiaozh;
+	}
+
+	public void setShichhJinfeiBiaozh(String shichhJinfeiBiaozh) {
+		this.shichhJinfeiBiaozh = shichhJinfeiBiaozh;
+	}
+
+	public String getShichhgcLeib() {
+		return shichhgcLeib;
+	}
+
+	public void setShichhgcLeib(String shichhgcLeib) {
+		this.shichhgcLeib = shichhgcLeib;
+	}
+
+	public String getShichhgcZuiyeDanwei() {
+		return shichhgcZuiyeDanwei;
+	}
+
+	public void setShichhgcZuiyeDanwei(String shichhgcZuiyeDanwei) {
+		this.shichhgcZuiyeDanwei = shichhgcZuiyeDanwei;
+	}
+
+	public String getShichhgcJinfeiBiaozh() {
+		return shichhgcJinfeiBiaozh;
+	}
+
+	public void setShichhgcJinfeiBiaozh(String shichhgcJinfeiBiaozh) {
+		this.shichhgcJinfeiBiaozh = shichhgcJinfeiBiaozh;
+	}
+
+	public String getShichhljzLeib() {
+		return shichhljzLeib;
+	}
+
+	public void setShichhljzLeib(String shichhljzLeib) {
+		this.shichhljzLeib = shichhljzLeib;
+	}
+
+	public String getShichhljzZuiyeDanwei() {
+		return shichhljzZuiyeDanwei;
+	}
+
+	public void setShichhljzZuiyeDanwei(String shichhljzZuiyeDanwei) {
+		this.shichhljzZuiyeDanwei = shichhljzZuiyeDanwei;
+	}
+
+	public String getShichhljzJinfeiBiaozh() {
+		return shichhljzJinfeiBiaozh;
+	}
+
+	public void setShichhljzJinfeiBiaozh(String shichhljzJinfeiBiaozh) {
+		this.shichhljzJinfeiBiaozh = shichhljzJinfeiBiaozh;
+	}
+
+	public String getShichhljysLeib() {
+		return shichhljysLeib;
+	}
+
+	public void setShichhljysLeib(String shichhljysLeib) {
+		this.shichhljysLeib = shichhljysLeib;
+	}
+
+	public String getShichhljysZuiyeDanwei() {
+		return shichhljysZuiyeDanwei;
+	}
+
+	public void setShichhljysZuiyeDanwei(String shichhljysZuiyeDanwei) {
+		this.shichhljysZuiyeDanwei = shichhljysZuiyeDanwei;
+	}
+
+	public String getShichhljysJinfeiBiaozh() {
+		return shichhljysJinfeiBiaozh;
+	}
+
+	public void setShichhljysJinfeiBiaozh(String shichhljysJinfeiBiaozh) {
+		this.shichhljysJinfeiBiaozh = shichhljysJinfeiBiaozh;
+	}
+
+	public String getShichhljflLeib() {
+		return shichhljflLeib;
+	}
+
+	public void setShichhljflLeib(String shichhljflLeib) {
+		this.shichhljflLeib = shichhljflLeib;
+	}
+
+	public String getShichhljflZuiyeDanwei() {
+		return shichhljflZuiyeDanwei;
+	}
+
+	public void setShichhljflZuiyeDanwei(String shichhljflZuiyeDanwei) {
+		this.shichhljflZuiyeDanwei = shichhljflZuiyeDanwei;
+	}
+
+	public String getShichhljflJinfeiBiaozh() {
+		return shichhljflJinfeiBiaozh;
+	}
+
+	public void setShichhljflJinfeiBiaozh(String shichhljflJinfeiBiaozh) {
+		this.shichhljflJinfeiBiaozh = shichhljflJinfeiBiaozh;
+	}
+
+	public String getShichhqtLeib() {
+		return shichhqtLeib;
+	}
+
+	public void setShichhqtLeib(String shichhqtLeib) {
+		this.shichhqtLeib = shichhqtLeib;
+	}
+
+	public String getShichhqtZuiyeDanwei() {
+		return shichhqtZuiyeDanwei;
+	}
+
+	public void setShichhqtZuiyeDanwei(String shichhqtZuiyeDanwei) {
+		this.shichhqtZuiyeDanwei = shichhqtZuiyeDanwei;
+	}
+
+	public String getShichhqtJinfeiBiaozh() {
+		return shichhqtJinfeiBiaozh;
+	}
+
+	public void setShichhqtJinfeiBiaozh(String shichhqtJinfeiBiaozh) {
+		this.shichhqtJinfeiBiaozh = shichhqtJinfeiBiaozh;
+	}
+
+	public Integer getFulTijian() {
+		return fulTijian;
+	}
+
+	public void setFulTijian(Integer fulTijian) {
+		this.fulTijian = fulTijian;
+	}
+
+	public String getFulJiejia() {
+		return fulJiejia;
+	}
+
+	public void setFulJiejia(String fulJiejia) {
+		this.fulJiejia = fulJiejia;
+	}
+
+	public Integer getFulYiwaiBaoxian() {
+		return fulYiwaiBaoxian;
+	}
+
+	public void setFulYiwaiBaoxian(Integer fulYiwaiBaoxian) {
+		this.fulYiwaiBaoxian = fulYiwaiBaoxian;
+	}
+
+	public Integer getFulShehuiBaoxian() {
+		return fulShehuiBaoxian;
+	}
+
+	public void setFulShehuiBaoxian(Integer fulShehuiBaoxian) {
+		this.fulShehuiBaoxian = fulShehuiBaoxian;
+	}
+
+	public Double getFulYiwaiBaoxianJinge() {
+		return fulYiwaiBaoxianJinge;
+	}
+
+	public void setFulYiwaiBaoxianJinge(Double fulYiwaiBaoxianJinge) {
+		this.fulYiwaiBaoxianJinge = fulYiwaiBaoxianJinge;
+	}
+
+	public String getFulGongzbiaozh() {
+		return fulGongzbiaozh;
+	}
+
+	public void setFulGongzbiaozh(String fulGongzbiaozh) {
+		this.fulGongzbiaozh = fulGongzbiaozh;
+	}
+
+	public String getFulGonglgzbiaozh() {
+		return fulGonglgzbiaozh;
+	}
+
+	public void setFulGonglgzbiaozh(String fulGonglgzbiaozh) {
+		this.fulGonglgzbiaozh = fulGonglgzbiaozh;
+	}
+
+	public Integer getFulGongjijing() {
+		return fulGongjijing;
+	}
+
+	public void setFulGongjijing(Integer fulGongjijing) {
+		this.fulGongjijing = fulGongjijing;
+	}
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
+
+	public String getSysOrgName() {
+		return sysOrgName;
+	}
+
+	public void setSysOrgName(String sysOrgName) {
+		this.sysOrgName = sysOrgName;
+	}
 }
