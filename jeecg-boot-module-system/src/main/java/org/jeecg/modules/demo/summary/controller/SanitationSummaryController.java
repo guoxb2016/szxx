@@ -20,6 +20,8 @@ import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
 import org.jeecg.modules.demo.summary.entity.SanitationSummary;
 import org.jeecg.modules.demo.summary.service.ISanitationSummaryService;
+import org.jeecg.modules.system.entity.SysDepart;
+import org.jeecg.modules.system.service.ISysDepartService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -51,7 +53,8 @@ import com.alibaba.fastjson.JSON;
 public class SanitationSummaryController extends JeecgController<SanitationSummary, ISanitationSummaryService> {
 	@Autowired
 	private ISanitationSummaryService sanitationSummaryService;
-
+	@Autowired
+    private ISysDepartService sysDepartService;
 	/**
 	 * 分页列表查询
 	 *
@@ -80,6 +83,11 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 	 */
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody SanitationSummary sanitationSummary) {
+		List<SysDepart> departs = sysDepartService.queryUserDeparts(sanitationSummary.getCreateBy());
+		if (departs != null && !departs.isEmpty()) {
+			sanitationSummary.setSysOrgCode(departs.get(0).getOrgCode());
+			sanitationSummary.setSysOrgName(departs.get(0).getDepartName());
+		}
 		sanitationSummaryService.save(sanitationSummary);
 		return Result.ok(sanitationSummary.getId());
 	}

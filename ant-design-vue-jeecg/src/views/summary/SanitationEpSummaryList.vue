@@ -6,7 +6,7 @@
         <a-row :gutter="24">
           <a-col :md="6" :sm="8">
             <a-form-item label="所属区县">
-              <a-input placeholder="请输入所属区县" v-model="queryParam.sysOrgName"></a-input>
+              <j-select-depart v-model="queryParam.sysOrgName"/>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8" >
@@ -29,9 +29,9 @@
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
       <a-button type="primary" icon="download" @click="handleExportXls('环卫防疫汇总表')">导出</a-button>
-      <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
+     <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
           <a-menu-item key="1" @click="batchDel"><a-icon type="delete"/>删除</a-menu-item>
@@ -57,7 +57,7 @@
         :pagination="ipagination"
         :loading="loading"
         :rowSelection="{fixed:true,selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-        
+        :scroll="tableScroll"
         @change="handleTableChange">
 
         <template slot="htmlSlot" slot-scope="text">
@@ -107,12 +107,15 @@
 
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import SanitationEpSummaryModal from './modules/SanitationEpSummaryModal'
+  import {initDictOptions, filterMultiDictText} from '@/components/dict/JDictSelectUtil'
+  import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
 
   export default {
     name: "SanitationEpSummaryList",
     mixins:[JeecgListMixin],
     components: {
-      SanitationEpSummaryModal
+      SanitationEpSummaryModal,
+      JSelectDepart
     },
     data () {
       return {
@@ -232,9 +235,16 @@
             dataIndex: 'other'
           },
           {
+            title:'上报时间',
+            align:"center",
+            dataIndex: 'createTime'
+          },
+          {
             title: '操作',
             dataIndex: 'action',
             align:"center",
+            fixed:"right",
+            width:147,
             scopedSlots: { customRender: 'action' }
           }
         ],
@@ -248,6 +258,7 @@
         dictOptions:{
          sysOrgName:[],
         },
+        tableScroll:{x :19*147+50}
       }
     },
     computed: {

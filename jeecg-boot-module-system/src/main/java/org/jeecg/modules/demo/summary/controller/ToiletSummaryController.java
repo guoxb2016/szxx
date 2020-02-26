@@ -17,6 +17,8 @@ import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.ToiletSummary;
 import org.jeecg.modules.demo.summary.service.IToiletSummaryService;
+import org.jeecg.modules.system.entity.SysDepart;
+import org.jeecg.modules.system.service.ISysDepartService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -50,7 +52,8 @@ import com.alibaba.fastjson.JSON;
 public class ToiletSummaryController extends JeecgController<ToiletSummary, IToiletSummaryService> {
 	@Autowired
 	private IToiletSummaryService toiletSummaryService;
-
+	@Autowired
+    private ISysDepartService sysDepartService;
 	/**
 	 * 分页列表查询
 	 *
@@ -79,6 +82,11 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 	 */
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody ToiletSummary toiletSummary) {
+		List<SysDepart> departs = sysDepartService.queryUserDeparts(toiletSummary.getCreateBy());
+		if (departs != null && !departs.isEmpty()) {
+			toiletSummary.setSysOrgCode(departs.get(0).getOrgCode());
+			toiletSummary.setXianqu(departs.get(0).getDepartName());
+		}
 		toiletSummaryService.save(toiletSummary);
 		return Result.ok(toiletSummary.getId());
 	}

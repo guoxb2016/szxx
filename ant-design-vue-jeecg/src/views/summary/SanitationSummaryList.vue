@@ -5,8 +5,8 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
           <a-col :md="6" :sm="8">
-            <a-form-item label="所属区县编码">
-              <a-input placeholder="请输入所属区县编码" v-model="queryParam.sysOrgCode"></a-input>
+            <a-form-item label="所属区县">
+              <j-select-depart v-model="queryParam.sysOrgName"/>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8" >
@@ -29,9 +29,9 @@
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
       <a-button type="primary" icon="download" @click="handleExportXls('环卫信息表')">导出</a-button>
-      <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
+     <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
           <a-menu-item key="1" @click="batchDel"><a-icon type="delete"/>删除</a-menu-item>
@@ -107,12 +107,15 @@
 
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import SanitationSummaryModal from './modules/SanitationSummaryModal'
+  import {initDictOptions, filterMultiDictText} from '@/components/dict/JDictSelectUtil'
+  import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
 
   export default {
     name: "SanitationSummaryList",
     mixins:[JeecgListMixin],
     components: {
-      SanitationSummaryModal
+      SanitationSummaryModal,
+      JSelectDepart
     },
     data () {
       return {
@@ -130,21 +133,16 @@
             }
           },
           {
-            title:'所属区县编码',
+            title:'所属区县',
             align:"center",
-            dataIndex: 'sysOrgCode',
+            dataIndex: 'sysOrgName',
             customRender:(text)=>{
               if(!text){
                 return ''
               }else{
-                return filterMultiDictText(this.dictOptions['sysOrgCode'], text+"")
+                return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
               }
             }
-          },
-          {
-            title:'所属区县',
-            align:"center",
-            dataIndex: 'sysOrgName'
           },
           {
             title:'环卫管理人员',
@@ -547,6 +545,11 @@
             dataIndex: 'fulGongjijing'
           },
           {
+            title:'上报时间',
+            align:"center",
+            dataIndex: 'createTime'
+          },
+          {
             title: '操作',
             dataIndex: 'action',
             align:"center",
@@ -563,9 +566,9 @@
           importExcelUrl: "summary/sanitationSummary/importExcel",
         },
         dictOptions:{
-         sysOrgCode:[],
+         sysOrgName:[],
         },
-        tableScroll:{x :82*147+50}
+        tableScroll:{x :81*147+50}
       }
     },
     computed: {
@@ -577,7 +580,7 @@
       initDictConfig(){
         initDictOptions('sys_depart,depart_name,id').then((res) => {
           if (res.success) {
-            this.$set(this.dictOptions, 'sysOrgCode', res.result)
+            this.$set(this.dictOptions, 'sysOrgName', res.result)
           }
         })
       }

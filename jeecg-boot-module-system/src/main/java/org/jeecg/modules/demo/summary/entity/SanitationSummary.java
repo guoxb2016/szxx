@@ -16,7 +16,7 @@ import org.jeecg.common.aspect.annotation.Dict;
 /**
  * @Description: 环卫信息表
  * @Author: jeecg-boot
- * @Date:   2020-02-25
+ * @Date:   2020-02-26
  * @Version: V1.0
  */
 @Data
@@ -43,9 +43,12 @@ public class SanitationSummary implements Serializable {
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private java.util.Date updateTime;
+	/**所属区县编码*/
+	@Excel(name = "所属区县编码", width = 15)
+    private java.lang.String sysOrgCode;
 	/**所属区县*/
 	@Excel(name = "所属区县", width = 15)
-    private java.lang.String sysOrgCode;
+    private java.lang.String sysOrgName;
 	/**环卫管理人员*/
 	@Excel(name = "环卫管理人员", width = 15)
     private java.lang.String hwglry;
@@ -287,6 +290,6 @@ public class SanitationSummary implements Serializable {
 	@Excel(name = "缴纳公积金人数", width = 15)
     private java.lang.Integer fulGongjijing;
 	/**完成步骤*/
-	//@Excel(name = "完成步骤", width = 15)
+	@Excel(name = "完成步骤", width = 15)
     private java.lang.String step;
 }

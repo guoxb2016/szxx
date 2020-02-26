@@ -42,7 +42,7 @@
         :pagination="ipagination"
         :loading="loading"
         :rowSelection="{fixed:true,selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-        
+        :scroll="tableScroll"
         @change="handleTableChange">
 
         <template slot="htmlSlot" slot-scope="text">
@@ -140,9 +140,16 @@
             dataIndex: 'remarks'
           },
           {
+            title:'上报时间',
+            align:"center",
+            dataIndex: 'createTime'
+          },
+          {
             title: '操作',
             dataIndex: 'action',
             align:"center",
+            fixed:"right",
+            width:147,
             scopedSlots: { customRender: 'action' }
           }
         ],
@@ -155,6 +162,7 @@
         },
         dictOptions:{
         },
+        tableScroll:{x :5*147+50}
       }
     },
     computed: {

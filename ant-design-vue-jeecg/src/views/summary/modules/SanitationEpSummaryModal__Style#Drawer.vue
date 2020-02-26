@@ -105,6 +105,7 @@
         confirmLoading: false,
         validatorRules: {
           sysOrgName: {rules: [
+            {required: true, message: '请输入所属区县!'},
           ]},
           vehicle: {rules: [
           ]},

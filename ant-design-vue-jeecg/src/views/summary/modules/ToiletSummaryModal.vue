@@ -11,7 +11,7 @@
       <a-form :form="form">
 
         <a-form-item label="县区" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="list" v-decorator="['xianqu', validatorRules.xianqu]" :trigger-change="true" dictCode="sys_depart,depart_name,org_code" placeholder="请选择县区"/>
+          <j-select-depart v-decorator="['xianqu', validatorRules.xianqu]" :trigger-change="true"/>
         </a-form-item>
         <a-form-item label="公厕类型" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag type="list" v-decorator="['leixing', validatorRules.leixing]" :trigger-change="true" dictCode="toilet_type" placeholder="请选择公厕类型"/>
@@ -29,25 +29,25 @@
           <a-input v-decorator="[ 'leibie', validatorRules.leibie]" placeholder="请输入公厕类别"></a-input>
         </a-form-item>
         <a-form-item label="启用年月" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-date placeholder="请选择启用年月" v-decorator="[ 'qiyongNianyue', validatorRules.qiyongNianyue]" :trigger-change="true" style="width: 100%"/>
+          <j-month placeholder="请选择启用年月"date-format="YYYY-MM" v-decorator="[ 'qiyongNianyue', validatorRules.qiyongNianyue]" :trigger-change="true" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="开工年月" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-date placeholder="请选择开工年月" v-decorator="[ 'kaigongNianyue', validatorRules.kaigongNianyue]" :trigger-change="true" style="width: 100%"/>
+          <j-month placeholder="请选择开工年月" date-format="YYYY-MM" v-decorator="[ 'kaigongNianyue', validatorRules.kaigongNianyue]" :trigger-change="true" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="建筑面积（㎡)" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'mianji', validatorRules.mianji]" placeholder="请输入建筑面积（㎡)" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="独立" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="radio" v-decorator="['jianzhuDuli', validatorRules.jianzhuDuli]" :trigger-change="true" dictCode="valid_status" placeholder="请选择独立"/>
+          <j-dict-select-tag type="radio" v-decorator="['jianzhuDuli', validatorRules.jianzhuDuli]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择独立"/>
         </a-form-item>
         <a-form-item label="附属" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="radio" v-decorator="['jianzhuFushu', validatorRules.jianzhuFushu]" :trigger-change="true" dictCode="valid_status" placeholder="请选择附属"/>
+          <j-dict-select-tag type="radio" v-decorator="['jianzhuFushu', validatorRules.jianzhuFushu]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择附属"/>
         </a-form-item>
         <a-form-item label="土建式" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="radio" v-decorator="['jiegouTujian', validatorRules.jiegouTujian]" :trigger-change="true" dictCode="valid_status" placeholder="请选择土建式"/>
+          <j-dict-select-tag type="radio" v-decorator="['jiegouTujian', validatorRules.jiegouTujian]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择土建式"/>
         </a-form-item>
         <a-form-item label="装配式" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="radio" v-decorator="['jiegouZhuangpei', validatorRules.jiegouZhuangpei]" :trigger-change="true" dictCode="valid_status" placeholder="请选择装配式"/>
+          <j-dict-select-tag type="radio" v-decorator="['jiegouZhuangpei', validatorRules.jiegouZhuangpei]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择装配式"/>
         </a-form-item>
         <a-form-item label="男蹲位数量" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'nan', validatorRules.nan]" placeholder="请输入男蹲位数量" style="width: 100%"/>
@@ -68,10 +68,10 @@
           <a-input v-decorator="[ 'fushe', validatorRules.fushe]" placeholder="请输入附设功能（驿站、垃圾站、环卫管理用房等）"></a-input>
         </a-form-item>
         <a-form-item label="是否安装空调" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="radio" v-decorator="['kongtiao', validatorRules.kongtiao]" :trigger-change="true" dictCode="valid_status" placeholder="请选择是否安装空调"/>
+          <j-dict-select-tag type="radio" v-decorator="['kongtiao', validatorRules.kongtiao]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择是否安装空调"/>
         </a-form-item>
         <a-form-item label="是否安装智慧系统" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag type="radio" v-decorator="['zhihui', validatorRules.zhihui]" :trigger-change="true" dictCode="valid_status" placeholder="请选择是否安装智慧系统"/>
+          <j-dict-select-tag type="radio" v-decorator="['zhihui', validatorRules.zhihui]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择是否安装智慧系统"/>
         </a-form-item>
         <a-form-item label="备注（进展情况）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'remarks', validatorRules.remarks]" placeholder="请输入备注（进展情况）"></a-input>
@@ -88,12 +88,16 @@
   import pick from 'lodash.pick'
   import { validateDuplicateValue } from '@/utils/util'
   import JDate from '@/components/jeecg/JDate'  
+  import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
   import JDictSelectTag from "@/components/dict/JDictSelectTag"
+  import JMonth from '../../../components/jeecg/JMonth'
 
   export default {
     name: "ToiletSummaryModal",
-    components: { 
+    components: {
+      JMonth,
       JDate,
+      JSelectDepart,
       JDictSelectTag,
     },
     data () {

@@ -5,8 +5,8 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
           <a-col :md="6" :sm="8">
-            <a-form-item label="县区">
-              <j-dict-select-tag placeholder="请选择县区" v-model="queryParam.xianqu" dictCode="sys_depart,depart_name,org_code"/>
+            <a-form-item label="所属区县">
+              <j-select-depart v-model="queryParam.xianqu"/>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8">
@@ -31,32 +31,32 @@
             </a-col>
             <a-col :md="6" :sm="8">
               <a-form-item label="独立">
-                <j-dict-select-tag placeholder="请选择独立" v-model="queryParam.jianzhuDuli" dictCode="valid_status"/>
+                <j-dict-select-tag placeholder="请选择独立" v-model="queryParam.jianzhuDuli" dictCode="yes_or_no"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="8">
               <a-form-item label="附属">
-                <j-dict-select-tag placeholder="请选择附属" v-model="queryParam.jianzhuFushu" dictCode="valid_status"/>
+                <j-dict-select-tag placeholder="请选择附属" v-model="queryParam.jianzhuFushu" dictCode="yes_or_no"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="8">
               <a-form-item label="土建式">
-                <j-dict-select-tag placeholder="请选择土建式" v-model="queryParam.jiegouTujian" dictCode="valid_status"/>
+                <j-dict-select-tag placeholder="请选择土建式" v-model="queryParam.jiegouTujian" dictCode="yes_or_no"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="8">
               <a-form-item label="装配式">
-                <j-dict-select-tag placeholder="请选择装配式" v-model="queryParam.jiegouZhuangpei" dictCode="valid_status"/>
+                <j-dict-select-tag placeholder="请选择装配式" v-model="queryParam.jiegouZhuangpei" dictCode="yes_or_no"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="8">
               <a-form-item label="是否安装空调">
-                <j-dict-select-tag placeholder="请选择是否安装空调" v-model="queryParam.kongtiao" dictCode="valid_status"/>
+                <j-dict-select-tag placeholder="请选择是否安装空调" v-model="queryParam.kongtiao" dictCode="yes_or_no"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="8">
               <a-form-item label="是否安装智慧系统">
-                <j-dict-select-tag placeholder="请选择是否安装智慧系统" v-model="queryParam.zhihui" dictCode="valid_status"/>
+                <j-dict-select-tag placeholder="请选择是否安装智慧系统" v-model="queryParam.zhihui" dictCode="yes_or_no"/>
               </a-form-item>
             </a-col>
           </template>
@@ -75,14 +75,14 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-
+    
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
       <a-button type="primary" icon="download" @click="handleExportXls('新建公厕统计明细表')">导出</a-button>
-      <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
+      <!--<a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
           <a-menu-item key="1" @click="batchDel"><a-icon type="delete"/>删除</a-menu-item>
@@ -108,7 +108,7 @@
         :pagination="ipagination"
         :loading="loading"
         :rowSelection="{fixed:true,selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-
+        :scroll="tableScroll"
         @change="handleTableChange">
 
         <template slot="htmlSlot" slot-scope="text">
@@ -160,6 +160,7 @@
   import ToiletSummaryModal from './modules/ToiletSummaryModal'
   import JDictSelectTag from '@/components/dict/JDictSelectTag.vue'
   import JDate from '@/components/jeecg/JDate.vue'
+  import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
   import {initDictOptions, filterMultiDictText} from '@/components/dict/JDictSelectUtil'
 
   export default {
@@ -168,7 +169,8 @@
     components: {
       JDictSelectTag,
       JDate,
-      ToiletSummaryModal
+      ToiletSummaryModal,
+      JSelectDepart
     },
     data () {
       return {
@@ -188,7 +190,6 @@
           {
             title:'县区',
             align:"center",
-            width:60,
             dataIndex: 'xianqu',
             customRender:(text)=>{
               if(!text){
@@ -201,7 +202,6 @@
           {
             title:'公厕类型',
             align:"center",
-            width:80,
             dataIndex: 'leixing',
             customRender:(text)=>{
               if(!text){
@@ -214,7 +214,6 @@
           {
             title:'公厕编号',
             align:"center",
-            width:160,
             dataIndex: 'bianhao'
           },
           {
@@ -361,10 +360,16 @@
             dataIndex: 'remarks'
           },
           {
+            title:'上报时间',
+            align:"center",
+            dataIndex: 'createTime'
+          },
+          {
             title: '操作',
             dataIndex: 'action',
             align:"center",
-            width: 120,
+            fixed:"right",
+            width:147,
             scopedSlots: { customRender: 'action' }
           }
         ],
@@ -372,7 +377,7 @@
           list: "/summary/toiletSummary/list",
           delete: "/summary/toiletSummary/delete",
           deleteBatch: "/summary/toiletSummary/deleteBatch",
-          exportXlsUrl: "/summary/toiletSummary/exportXls2",
+          exportXlsUrl: "/summary/toiletSummary/exportXls",
           importExcelUrl: "summary/toiletSummary/importExcel",
         },
         dictOptions:{
@@ -385,6 +390,7 @@
          kongtiao:[],
          zhihui:[],
         },
+        tableScroll:{x :22*147+50}
       }
     },
     computed: {
@@ -394,7 +400,7 @@
     },
     methods: {
       initDictConfig(){
-        initDictOptions('sys_depart,depart_name,org_code').then((res) => {
+        initDictOptions('sys_depart,depart_name,id').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'xianqu', res.result)
           }
@@ -404,60 +410,41 @@
             this.$set(this.dictOptions, 'leixing', res.result)
           }
         })
-        initDictOptions('valid_status').then((res) => {
+        initDictOptions('yes_or_no').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'jianzhuDuli', res.result)
           }
         })
-        initDictOptions('valid_status').then((res) => {
+        initDictOptions('yes_or_no').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'jianzhuFushu', res.result)
           }
         })
-        initDictOptions('valid_status').then((res) => {
+        initDictOptions('yes_or_no').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'jiegouTujian', res.result)
           }
         })
-        initDictOptions('valid_status').then((res) => {
+        initDictOptions('yes_or_no').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'jiegouZhuangpei', res.result)
           }
         })
-        initDictOptions('valid_status').then((res) => {
+        initDictOptions('yes_or_no').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'kongtiao', res.result)
           }
         })
-        initDictOptions('valid_status').then((res) => {
+        initDictOptions('yes_or_no').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'zhihui', res.result)
           }
         })
       }
-
+       
     }
   }
 </script>
 <style scoped>
-  @import '~@assets/less/common.less';
-</style>
-<style scope>
-  td{
-    white-space: nowrap;
-  }
-  /*th{
-    white-space: nowrap;
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }*/
-  .ant-table-body{
-    overflow-x: scroll;
-  }
-  th div{
-    white-space: normal;
-    min-width: 80px;
-  }
-
+  @import '~@assets/less/common.less'
 </style>

@@ -19,6 +19,8 @@ import org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary;
 import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
 import org.jeecg.modules.demo.summary.service.ICitymanagerEpSummaryService;
 import org.jeecg.modules.demo.summary.service.ISanitationEpSummaryService;
+import org.jeecg.modules.system.entity.SysDepart;
+import org.jeecg.modules.system.service.ISysDepartService;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -52,7 +54,8 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 	private ISanitationEpSummaryService sanitationEpSummaryService;
 	@Autowired
 	private ICitymanagerEpSummaryService citymanagerEpSummaryService;
-
+	@Autowired
+    private ISysDepartService sysDepartService;
 	/**
 	 * 分页列表查询
 	 *
@@ -81,6 +84,11 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 	 */
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody SanitationEpSummary sanitationEpSummary) {
+		List<SysDepart> departs = sysDepartService.queryUserDeparts(sanitationEpSummary.getCreateBy());
+		if (departs != null && !departs.isEmpty()) {
+			sanitationEpSummary.setSysOrgCode(departs.get(0).getOrgCode());
+			sanitationEpSummary.setSysOrgName(departs.get(0).getDepartName());
+		}
 		sanitationEpSummaryService.save(sanitationEpSummary);
 		return Result.ok(sanitationEpSummary.getId());
 	}
