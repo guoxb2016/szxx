@@ -4,12 +4,27 @@
     <div class="table-page-search-wrapper">
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
+          <a-col :md="6" :sm="8">
+            <a-form-item label="所属区县">
+              <a-input placeholder="请输入所属区县" v-model="queryParam.sysOrgName"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8" >
+            <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
+              <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
+              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <a @click="handleToggleSearch" style="margin-left: 8px">
+                {{ toggleSearchStatus ? '收起' : '展开' }}
+                <a-icon :type="toggleSearchStatus ? 'up' : 'down'"/>
+              </a>
+            </span>
+          </a-col>
 
         </a-row>
       </a-form>
     </div>
     <!-- 查询区域-END -->
-
+    
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
@@ -42,7 +57,7 @@
         :pagination="ipagination"
         :loading="loading"
         :rowSelection="{fixed:true,selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-
+        
         @change="handleTableChange">
 
         <template slot="htmlSlot" slot-scope="text">
@@ -112,6 +127,18 @@
             align:"center",
             customRender:function (t,r,index) {
               return parseInt(index)+1;
+            }
+          },
+          {
+            title:'所属区县',
+            align:"center",
+            dataIndex: 'sysOrgName',
+            customRender:(text)=>{
+              if(!text){
+                return ''
+              }else{
+                return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
+              }
             }
           },
           {
@@ -215,10 +242,11 @@
           list: "/summary/sanitationEpSummary/list",
           delete: "/summary/sanitationEpSummary/delete",
           deleteBatch: "/summary/sanitationEpSummary/deleteBatch",
-          exportXlsUrl: "/summary/sanitationEpSummary/exportXls2",
+          exportXlsUrl: "/summary/sanitationEpSummary/exportXls",
           importExcelUrl: "summary/sanitationEpSummary/importExcel",
         },
         dictOptions:{
+         sysOrgName:[],
         },
       }
     },
@@ -229,23 +257,16 @@
     },
     methods: {
       initDictConfig(){
+        initDictOptions('sys_depart,depart_name,id').then((res) => {
+          if (res.success) {
+            this.$set(this.dictOptions, 'sysOrgName', res.result)
+          }
+        })
       }
-
+       
     }
   }
 </script>
 <style scoped>
   @import '~@assets/less/common.less'
-</style>
-<style scope>
-  td{
-    white-space: nowrap;
-  }
-  .ant-table-body{
-    overflow-x: scroll;
-  }
-  th div{
-    white-space: normal;
-    min-width: 80px;
-  }
 </style>

@@ -9,7 +9,7 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-
+    
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
@@ -42,7 +42,7 @@
         :pagination="ipagination"
         :loading="loading"
         :rowSelection="{fixed:true,selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-
+        
         @change="handleTableChange">
 
         <template slot="htmlSlot" slot-scope="text">
@@ -150,7 +150,7 @@
           list: "/summary/citymanagerEpSummary/list",
           delete: "/summary/citymanagerEpSummary/delete",
           deleteBatch: "/summary/citymanagerEpSummary/deleteBatch",
-          exportXlsUrl: "/summary/citymanagerEpSummary/exportXls2",
+          exportXlsUrl: "/summary/citymanagerEpSummary/exportXls",
           importExcelUrl: "summary/citymanagerEpSummary/importExcel",
         },
         dictOptions:{
@@ -165,22 +165,10 @@
     methods: {
       initDictConfig(){
       }
-
+       
     }
   }
 </script>
 <style scoped>
   @import '~@assets/less/common.less'
-</style>
-<style scope>
-  td{
-    white-space: nowrap;
-  }
-  .ant-table-body{
-    overflow-x: scroll;
-  }
-  th div{
-    white-space: normal;
-    min-width: 80px;
-  }
 </style>

@@ -10,6 +10,9 @@
     <a-spin :spinning="confirmLoading">
       <a-form :form="form">
 
+        <a-form-item label="所属区县" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <j-select-depart v-decorator="['sysOrgName', validatorRules.sysOrgName]" :trigger-change="true"/>
+        </a-form-item>
         <a-form-item label="环卫作业车辆" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'vehicle', validatorRules.vehicle]" placeholder="请输入环卫作业车辆" style="width: 100%"/>
         </a-form-item>
@@ -75,10 +78,12 @@
   import { httpAction } from '@/api/manage'
   import pick from 'lodash.pick'
   import { validateDuplicateValue } from '@/utils/util'
+  import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
 
   export default {
     name: "SanitationEpSummaryModal",
     components: { 
+      JSelectDepart,
     },
     data () {
       return {
@@ -97,6 +102,8 @@
         },
         confirmLoading: false,
         validatorRules: {
+          sysOrgName: {rules: [
+          ]},
           vehicle: {rules: [
           ]},
           personTime: {rules: [
@@ -151,7 +158,7 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model,'vehicle','personTime','garbageDisposal','kzKouzhFeiqt','kzYunsl','xsGongc','xsLajz','xsHuanwcc','xsGuokx','hjwsLajcl','hjwsXiaoscc','hjwsHubeiJiecqk','fywzKouzh','fywzJiuj','fywzWendj','fywzXiaody','gongyFyqk','other'))
+          this.form.setFieldsValue(pick(this.model,'sysOrgName','vehicle','personTime','garbageDisposal','kzKouzhFeiqt','kzYunsl','xsGongc','xsLajz','xsHuanwcc','xsGuokx','hjwsLajcl','hjwsXiaoscc','hjwsHubeiJiecqk','fywzKouzh','fywzJiuj','fywzWendj','fywzXiaody','gongyFyqk','other'))
         })
       },
       close () {
@@ -194,7 +201,7 @@
         this.close()
       },
       popupCallback(row){
-        this.form.setFieldsValue(pick(row,'vehicle','personTime','garbageDisposal','kzKouzhFeiqt','kzYunsl','xsGongc','xsLajz','xsHuanwcc','xsGuokx','hjwsLajcl','hjwsXiaoscc','hjwsHubeiJiecqk','fywzKouzh','fywzJiuj','fywzWendj','fywzXiaody','gongyFyqk','other'))
+        this.form.setFieldsValue(pick(row,'sysOrgName','vehicle','personTime','garbageDisposal','kzKouzhFeiqt','kzYunsl','xsGongc','xsLajz','xsHuanwcc','xsGuokx','hjwsLajcl','hjwsXiaoscc','hjwsHubeiJiecqk','fywzKouzh','fywzJiuj','fywzWendj','fywzXiaody','gongyFyqk','other'))
       },
 
       

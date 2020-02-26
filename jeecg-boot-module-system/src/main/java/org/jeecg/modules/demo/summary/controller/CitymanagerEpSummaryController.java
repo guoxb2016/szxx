@@ -88,6 +88,8 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	 */
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody CitymanagerEpSummary citymanagerEpSummary) {
+		//增加组织名称
+		String orgCode = citymanagerEpSummary.getSysOrgCode();
 		citymanagerEpSummaryService.save(citymanagerEpSummary);
 		return Result.ok(citymanagerEpSummary.getId());
 	}
