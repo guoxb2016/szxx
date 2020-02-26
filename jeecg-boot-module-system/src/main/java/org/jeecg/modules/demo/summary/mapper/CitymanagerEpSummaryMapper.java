@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CitymanagerEpSummaryMapper extends BaseMapper<CitymanagerEpSummary> {
     public CitymanagerEpSummary summaryByOrg();
+
+    public List<CitymanagerEpSummary> findGroupByOrg();
 }

@@ -8,6 +8,7 @@
         a.update_by AS "updateBy",
         a.update_time AS "updateTime",
         a.sys_org_code AS "sysOrgCode",
+        a.sys_org_name AS "sysOrgName",
         a.vehicle AS "vehicle",
         a.person_time AS "personTime",
         a.garbage_disposal AS "garbageDisposal",
@@ -77,5 +78,24 @@
             WHERE
                 a2.rank = 1
 		) a
+    </select>
+
+    <select id="findGroupByOrg" resultType="org.jeecg.modules.demo.summary.entity.SanitationEpSummary">
+        SELECT
+            <include refid="column"/>
+        FROM
+        (
+            SELECT
+                a1.*,
+                @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+                @a := a1.sys_org_code
+            FROM
+                sanitation_ep_summary a1
+            ORDER BY
+                a1.sys_org_code, a1.create_time DESC
+        ) a,
+        (SELECT @rank := 1 ,@a := NULL) tt
+        WHERE
+            a.rank = 1
     </select>
 </mapper>

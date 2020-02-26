@@ -8,6 +8,7 @@
         a.update_by AS "updateBy",
         a.update_time AS "updateTime",
         a.sys_org_code AS "sysOrgCode",
+        a.sys_org_name AS "sysOrgName",
         a.gr_baojy AS "grBaojy",
         a.gr_siji_sais AS "grSijiSais",
         a.gr_siji_lajysh AS "grSijiLajysh",
@@ -28,6 +29,8 @@
         a.chl_wuc AS "chlWuc",
         a.chl_lajysh AS "chlLajysh",
         a.chl_diandbj AS "chlDiandbj",
+        a.ydcsc AS "ydcsc",
+        a.hlqxc AS "hlqxc",
         a.shsh_lajzh AS "shshLajzh",
         a.shsh_fenleilajzh AS "shshFenleilajzh",
         a.shsh_huanwgc_yil AS "shshHuanwgcYil",
@@ -177,5 +180,24 @@
                 WHERE
                     a2.rank = 1
             ) a
+    </select>
+
+    <select id="findGroupByOrg" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
+        SELECT
+          <include refid="column"/>
+        FROM
+            (
+                SELECT
+                    a1.*,
+                    @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+                    @aa := a1.sys_org_code
+                FROM
+                    sanitation_summary a1
+                ORDER BY
+                    a1.sys_org_code, a1.create_time DESC
+            ) a,
+            (SELECT @rank := 1 ,@aa := NULL) tt
+        WHERE
+            a.rank = 1
     </select>
 </mapper>

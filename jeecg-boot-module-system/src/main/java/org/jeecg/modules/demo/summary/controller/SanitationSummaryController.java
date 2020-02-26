@@ -10,9 +10,11 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
@@ -286,6 +288,151 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 		 }
 	 }
 
+	 @RequestMapping(value = "/exportXls3")
+	 public void exportXls3(HttpServletRequest request, SanitationSummary sanitationSummary, HttpServletResponse response) {
+		 String title = "环卫信息汇总表";
+		 String template = "C:/szxxTemplate/sanitationTemplate1.1.xls";
+		 List<SanitationSummary> list = sanitationSummaryService.findGroupByOrg();
+		 InputStream in;
+		 try {
+			 in = new FileInputStream(new File(template));
+			 HSSFWorkbook book = null;
+			 book = new HSSFWorkbook(in);
+			 HSSFSheet sheet[] = {
+			 		 book.getSheet("环卫一线工人"),
+					 book.getSheet("环卫车辆"),
+					 book.getSheet("环卫设施"),
+					 book.getSheet("道路清扫保洁"),
+					 book.getSheet("环卫工人福利"),
+					 book.getSheet("环卫市场化情况")
+			 };
+			 for (int i=0; i<list.size(); i++){
+				 SanitationSummary s = list.get(i);
+				 Row row[] = new Row[6];
+
+				 this.createCell(sheet[0], 5+i, 0, 5).setCellValue(i+1);
+				 this.createCell(sheet[0], 5+i, 1, 5).setCellValue(s.getSysOrgName());
+				 this.createCell(sheet[0], 5+i, 2, 5).setCellValue(s.getGrBaojy());
+				 this.createCell(sheet[0], 5+i, 3, 5).setCellValue(s.getGrSijiSais());
+				 this.createCell(sheet[0], 5+i, 4, 5).setCellValue(s.getGrSijiLajysh());
+				 this.createCell(sheet[0], 5+i, 5, 5).setCellValue(s.getGrNan());
+				 this.createCell(sheet[0], 5+i, 6, 5).setCellValue(s.getGrNv());
+				 this.createCell(sheet[0], 5+i, 7, 5).setCellValue(s.getGrLessand45());
+				 this.createCell(sheet[0], 5+i, 8, 5).setCellValue(s.getGrMore45());
+				 this.createCell(sheet[0], 5+i, 9, 5).setCellValue(s.getGrLingshg());
+				 this.createCell(sheet[0], 5+i, 10, 5).setCellValue(s.getGrZhengshg());
+				 this.createCell(sheet[0], 5+i, 11, 5).setCellValue(s.getGrHuanwgl());
+
+                 this.createCell(sheet[1], 4+i, 0, 4).setCellValue(i+1);
+                 this.createCell(sheet[1], 4+i, 1, 4).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[1], 4+i, 2, 4).setCellValue(s.getChlGans());
+                 this.createCell(sheet[1], 4+i, 3, 4).setCellValue(s.getChlXis());
+                 this.createCell(sheet[1], 4+i, 4, 4).setCellValue(s.getChlXich());
+                 this.createCell(sheet[1], 4+i, 5, 4).setCellValue(s.getChlSaodXiao());
+                 this.createCell(sheet[1], 4+i, 6, 4).setCellValue(s.getChlSaodDa());
+                 this.createCell(sheet[1], 4+i, 7, 4).setCellValue(s.getChlSashXiao());
+                 this.createCell(sheet[1], 4+i, 8, 4).setCellValue(s.getChlSashDa());
+                 this.createCell(sheet[1], 4+i, 9, 4).setCellValue(s.getChlWuc());
+                 this.createCell(sheet[1], 4+i, 10, 4).setCellValue(s.getChlLajysh());
+                 this.createCell(sheet[1], 4+i, 11, 4).setCellValue(s.getChlDiandbj());
+                 this.createCell(sheet[1], 4+i, 12, 4).setCellValue(s.getYdcsc());
+                 this.createCell(sheet[1], 4+i, 13, 4).setCellValue(s.getHlqxc());
+
+                 this.createCell(sheet[2], 5+i, 0, 5).setCellValue(i+1);
+                 this.createCell(sheet[2], 5+i, 1, 5).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[2], 5+i, 2, 5).setCellValue(s.getShshLajzh());
+                 this.createCell(sheet[2], 5+i, 3, 5).setCellValue(s.getShshFenleilajzh());
+                 this.createCell(sheet[2], 5+i, 4, 5).setCellValue(s.getShshHuanwgcYil());
+                 this.createCell(sheet[2], 5+i, 5, 5).setCellValue(s.getShshHuanwgcErl());
+                 this.createCell(sheet[2], 5+i, 6, 5).setCellValue(s.getShshHuanwgcSl());
+                 this.createCell(sheet[2], 5+i, 7, 5).setCellValue(s.getShshShehgc());
+                 this.createCell(sheet[2], 5+i, 8, 5).setCellValue(s.getShshGuokx());
+                 this.createCell(sheet[2], 5+i, 9, 5).setCellValue(s.getShshFenleilajzh());
+
+                 this.createCell(sheet[3], 4+i, 0, 4).setCellValue(i+1);
+                 this.createCell(sheet[3], 4+i, 1, 4).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[3], 4+i, 2, 4).setCellValue(s.getBjYlShul());
+                 this.createCell(sheet[3], 4+i, 3, 4).setCellValue(s.getBjYlChangd());
+                 this.createCell(sheet[3], 4+i, 4, 4).setCellValue(s.getBjYlMianj());
+                 this.createCell(sheet[3], 4+i, 5, 4).setCellValue(s.getBjYlJinfbzh());
+                 this.createCell(sheet[3], 4+i, 6, 4).setCellValue(s.getBjErlShul());
+                 this.createCell(sheet[3], 4+i, 7, 4).setCellValue(s.getBjErlChangd());
+                 this.createCell(sheet[3], 4+i, 8, 4).setCellValue(s.getBjErlMianj());
+                 this.createCell(sheet[3], 4+i, 9, 4).setCellValue(s.getBjErlJinfbzh());
+                 this.createCell(sheet[3], 4+i, 10, 4).setCellValue(s.getBjSslShul());
+                 this.createCell(sheet[3], 4+i, 11, 4).setCellValue(s.getBjSslChangd());
+                 this.createCell(sheet[3], 4+i, 12, 4).setCellValue(s.getBjSslMianj());
+                 this.createCell(sheet[3], 4+i, 13, 4).setCellValue(s.getBjSslJinfbzh());
+                 this.createCell(sheet[3], 4+i, 14, 4).setCellValue(s.getBjShqShul());
+                 this.createCell(sheet[3], 4+i, 15, 4).setCellValue(s.getBjShqMianj());
+                 this.createCell(sheet[3], 4+i, 16, 4).setCellValue(s.getBjShqJinfbzh());
+                 this.createCell(sheet[3], 4+i, 17, 4).setCellValue(s.getBjZongmj());
+                 this.createCell(sheet[3], 4+i, 18, 4).setCellValue(s.getBjWaibmj());
+                 this.createCell(sheet[3], 4+i, 19, 4).setCellValue(s.getBjJixhQingsMianj());
+                 this.createCell(sheet[3], 4+i, 20, 4).setCellValue(s.getBjJixhQingsCang());
+                 this.createCell(sheet[3], 4+i, 21, 4).setCellValue(s.getBjShichh());
+                 this.createCell(sheet[3], 4+i, 22, 4).setCellValue(s.getBjJixieh());
+                 this.createCell(sheet[3], 4+i, 23, 4).setCellValue(s.getBjShichDanwei());
+                 this.createCell(sheet[3], 4+i, 24, 4).setCellValue(s.getBjWaibJinfbzh());
+
+                 this.createCell(sheet[4], 3+i, 0, 3).setCellValue(i+1);
+                 this.createCell(sheet[4], 3+i, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[4], 3+i, 2, 3).setCellValue(s.getFulTijian());
+                 this.createCell(sheet[4], 3+i, 3, 3).setCellValue(s.getFulJiejia());
+                 this.createCell(sheet[4], 3+i, 4, 3).setCellValue(s.getFulYiwaiBaoxian());
+                 this.createCell(sheet[4], 3+i, 5, 3).setCellValue(s.getFulShehuiBaoxian());
+                 this.createCell(sheet[4], 3+i, 6, 3).setCellValue(s.getFulYiwaiBaoxianJinge());
+                 this.createCell(sheet[4], 3+i, 7, 3).setCellValue(s.getFulGongzbiaozh());
+                 this.createCell(sheet[4], 3+i, 8, 3).setCellValue(s.getFulGonglgzbiaozh());
+                 this.createCell(sheet[4], 3+i, 9, 3).setCellValue(s.getFulGongjijing());
+
+
+                 this.createCell(sheet[5], 3+i*6, 0, 3).setCellValue(i*6+1);
+                 this.createCell(sheet[5], 3+i*6, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[5], 3+i*6, 2, 3).setCellValue("道路清扫保洁");
+                 this.createCell(sheet[5], 3+i*6, 3, 3).setCellValue(s.getShichhZuiyeDanwei());
+                 this.createCell(sheet[5], 3+i*6, 4, 3).setCellValue(s.getShichhgcJinfeiBiaozh());
+
+                 this.createCell(sheet[5], 4+i*6, 0, 3).setCellValue(i*6+2);
+                 this.createCell(sheet[5], 4+i*6, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[5], 4+i*6, 2, 3).setCellValue("公厕管理");
+                 this.createCell(sheet[5], 4+i*6, 3, 3).setCellValue(s.getShichhgcZuiyeDanwei());
+                 this.createCell(sheet[5], 4+i*6, 4, 3).setCellValue(s.getShichhgcJinfeiBiaozh());
+
+                 this.createCell(sheet[5], 5+i*6, 0, 3).setCellValue(i*6+3);
+                 this.createCell(sheet[5], 5+i*6, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[5], 5+i*6, 2, 3).setCellValue("垃圾站管理");
+                 this.createCell(sheet[5], 5+i*6, 3, 3).setCellValue(s.getShichhljzZuiyeDanwei());
+                 this.createCell(sheet[5], 5+i*6, 4, 3).setCellValue(s.getShichhljzJinfeiBiaozh());
+
+                 this.createCell(sheet[5], 6+i*6, 0, 3).setCellValue(i*6+4);
+                 this.createCell(sheet[5], 6+i*6, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[5], 6+i*6, 2, 3).setCellValue("垃圾运输管理");
+                 this.createCell(sheet[5], 6+i*6, 3, 3).setCellValue(s.getShichhljysZuiyeDanwei());
+                 this.createCell(sheet[5], 6+i*6, 4, 3).setCellValue(s.getShichhljysJinfeiBiaozh());
+
+                 this.createCell(sheet[5], 7+i*6, 0, 3).setCellValue(i*6+5);
+                 this.createCell(sheet[5], 7+i*6, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[5], 7+i*6, 2, 3).setCellValue("垃圾分类");
+                 this.createCell(sheet[5], 7+i*6, 3, 3).setCellValue(s.getShichhljflZuiyeDanwei());
+                 this.createCell(sheet[5], 7+i*6, 4, 3).setCellValue(s.getShichhljflJinfeiBiaozh());
+
+                 this.createCell(sheet[5], 8+i*6, 0, 3).setCellValue(i*6+6);
+                 this.createCell(sheet[5], 8+i*6, 1, 3).setCellValue(s.getSysOrgName());
+                 this.createCell(sheet[5], 8+i*6, 2, 3).setCellValue("其它");
+                 this.createCell(sheet[5], 8+i*6, 3, 3).setCellValue(s.getShichhqtZuiyeDanwei());
+                 this.createCell(sheet[5], 8+i*6, 4, 3).setCellValue(s.getShichhqtJinfeiBiaozh());
+			 }
+			 response.setContentType("application/vnd.ms-excel");
+			 response.setHeader("content-disposition", "attachment;filename=" + title);
+			 ServletOutputStream out = response.getOutputStream();
+			 book.write(out);
+			 out.flush();
+		 } catch (IOException e){
+		 	e.printStackTrace();
+		 }
+	 }
+
     /**
       * 通过excel导入数据
     *
@@ -297,5 +444,15 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, SanitationSummary.class);
     }
+
+    public Cell createCell(Sheet sheet, int rowNum, int column, int styleRow){
+        int rowIndex = sheet.getLastRowNum() + 1;
+        Row row = sheet.getRow(rowNum) == null?sheet.createRow(rowIndex):sheet.getRow(rowNum);
+		Cell cell=row.getCell(column)==null?row.createCell(column):row.getCell(column);  // 创建单元格
+
+        CellStyle cellStyle=sheet.getRow(styleRow).getCell(column).getCellStyle();
+		cell.setCellStyle(cellStyle);
+		return cell;
+	}
 
 }

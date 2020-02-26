@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SanitationEpSummaryMapper extends BaseMapper<SanitationEpSummary> {
     public SanitationEpSummary sumarry();
+
+    public List<SanitationEpSummary> findGroupByOrg();
 }

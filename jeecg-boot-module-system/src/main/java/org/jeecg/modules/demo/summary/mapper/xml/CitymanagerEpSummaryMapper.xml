@@ -8,6 +8,7 @@
         a.update_by as "updateBy",
         a.update_time as "updateTime",
         a.sys_org_code as "sysOrgCode",
+        a.sys_org_name as "sysOrgName",
         a.person_time as "personTime",
         a.strvend_poultry as "strvendPoultry",
         a.strvend_wildlife as "strvendWildlife",
@@ -50,5 +51,24 @@
                 WHERE
                     a2.rank = 1
             ) a
+    </select>
+
+    <select id="findGroupByOrg" resultType="org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary">
+        SELECT
+            <include refid="column"/>
+        FROM
+            (
+                SELECT
+                    a1.*,
+                    @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+                    @a := a1.sys_org_code
+                FROM
+                    citymanager_ep_summary a1
+                ORDER BY
+                    a1.sys_org_code, a1.create_time DESC
+            ) a,
+            (SELECT @rank := 1 ,@a := NULL) tt
+        WHERE
+            a.rank = 1
     </select>
 </mapper>
