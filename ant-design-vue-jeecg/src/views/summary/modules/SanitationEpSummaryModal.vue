@@ -11,7 +11,7 @@
       <a-form :form="form">
 
         <a-form-item label="所属区县" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-select-depart v-decorator="['sysOrgName', validatorRules.sysOrgName]" :trigger-change="true"/>
+          <j-select-depart v-decorator="['sysOrgName', validatorRules.sysOrgName]" :trigger-change="true"  customReturnField="departName"/>
         </a-form-item>
         <a-form-item label="环卫作业车辆" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'vehicle', validatorRules.vehicle]" placeholder="请输入环卫作业车辆" style="width: 100%"/>

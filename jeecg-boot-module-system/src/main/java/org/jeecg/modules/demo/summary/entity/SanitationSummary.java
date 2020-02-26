@@ -292,9 +292,6 @@ public class SanitationSummary implements Serializable {
 	/**完成步骤*/
 	@Excel(name = "完成步骤", width = 15)
     private java.lang.String step;
-    /*所属区县名称*/
-	//@Excel(name = "所属区县名称", width = 15)
-    private java.lang.String sysOrgName;
 
 	public String getId() {
 		return id;
@@ -990,13 +987,5 @@ public class SanitationSummary implements Serializable {
 
 	public void setStep(String step) {
 		this.step = step;
-	}
-
-	public String getSysOrgName() {
-		return sysOrgName;
-	}
-
-	public void setSysOrgName(String sysOrgName) {
-		this.sysOrgName = sysOrgName;
 	}
 }

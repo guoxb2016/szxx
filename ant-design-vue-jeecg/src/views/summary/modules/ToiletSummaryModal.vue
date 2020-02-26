@@ -11,7 +11,7 @@
       <a-form :form="form">
 
         <a-form-item label="县区" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-select-depart v-decorator="['xianqu', validatorRules.xianqu]" :trigger-change="true"/>
+          <j-select-depart v-decorator="['xianqu', validatorRules.xianqu]" :trigger-change="true" customReturnField="departName"/>
         </a-form-item>
         <a-form-item label="公厕类型" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag type="list" v-decorator="['leixing', validatorRules.leixing]" :trigger-change="true" dictCode="toilet_type" placeholder="请选择公厕类型"/>

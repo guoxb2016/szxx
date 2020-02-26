@@ -6,7 +6,7 @@
         <a-row :gutter="24">
           <a-col :md="6" :sm="8">
             <a-form-item label="所属区县">
-              <j-select-depart v-model="queryParam.xianqu"/>
+              <j-select-depart v-model="queryParam.xianqu" customReturnField="departName"/>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8">
