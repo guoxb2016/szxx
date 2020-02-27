@@ -17,6 +17,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.aspect.annotation.PermissionData;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
@@ -76,6 +77,27 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 		IPage<SanitationSummary> pageList = sanitationSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
+	
+	/**
+	 * 增加数据权限
+	 *
+	 * @param sanitationSummary
+	 * @param pageNo
+	 * @param pageSize
+	 * @param req
+	 * @return
+	 */
+	@GetMapping(value = "/listByPerm")
+	@PermissionData(pageComponent="summary/SanitationSummaryList")
+	public Result<?> queryByPermPageList(SanitationSummary sanitationSummary,
+								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+								   HttpServletRequest req) {
+		QueryWrapper<SanitationSummary> queryWrapper = QueryGenerator.initQueryWrapper(sanitationSummary, req.getParameterMap());
+		Page<SanitationSummary> page = new Page<SanitationSummary>(pageNo, pageSize);
+		IPage<SanitationSummary> pageList = sanitationSummaryService.page(page, queryWrapper);
+		return Result.ok(pageList);
+	}
 
 	/**
 	 *   添加
@@ -84,11 +106,15 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 	 * @return
 	 */
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody SanitationSummary sanitationSummary) {
-		List<SysDepart> departs = sysDepartService.queryUserDeparts(sanitationSummary.getCreateBy());
-		if (departs != null && !departs.isEmpty()) {
-			sanitationSummary.setSysOrgCode(departs.get(0).getOrgCode());
-			sanitationSummary.setSysOrgName(departs.get(0).getDepartName());
+	public Result<?> add(@RequestBody SanitationSummary sanitationSummary,HttpServletRequest req) {
+		SysDepart sd = new SysDepart();
+		sd.setOrgCode(sanitationSummary.getSysOrgCode());
+		QueryWrapper<SysDepart> queryWrapper = QueryGenerator.initQueryWrapper(sd, req.getParameterMap());
+		queryWrapper.last("order by create_time desc limit 1");
+		SysDepart sysDepart = sysDepartService.getOne(queryWrapper);
+		if (sysDepart != null ) {
+			sanitationSummary.setSysOrgCode(sysDepart.getOrgCode());
+			sanitationSummary.setSysOrgName(sysDepart.getDepartName());
 		}
 		sanitationSummaryService.save(sanitationSummary);
 		return Result.ok(sanitationSummary.getId());

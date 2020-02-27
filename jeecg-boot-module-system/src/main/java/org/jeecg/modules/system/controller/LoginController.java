@@ -64,15 +64,12 @@ public class LoginController {
 		//update-begin--Author:scott  Date:20190805 for：暂时注释掉密码加密逻辑，有点问题
 
 		//update-begin-author:taoyan date:20190828 for:校验验证码
-		Object checkCode = redisUtil.get(sysLoginModel.getCheckKey());
-		if(checkCode==null) {
-			result.error500("验证码失效");
-			return result;
-		}
-		if(!checkCode.equals(sysLoginModel.getCaptcha())) {
-			result.error500("验证码错误");
-			return result;
-		}
+		/*
+		 * Object checkCode = redisUtil.get(sysLoginModel.getCheckKey());
+		 * if(checkCode==null) { result.error500("验证码失效"); return result; }
+		 * if(!checkCode.equals(sysLoginModel.getCaptcha())) { result.error500("验证码错误");
+		 * return result; }
+		 */
 		//update-end-author:taoyan date:20190828 for:校验验证码
 		
 		//1. 校验用户是否有效

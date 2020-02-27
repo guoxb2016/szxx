@@ -15,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.SecurityUtils;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.aspect.annotation.PermissionData;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.system.vo.LoginUser;
 import org.jeecg.common.util.oConvertUtils;
@@ -84,6 +85,27 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 		IPage<CitymanagerEpSummary> pageList = citymanagerEpSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
+	
+	/**
+	 * 分页列表查询增加权限
+	 *
+	 * @param citymanagerEpSummary
+	 * @param pageNo
+	 * @param pageSize
+	 * @param req
+	 * @return
+	 */
+	@GetMapping(value = "/listByPerm")
+	@PermissionData(pageComponent="summary/CitymanagerEpSummaryList")
+	public Result<?> queryByPermPageList(CitymanagerEpSummary citymanagerEpSummary,
+								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+								   HttpServletRequest req) {
+		QueryWrapper<CitymanagerEpSummary> queryWrapper = QueryGenerator.initQueryWrapper(citymanagerEpSummary, req.getParameterMap());
+		Page<CitymanagerEpSummary> page = new Page<CitymanagerEpSummary>(pageNo, pageSize);
+		IPage<CitymanagerEpSummary> pageList = citymanagerEpSummaryService.page(page, queryWrapper);
+		return Result.ok(pageList);
+	}
 
 	/**
 	 *   添加
@@ -92,12 +114,16 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 	 * @return
 	 */
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody CitymanagerEpSummary citymanagerEpSummary) {
+	public Result<?> add(@RequestBody CitymanagerEpSummary citymanagerEpSummary,HttpServletRequest req) {
 		//增加组织名称
-		List<SysDepart> departs = sysDepartService.queryUserDeparts(citymanagerEpSummary.getCreateBy());
-		if (departs != null && !departs.isEmpty()) {
-			citymanagerEpSummary.setSysOrgCode(departs.get(0).getOrgCode());
-			citymanagerEpSummary.setSysOrgName(departs.get(0).getDepartName());
+		SysDepart sd = new SysDepart();
+		sd.setOrgCode(citymanagerEpSummary.getSysOrgCode());
+		QueryWrapper<SysDepart> queryWrapper = QueryGenerator.initQueryWrapper(sd, req.getParameterMap());
+		queryWrapper.last("order by create_time desc limit 1");
+		SysDepart sysDepart = sysDepartService.getOne(queryWrapper);
+		if (sysDepart != null ) {
+			citymanagerEpSummary.setSysOrgCode(sysDepart.getOrgCode());
+			citymanagerEpSummary.setSysOrgName(sysDepart.getDepartName());
 		}
 		citymanagerEpSummaryService.save(citymanagerEpSummary);
 		return Result.ok(citymanagerEpSummary.getId());

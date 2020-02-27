@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.aspect.annotation.PermissionData;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.CitymanagerEpSummary;
@@ -79,6 +80,27 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 		IPage<SanitationEpSummary> pageList = sanitationEpSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
+	
+	/**
+	 * 分页列表查询 增加数据权限
+	 *
+	 * @param sanitationEpSummary
+	 * @param pageNo
+	 * @param pageSize
+	 * @param req
+	 * @return
+	 */
+	@GetMapping(value = "/listByPerm")
+	@PermissionData(pageComponent="summary/SanitationEpSummaryList")
+	public Result<?> queryByPermPageList(SanitationEpSummary sanitationEpSummary,
+								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+								   HttpServletRequest req) {
+		QueryWrapper<SanitationEpSummary> queryWrapper = QueryGenerator.initQueryWrapper(sanitationEpSummary, req.getParameterMap());
+		Page<SanitationEpSummary> page = new Page<SanitationEpSummary>(pageNo, pageSize);
+		IPage<SanitationEpSummary> pageList = sanitationEpSummaryService.page(page, queryWrapper);
+		return Result.ok(pageList);
+	}
 
 	/**
 	 *   添加
@@ -87,11 +109,15 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 	 * @return
 	 */
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody SanitationEpSummary sanitationEpSummary) {
-		List<SysDepart> departs = sysDepartService.queryUserDeparts(sanitationEpSummary.getCreateBy());
-		if (departs != null && !departs.isEmpty()) {
-			sanitationEpSummary.setSysOrgCode(departs.get(0).getOrgCode());
-			sanitationEpSummary.setSysOrgName(departs.get(0).getDepartName());
+	public Result<?> add(@RequestBody SanitationEpSummary sanitationEpSummary,HttpServletRequest req) {
+		SysDepart sd = new SysDepart();
+		sd.setOrgCode(sanitationEpSummary.getSysOrgCode());
+		QueryWrapper<SysDepart> queryWrapper = QueryGenerator.initQueryWrapper(sd, req.getParameterMap());
+		queryWrapper.last("order by create_time desc limit 1");
+		SysDepart sysDepart = sysDepartService.getOne(queryWrapper);
+		if (sysDepart != null ) {
+			sanitationEpSummary.setSysOrgCode(sysDepart.getOrgCode());
+			sanitationEpSummary.setSysOrgName(sysDepart.getDepartName());
 		}
 		sanitationEpSummaryService.save(sanitationEpSummary);
 		return Result.ok(sanitationEpSummary.getId());

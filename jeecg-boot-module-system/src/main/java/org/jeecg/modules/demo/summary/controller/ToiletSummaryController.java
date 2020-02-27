@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.aspect.annotation.PermissionData;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.demo.summary.entity.ToiletSummary;
@@ -74,6 +75,27 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		IPage<ToiletSummary> pageList = toiletSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
+	
+	/**
+	 * 分页列表查询，增加数据权限
+	 *
+	 * @param toiletSummary
+	 * @param pageNo
+	 * @param pageSize
+	 * @param req
+	 * @return
+	 */
+	@GetMapping(value = "/listByPerm")
+	@PermissionData(pageComponent="summary/ToiletSummaryList")
+	public Result<?> queryByPermPageList(ToiletSummary toiletSummary,
+								   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+								   HttpServletRequest req) {
+		QueryWrapper<ToiletSummary> queryWrapper = QueryGenerator.initQueryWrapper(toiletSummary, req.getParameterMap());
+		Page<ToiletSummary> page = new Page<ToiletSummary>(pageNo, pageSize);
+		IPage<ToiletSummary> pageList = toiletSummaryService.page(page, queryWrapper);
+		return Result.ok(pageList);
+	}
 
 	/**
 	 *   添加
@@ -82,11 +104,15 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 	 * @return
 	 */
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody ToiletSummary toiletSummary) {
-		List<SysDepart> departs = sysDepartService.queryUserDeparts(toiletSummary.getCreateBy());
-		if (departs != null && !departs.isEmpty()) {
-			toiletSummary.setSysOrgCode(departs.get(0).getOrgCode());
-			toiletSummary.setXianqu(departs.get(0).getDepartName());
+	public Result<?> add(@RequestBody ToiletSummary toiletSummary,HttpServletRequest req) {
+		SysDepart sd = new SysDepart();
+		sd.setOrgCode(toiletSummary.getSysOrgCode());
+		QueryWrapper<SysDepart> queryWrapper = QueryGenerator.initQueryWrapper(sd, req.getParameterMap());
+		queryWrapper.last("order by create_time desc limit 1");
+		SysDepart sysDepart = sysDepartService.getOne(queryWrapper);
+		if (sysDepart != null ) {
+			toiletSummary.setSysOrgCode(sysDepart.getOrgCode());
+			toiletSummary.setXianqu(sysDepart.getDepartName());
 		}
 		toiletSummaryService.save(toiletSummary);
 		return Result.ok(toiletSummary.getId());
