@@ -559,7 +559,7 @@
           }
         ],
         url: {
-          list: "/summary/sanitationSummary/list",
+          list: "/summary/sanitationSummary/listByPerm",
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
           exportXlsUrl: "/summary/sanitationSummary/exportXls3",

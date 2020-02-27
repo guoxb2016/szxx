@@ -249,7 +249,7 @@
           }
         ],
         url: {
-          list: "/summary/sanitationEpSummary/list",
+          list: "/summary/sanitationEpSummary/listByPerm",
           delete: "/summary/sanitationEpSummary/delete",
           deleteBatch: "/summary/sanitationEpSummary/deleteBatch",
           exportXlsUrl: "/summary/citymanagerEpSummary/exportXls3",

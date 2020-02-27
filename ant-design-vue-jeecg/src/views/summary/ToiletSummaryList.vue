@@ -374,7 +374,7 @@
           }
         ],
         url: {
-          list: "/summary/toiletSummary/list",
+          list: "/summary/toiletSummary/listByPerm",
           delete: "/summary/toiletSummary/delete",
           deleteBatch: "/summary/toiletSummary/deleteBatch",
           exportXlsUrl: "/summary/toiletSummary/exportXls2",

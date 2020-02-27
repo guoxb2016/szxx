@@ -27,7 +27,7 @@
             </a-input>
           </a-form-item>
 
-          <a-row :gutter="0">
+        <!--  <a-row :gutter="0">
             <a-col :span="14">
               <a-form-item>
                 <a-input
@@ -44,7 +44,7 @@
             <a-col  :span="10">
               <j-graphic-code @success="generateCode" ref="jgraphicCodeRef" style="float: right" remote></j-graphic-code>
             </a-col>
-          </a-row>
+          </a-row>-->
 
 
         </a-tab-pane>
@@ -257,9 +257,9 @@
               loginParams.password = values.password
               loginParams.remember_me = values.rememberMe
               // update-begin- --- author:scott ------ date:20190805 ---- for:密码加密逻辑暂时注释掉，有点问题
-              let checkParams = this.$refs.jgraphicCodeRef.getLoginParam()
-              loginParams.captcha = checkParams.checkCode
-              loginParams.checkKey = checkParams.checkKey
+            //  let checkParams = this.$refs.jgraphicCodeRef.getLoginParam()
+            //  loginParams.captcha = checkParams.checkCode
+             // loginParams.checkKey = checkParams.checkKey
 
               that.Login(loginParams).then((res) => {
                 this.departConfirm(res)

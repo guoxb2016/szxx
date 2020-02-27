@@ -154,7 +154,7 @@
           }
         ],
         url: {
-          list: "/summary/citymanagerEpSummary/list",
+          list: "/summary/citymanagerEpSummary/listByPerm",
           delete: "/summary/citymanagerEpSummary/delete",
           deleteBatch: "/summary/citymanagerEpSummary/deleteBatch",
           exportXlsUrl: "/summary/citymanagerEpSummary/exportXls3",

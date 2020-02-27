@@ -253,7 +253,7 @@
         <a-form-item label="缴纳公积金人数" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'fulGongjijing', validatorRules.fulGongjijing]" placeholder="请输入缴纳公积金人数" style="width: 100%"/>
         </a-form-item>
-
+        <a-input type="hidden" v-model="step" value="1,2,3,4,5,6"></a-input>
       </a-form>
     </a-spin>
   </a-modal>
