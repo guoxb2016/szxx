@@ -240,34 +240,34 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 			 for(int i=0; i<citys.size(); i++) {
 			 	CitymanagerEpSummary citySummary = citys.get(i);
 				 this.createCell(sheet1,4+i , 0, 4).setCellValue(i+1);
-				 this.createCell(sheet1,4+i , 1, 4).setCellValue(citySummary.getSysOrgName());
-				 this.createCell(sheet1,4+i , 2, 4).setCellValue(citySummary.getPersonTime());
-				 this.createCell(sheet1,4+i , 3, 4).setCellValue(citySummary.getStrvendPoultry());
-				 this.createCell(sheet1,4+i , 4, 4).setCellValue(citySummary.getStrvendWildlife());
-				 this.createCell(sheet1,4+i , 5, 4).setCellValue(citySummary.getStrvendOther());
+				 this.createCell(sheet1,4+i , 1, 4).setCellValue(citySummary.getSysOrgName()==null? "" :citySummary.getSysOrgName());
+				 this.createCell(sheet1,4+i , 2, 4).setCellValue(citySummary.getPersonTime()==null? 0 :citySummary.getPersonTime());
+				 this.createCell(sheet1,4+i , 3, 4).setCellValue(citySummary.getStrvendPoultry()==null? 0 :citySummary.getStrvendPoultry());
+				 this.createCell(sheet1,4+i , 4, 4).setCellValue(citySummary.getStrvendWildlife()==null? 0 :citySummary.getStrvendWildlife());
+				 this.createCell(sheet1,4+i , 5, 4).setCellValue(citySummary.getStrvendOther()==null? 0 :citySummary.getStrvendOther());
 			 }
 			 for(int i=0; i<sans.size(); i++){
 				 SanitationEpSummary sanitaSummary = sans.get(i);
 				 this.createCell(sheet2,3+i , 0, 3).setCellValue(i+1);
-				 this.createCell(sheet2,3+i , 1, 3).setCellValue(sanitaSummary.getSysOrgName());
-				 this.createCell(sheet2,3+i , 2, 3).setCellValue(sanitaSummary.getVehicle());
-				 this.createCell(sheet2,3+i , 3, 3).setCellValue(sanitaSummary.getPersonTime());
-				 this.createCell(sheet2,3+i , 4, 3).setCellValue(sanitaSummary.getGarbageDisposal());
-				 this.createCell(sheet2,3+i , 5, 3).setCellValue(sanitaSummary.getKzKouzhFeiqt());
-				 this.createCell(sheet2,3+i , 6, 3).setCellValue(sanitaSummary.getKzYunsl());
-				 this.createCell(sheet2,3+i , 7, 3).setCellValue(sanitaSummary.getXsGongc());
-				 this.createCell(sheet2,3+i , 8, 3).setCellValue(sanitaSummary.getXsLajz());
-				 this.createCell(sheet2,3+i , 9, 3).setCellValue(sanitaSummary.getXsHuanwcc());
-				 this.createCell(sheet2,3+i , 10, 3).setCellValue(sanitaSummary.getXsGuokx());
-				 this.createCell(sheet2,3+i , 11, 3).setCellValue(sanitaSummary.getHjwsLajcl());
-				 this.createCell(sheet2,3+i , 12, 3).setCellValue(sanitaSummary.getHjwsXiaoscc());
-				 this.createCell(sheet2,3+i , 13, 3).setCellValue(sanitaSummary.getHjwsHubeiJiecqk());
-				 this.createCell(sheet2,3+i , 14, 3).setCellValue(sanitaSummary.getFywzKouzh());
-				 this.createCell(sheet2,3+i , 15, 3).setCellValue(sanitaSummary.getFywzJiuj());
-				 this.createCell(sheet2,3+i , 17, 3).setCellValue(sanitaSummary.getFywzXiaody());
-				 this.createCell(sheet2,3+i , 16, 3).setCellValue(sanitaSummary.getFywzWendj());
-				 this.createCell(sheet2,3+i , 18, 3).setCellValue(sanitaSummary.getGongyFyqk());
-				 this.createCell(sheet2,3+i , 19, 3).setCellValue(sanitaSummary.getOther());
+				 this.createCell(sheet2,3+i , 1, 3).setCellValue(sanitaSummary.getSysOrgName()==null?"":sanitaSummary.getSysOrgName());
+				 this.createCell(sheet2,3+i , 2, 3).setCellValue(sanitaSummary.getVehicle()==null?0:sanitaSummary.getVehicle());
+				 this.createCell(sheet2,3+i , 3, 3).setCellValue(sanitaSummary.getPersonTime()==null?0:sanitaSummary.getPersonTime());
+				 this.createCell(sheet2,3+i , 4, 3).setCellValue(sanitaSummary.getGarbageDisposal()==null?0:sanitaSummary.getGarbageDisposal());
+				 this.createCell(sheet2,3+i , 5, 3).setCellValue(sanitaSummary.getKzKouzhFeiqt()==null?0:sanitaSummary.getKzKouzhFeiqt());
+				 this.createCell(sheet2,3+i , 6, 3).setCellValue(sanitaSummary.getKzYunsl()==null?0:sanitaSummary.getKzYunsl());
+				 this.createCell(sheet2,3+i , 7, 3).setCellValue(sanitaSummary.getXsGongc()==null?0:sanitaSummary.getXsGongc());
+				 this.createCell(sheet2,3+i , 8, 3).setCellValue(sanitaSummary.getXsLajz()==null?0:sanitaSummary.getXsLajz());
+				 this.createCell(sheet2,3+i , 9, 3).setCellValue(sanitaSummary.getXsHuanwcc()==null?0:sanitaSummary.getXsHuanwcc());
+				 this.createCell(sheet2,3+i , 10, 3).setCellValue(sanitaSummary.getXsGuokx()==null?0:sanitaSummary.getXsGuokx());
+				 this.createCell(sheet2,3+i , 11, 3).setCellValue(sanitaSummary.getHjwsLajcl()==null?0:sanitaSummary.getHjwsLajcl());
+				 this.createCell(sheet2,3+i , 12, 3).setCellValue(sanitaSummary.getHjwsXiaoscc()==null?0:sanitaSummary.getHjwsXiaoscc());
+				 this.createCell(sheet2,3+i , 13, 3).setCellValue(sanitaSummary.getHjwsHubeiJiecqk()==null?"":sanitaSummary.getHjwsHubeiJiecqk());
+				 this.createCell(sheet2,3+i , 14, 3).setCellValue(sanitaSummary.getFywzKouzh()==null?0:sanitaSummary.getFywzKouzh());
+				 this.createCell(sheet2,3+i , 15, 3).setCellValue(sanitaSummary.getFywzJiuj()==null?0:sanitaSummary.getFywzJiuj());
+				 this.createCell(sheet2,3+i , 17, 3).setCellValue(sanitaSummary.getFywzXiaody()==null?0:sanitaSummary.getFywzXiaody());
+				 this.createCell(sheet2,3+i , 16, 3).setCellValue(sanitaSummary.getFywzWendj()==null?0:sanitaSummary.getFywzWendj());
+				 this.createCell(sheet2,3+i , 18, 3).setCellValue(sanitaSummary.getGongyFyqk()==null?"":sanitaSummary.getGongyFyqk());
+				 this.createCell(sheet2,3+i , 19, 3).setCellValue(sanitaSummary.getOther()==null?"":sanitaSummary.getOther());
 			 }
 
 			 response.setContentType("application/vnd.ms-excel");

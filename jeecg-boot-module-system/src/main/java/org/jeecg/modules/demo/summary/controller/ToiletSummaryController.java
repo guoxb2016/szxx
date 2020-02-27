@@ -2,6 +2,7 @@ package org.jeecg.modules.demo.summary.controller;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -169,28 +170,28 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 			 for(int i=0; i < list.size(); i++){
 				 ToiletSummary toilet = list.get(i);
 				 sheet.getRow(4+i).getCell(0).setCellValue(i);
-				 sheet.getRow(4+i).getCell(1).setCellValue(toilet.getXianqu());
-				 sheet.getRow(4+i).getCell(2).setCellValue(toilet.getLeixing());
-				 sheet.getRow(4+i).getCell(3).setCellValue(toilet.getBianhao());
-				 sheet.getRow(4+i).getCell(4).setCellValue(toilet.getMingcheng());
-				 sheet.getRow(4+i).getCell(5).setCellValue(toilet.getDizhi());
-				 sheet.getRow(4+i).getCell(6).setCellValue(toilet.getLeibie());
-				 sheet.getRow(4+i).getCell(7).setCellValue(toilet.getQiyongNianyue());
-				 sheet.getRow(4+i).getCell(8).setCellValue(toilet.getKaigongNianyue());
-				 sheet.getRow(4+i).getCell(9).setCellValue(toilet.getMianji());
-				 sheet.getRow(4+i).getCell(10).setCellValue(toilet.getJianzhuDuli());
-				 sheet.getRow(4+i).getCell(11).setCellValue(toilet.getJianzhuFushu());
-				 sheet.getRow(4+i).getCell(12).setCellValue(toilet.getJiegouTujian());
-				 sheet.getRow(4+i).getCell(13).setCellValue(toilet.getJiegouZhuangpei());
-				 sheet.getRow(4+i).getCell(14).setCellValue(toilet.getNan());
-				 sheet.getRow(4+i).getCell(15).setCellValue(toilet.getNv());
-				 sheet.getRow(4+i).getCell(16).setCellValue(toilet.getTongyong());
-				 sheet.getRow(4+i).getCell(17).setCellValue(toilet.getWuzhangai());
-				 sheet.getRow(4+i).getCell(18).setCellValue(toilet.getXiaobiandou());
-				 sheet.getRow(4+i).getCell(19).setCellValue(toilet.getFushe());
-				 sheet.getRow(4+i).getCell(20).setCellValue(toilet.getKongtiao());
-				 sheet.getRow(4+i).getCell(21).setCellValue(toilet.getZhihui());
-				 sheet.getRow(4+i).getCell(22).setCellValue(toilet.getRemarks());
+				 sheet.getRow(4+i).getCell(1).setCellValue(toilet.getXianqu()==null? "" :toilet.getXianqu());
+				 sheet.getRow(4+i).getCell(2).setCellValue(toilet.getLeixing()==null? "" :toilet.getLeixing());
+				 sheet.getRow(4+i).getCell(3).setCellValue(toilet.getBianhao()==null? "" :toilet.getBianhao());
+				 sheet.getRow(4+i).getCell(4).setCellValue(toilet.getMingcheng()==null? "" :toilet.getMingcheng());
+				 sheet.getRow(4+i).getCell(5).setCellValue(toilet.getDizhi()==null? "" :toilet.getDizhi());
+				 sheet.getRow(4+i).getCell(6).setCellValue(toilet.getLeibie()==null? "" :toilet.getLeibie());
+				 sheet.getRow(4+i).getCell(7).setCellValue(toilet.getQiyongNianyue()==null? new Date(0) :toilet.getQiyongNianyue());
+				 sheet.getRow(4+i).getCell(8).setCellValue(toilet.getKaigongNianyue()==null? new Date(0) :toilet.getKaigongNianyue());
+				 sheet.getRow(4+i).getCell(9).setCellValue(toilet.getMianji()==null? 0 :toilet.getMianji());
+				 sheet.getRow(4+i).getCell(10).setCellValue(toilet.getJianzhuDuli()==null? "" :toilet.getJianzhuDuli());
+				 sheet.getRow(4+i).getCell(11).setCellValue(toilet.getJianzhuFushu()==null? "" :toilet.getJianzhuFushu());
+				 sheet.getRow(4+i).getCell(12).setCellValue(toilet.getJiegouTujian()==null? "" :toilet.getJiegouTujian());
+				 sheet.getRow(4+i).getCell(13).setCellValue(toilet.getJiegouZhuangpei()==null? "" :toilet.getJiegouZhuangpei());
+				 sheet.getRow(4+i).getCell(14).setCellValue(toilet.getNan()==null? 0 :toilet.getNan());
+				 sheet.getRow(4+i).getCell(15).setCellValue(toilet.getNv()==null? 0 :toilet.getNv());
+				 sheet.getRow(4+i).getCell(16).setCellValue(toilet.getTongyong()==null? 0 :toilet.getTongyong());
+				 sheet.getRow(4+i).getCell(17).setCellValue(toilet.getWuzhangai()==null? 0 :toilet.getWuzhangai());
+				 sheet.getRow(4+i).getCell(18).setCellValue(toilet.getXiaobiandou()==null? 0 :toilet.getXiaobiandou());
+				 sheet.getRow(4+i).getCell(19).setCellValue(toilet.getFushe()==null? "" :toilet.getFushe());
+				 sheet.getRow(4+i).getCell(20).setCellValue(toilet.getKongtiao()==null? "" :toilet.getKongtiao());
+				 sheet.getRow(4+i).getCell(21).setCellValue(toilet.getZhihui()==null? "" :toilet.getZhihui());
+				 sheet.getRow(4+i).getCell(22).setCellValue(toilet.getRemarks()==null? "" :toilet.getRemarks());
 			 }
 
 			 response.setContentType("application/vnd.ms-excel");
