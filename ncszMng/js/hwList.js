@@ -9,8 +9,14 @@ var count = 0;
 var param = window.location.search;
 $(function(){
 	var storage = window.localStorage;
+	var orgCode = storage['orgCode'].toString();
+	if(orgCode == 'A02'){
+		orgCode = "";
+		//上报按钮隐藏
+		$('#footer').css('display','none');
+	}
 	//默认加载第一页
-	loadMore($('#searchInput').val(),storage['orgCode'].toString());
+	loadMore($('#searchInput').val(),orgCode);
 	//滚动加载
 	$(document.body).infinite().on("infinite", function() {
 		if(loading) {
@@ -18,7 +24,7 @@ $(function(){
 		}
 		loading = true;
 		if(!allLoad){
-			loadMore($('#searchInput').val(),storage['orgCode'].toString());
+			loadMore($('#searchInput').val(),orgCode);
 		}
 	});
 	//搜索
@@ -29,7 +35,7 @@ $(function(){
             //请求搜索接口  
             $("#menu_con").children().remove();
     		pageNo = 1;
-    		loadMore($('#searchInput').val(),storage['orgCode'].toString());
+    		loadMore($('#searchInput').val(),orgCode);
         }  
 	});
 });
@@ -70,6 +76,10 @@ function loadMore(code,orgCode){
 							+'</div>'
 							+'<div class="weui-form-preview__bd">'
 							+'<div class="weui-form-preview__item">'
+							+'<label class="weui-form-preview__label">区县</label> <span'
+							+'class="weui-form-preview__value">'+ret.result.records[i].sysOrgName+'</span>'
+							+'</div>'
+							+'<div class="weui-form-preview__item">'
 							+'<label class="weui-form-preview__label">保洁员（操作工）</label> <span'
 							+'class="weui-form-preview__value">'+ret.result.records[i].grBaojy+'</span>'
 							+'</div>'
@@ -80,10 +90,6 @@ function loadMore(code,orgCode){
 							+'<div class="weui-form-preview__item">'
 							+'<label class="weui-form-preview__label">垃圾运输司机</label> <span'
 							+'class="weui-form-preview__value">'+ret.result.records[i].grSijiLajysh+'</span>'
-							+'</div>'
-							+'<div class="weui-form-preview__item">'
-							+'<label class="weui-form-preview__label">正式工</label> <span'
-							+'class="weui-form-preview__value">'+ret.result.records[i].grZhengshg+'</span>'
 							+'</div>'
 							+'</div>'
 							+'</div>'

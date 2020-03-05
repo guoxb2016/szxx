@@ -9,8 +9,14 @@ var count = 0;
 var param = window.location.search;
 $(function(){
 	var storage = window.localStorage;
+	var orgCode = storage['orgCode'].toString();
+	if(orgCode = 'A02'){
+		orgCode = "";
+		//上报按钮隐藏
+		$('#footer').css('display','none');
+	}
 	//默认加载第一页
-	loadMore($('#searchInput').val(),storage['orgCode'].toString());
+	loadMore($('#searchInput').val(),orgCode);
 	//滚动加载
 	$(document.body).infinite().on("infinite", function() {
 		if(loading) {
@@ -18,7 +24,7 @@ $(function(){
 		}
 		loading = true;
 		if(!allLoad){
-			loadMore($('#searchInput').val(),storage['orgCode'].toString());
+			loadMore($('#searchInput').val(),orgCode);
 		}
 	});
 	//搜索
@@ -29,7 +35,7 @@ $(function(){
             //请求搜索接口  
             $("#menu_con").children().remove();
     		pageNo = 1;
-    		loadMore($('#searchInput').val(),storage['orgCode'].toString());
+    		loadMore($('#searchInput').val(),orgCode);
         }  
 	});
 });
@@ -56,7 +62,7 @@ function loadMore(code,orgCode){
 							+'<div class="weui-form-preview">'
 							+'<div class="weui-form-preview__hd" style="margin-top: 0.3em;">'
 							+'<label class="weui-form-preview__label">上报时间：'+ret.result.records[i].createTime+'</label><em'
-							+'class="weui-form-preview__value">&ensp; </em>'
+							+'class="weui-form-preview__value">'+ret.result.records[i].sysOrgName+'</em>'
 							+'</div>'
 							+'<div class="weui-form-preview__bd">'
 							+'<div class="weui-form-preview__item">'
