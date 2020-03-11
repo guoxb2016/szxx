@@ -87,7 +87,8 @@
         a.shichhljfl_jinfei_biaozh AS "shichhljflJinfeiBiaozh",
         a.shichhqt_leib AS "shichhqtLeib",
         a.shichhqt_zuiye_danwei AS "shichhqtZuiyeDanwei",
-        a.shichhqt_jinfei_biaozh AS "shichhqtJinfeiBiaozh"
+        a.shichhqt_jinfei_biaozh AS "shichhqtJinfeiBiaozh",
+        a.hwglry AS "hwglry"
     </sql>
 
     <sql id="summaryColumn">
@@ -189,7 +190,7 @@
             (
                 SELECT
                     a1.*,
-                    @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+                    @rank := IF (@aa = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
                     @aa := a1.sys_org_code
                 FROM
                     sanitation_summary a1

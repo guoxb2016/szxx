@@ -77,7 +77,7 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 		IPage<SanitationSummary> pageList = sanitationSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 * 增加数据权限
 	 *
@@ -347,7 +347,7 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
                  this.createCell(sheet[0], 5+i, 8, 5).setCellValue(s.getGrMore45()==null? 0 :s.getGrMore45());
                  this.createCell(sheet[0], 5+i, 9, 5).setCellValue(s.getGrLingshg()==null? 0 :s.getGrLingshg());
                  this.createCell(sheet[0], 5+i, 10, 5).setCellValue(s.getGrZhengshg()==null? 0 :s.getGrZhengshg());
-                 this.createCell(sheet[0], 5+i, 11, 5).setCellValue(s.getGrHuanwgl()==null? 0 :s.getGrHuanwgl());
+                 this.createCell(sheet[0], 5+i, 11, 5).setCellValue(s.getHwglry()==null? "" :s.getHwglry());
 
                  this.createCell(sheet[1], 4+i, 0, 4).setCellValue(i+1);
                  this.createCell(sheet[1], 4+i, 1, 4).setCellValue(s.getSysOrgName()==null? "" :s.getSysOrgName());
