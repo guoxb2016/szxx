@@ -106,7 +106,7 @@
               method = 'post';
             }else{
               httpurl+=this.url.edit;
-               method = 'put';
+               method = 'post';
             }
             let formData = Object.assign(this.model, values);
             console.log("表单提交数据",formData)

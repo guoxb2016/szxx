@@ -195,11 +195,6 @@
             dataIndex: 'grZhengshg'
           },
           {
-            title:'环卫管理人员',
-            align:"center",
-            dataIndex: 'grHuanwgl'
-          },
-          {
             title:'干扫车',
             align:"center",
             dataIndex: 'chlGans'
@@ -414,13 +409,13 @@
             align:"center",
             dataIndex: 'bjWaibJinfbzh'
           },
-          {
+         /* {
             title:'道路清扫保洁环卫市场化类别',
             align:"center",
             dataIndex: 'shichhLeib'
-          },
+          },*/
           {
-            title:'环卫市场化作业单位',
+            title:'道路清扫保洁环卫市场化作业单位',
             align:"center",
             dataIndex: 'shichhZuiyeDanwei'
           },
@@ -429,13 +424,13 @@
             align:"center",
             dataIndex: 'shichhJinfeiBiaozh'
           },
-          {
+      /*    {
             title:'公厕管理环卫市场化',
             align:"center",
             dataIndex: 'shichhgcLeib'
-          },
+          },*/
           {
-            title:'环卫市场化作业单位',
+            title:'公厕管理环卫市场化作业单位',
             align:"center",
             dataIndex: 'shichhgcZuiyeDanwei'
           },
@@ -444,13 +439,13 @@
             align:"center",
             dataIndex: 'shichhgcJinfeiBiaozh'
           },
-          {
+     /*     {
             title:'垃圾站环卫市场化',
             align:"center",
             dataIndex: 'shichhljzLeib'
-          },
+          },*/
           {
-            title:'环卫市场化作业单位',
+            title:'垃圾站环卫市场化作业单位',
             align:"center",
             dataIndex: 'shichhljzZuiyeDanwei'
           },
@@ -459,13 +454,13 @@
             align:"center",
             dataIndex: 'shichhljzJinfeiBiaozh'
           },
-          {
-            title:'垃运输环卫市场化',
+      /*    {
+            title:'垃圾运输环卫市场化',
             align:"center",
             dataIndex: 'shichhljysLeib'
-          },
+          },*/
           {
-            title:'环卫市场化作业单位',
+            title:'垃圾运输环卫市场化作业单位',
             align:"center",
             dataIndex: 'shichhljysZuiyeDanwei'
           },
@@ -474,13 +469,13 @@
             align:"center",
             dataIndex: 'shichhljysJinfeiBiaozh'
           },
-          {
+      /*    {
             title:'垃圾分类环卫市场化',
             align:"center",
             dataIndex: 'shichhljflLeib'
-          },
+          },*/
           {
-            title:'环卫市场化作业单位',
+            title:'垃圾分类环卫市场化作业单位',
             align:"center",
             dataIndex: 'shichhljflZuiyeDanwei'
           },
@@ -489,13 +484,13 @@
             align:"center",
             dataIndex: 'shichhljflJinfeiBiaozh'
           },
-          {
+    /*      {
             title:'其他环卫市场化',
             align:"center",
             dataIndex: 'shichhqtLeib'
-          },
+          },*/
           {
-            title:'环卫市场化作业单位',
+            title:'其他环卫市场化作业单位',
             align:"center",
             dataIndex: 'shichhqtZuiyeDanwei'
           },

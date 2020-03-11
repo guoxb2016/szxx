@@ -11,7 +11,7 @@
       <a-form :form="form">
 
         <a-form-item label="县区" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-select-depart v-decorator="['xianqu', validatorRules.xianqu]" :trigger-change="true" customReturnField="departName"/>
+          <j-select-depart v-decorator="['sysOrgCode', validatorRules.sysOrgCode]" :trigger-change="true"  customReturnField="orgCode"/>
         </a-form-item>
         <a-form-item label="公厕类型" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag type="list" v-decorator="['leixing', validatorRules.leixing]" :trigger-change="true" dictCode="toilet_type" placeholder="请选择公厕类型"/>
@@ -199,7 +199,7 @@
               method = 'post';
             }else{
               httpurl+=this.url.edit;
-               method = 'put';
+               method = 'post';
             }
             let formData = Object.assign(this.model, values);
             console.log("表单提交数据",formData)

@@ -11,7 +11,7 @@
       <a-form :form="form">
 
         <a-form-item label="所属区县" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-select-depart v-decorator="['sysOrgName', validatorRules.sysOrgName]" :trigger-change="true"  customReturnField="departName"/>
+          <j-select-depart v-decorator="['sysOrgCode', validatorRules.sysOrgCode]" :trigger-change="true"  customReturnField="orgCode"/>
         </a-form-item>
         <a-form-item label="环卫管理人员" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'hwglry', validatorRules.hwglry]" placeholder="请输入环卫管理人员"></a-input>
@@ -43,9 +43,9 @@
         <a-form-item label="正式工" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'grZhengshg', validatorRules.grZhengshg]" placeholder="请输入正式工" style="width: 100%"/>
         </a-form-item>
-        <a-form-item label="环卫管理人员" :labelCol="labelCol" :wrapperCol="wrapperCol">
+<!--        <a-form-item label="环卫管理人员" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'grHuanwgl', validatorRules.grHuanwgl]" placeholder="请输入环卫管理人员" style="width: 100%"/>
-        </a-form-item>
+        </a-form-item>-->
         <a-form-item label="干扫车" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'chlGans', validatorRules.chlGans]" placeholder="请输入干扫车" style="width: 100%"/>
         </a-form-item>
@@ -175,55 +175,55 @@
         <a-form-item label="服务外包经费标准（m）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'bjWaibJinfbzh', validatorRules.bjWaibJinfbzh]" placeholder="请输入服务外包经费标准（m）"></a-input>
         </a-form-item>
-        <a-form-item label="道路清扫保洁环卫市场化类别" :labelCol="labelCol" :wrapperCol="wrapperCol">
+     <!--   <a-form-item label="道路清扫保洁环卫市场化类别" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhLeib', validatorRules.shichhLeib]" placeholder="请输入道路清扫保洁环卫市场化类别"></a-input>
-        </a-form-item>
-        <a-form-item label="环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        </a-form-item>-->
+        <a-form-item label="道路清扫保洁环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhZuiyeDanwei', validatorRules.shichhZuiyeDanwei]" placeholder="请输入环卫市场化作业单位"></a-input>
         </a-form-item>
         <a-form-item label="经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhJinfeiBiaozh', validatorRules.shichhJinfeiBiaozh]" placeholder="请输入经费标准（元）"></a-input>
         </a-form-item>
-        <a-form-item label="公厕管理环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
+ <!--       <a-form-item label="公厕管理环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhgcLeib', validatorRules.shichhgcLeib]" placeholder="请输入公厕管理环卫市场化"></a-input>
-        </a-form-item>
-        <a-form-item label="环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        </a-form-item>-->
+        <a-form-item label="公厕管理环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhgcZuiyeDanwei', validatorRules.shichhgcZuiyeDanwei]" placeholder="请输入环卫市场化作业单位"></a-input>
         </a-form-item>
         <a-form-item label="经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhgcJinfeiBiaozh', validatorRules.shichhgcJinfeiBiaozh]" placeholder="请输入经费标准（元）"></a-input>
         </a-form-item>
-        <a-form-item label="垃圾站环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
+   <!--     <a-form-item label="垃圾站环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljzLeib', validatorRules.shichhljzLeib]" placeholder="请输入垃圾站环卫市场化"></a-input>
-        </a-form-item>
-        <a-form-item label="环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        </a-form-item>-->
+        <a-form-item label="垃圾站环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljzZuiyeDanwei', validatorRules.shichhljzZuiyeDanwei]" placeholder="请输入环卫市场化作业单位"></a-input>
         </a-form-item>
         <a-form-item label="经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljzJinfeiBiaozh', validatorRules.shichhljzJinfeiBiaozh]" placeholder="请输入经费标准（元）"></a-input>
         </a-form-item>
-        <a-form-item label="垃运输环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
+       <!-- <a-form-item label="垃圾运输环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljysLeib', validatorRules.shichhljysLeib]" placeholder="请输入垃运输环卫市场化"></a-input>
-        </a-form-item>
-        <a-form-item label="环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        </a-form-item>-->
+        <a-form-item label="垃圾运输环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljysZuiyeDanwei', validatorRules.shichhljysZuiyeDanwei]" placeholder="请输入环卫市场化作业单位"></a-input>
         </a-form-item>
         <a-form-item label="经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljysJinfeiBiaozh', validatorRules.shichhljysJinfeiBiaozh]" placeholder="请输入经费标准（元）"></a-input>
         </a-form-item>
-        <a-form-item label="垃圾分类环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
+      <!--  <a-form-item label="垃圾分类环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljflLeib', validatorRules.shichhljflLeib]" placeholder="请输入垃圾分类环卫市场化"></a-input>
-        </a-form-item>
-        <a-form-item label="环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        </a-form-item>-->
+        <a-form-item label="垃圾分类环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljflZuiyeDanwei', validatorRules.shichhljflZuiyeDanwei]" placeholder="请输入环卫市场化作业单位"></a-input>
         </a-form-item>
         <a-form-item label="经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhljflJinfeiBiaozh', validatorRules.shichhljflJinfeiBiaozh]" placeholder="请输入经费标准（元）"></a-input>
         </a-form-item>
-        <a-form-item label="其他环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
+     <!--   <a-form-item label="其他环卫市场化" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhqtLeib', validatorRules.shichhqtLeib]" placeholder="请输入其他环卫市场化"></a-input>
-        </a-form-item>
-        <a-form-item label="环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        </a-form-item>-->
+        <a-form-item label="其他环卫市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhqtZuiyeDanwei', validatorRules.shichhqtZuiyeDanwei]" placeholder="请输入环卫市场化作业单位"></a-input>
         </a-form-item>
         <a-form-item label="经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
@@ -489,7 +489,7 @@
               method = 'post';
             }else{
               httpurl+=this.url.edit;
-               method = 'put';
+               method = 'post';
             }
             let formData = Object.assign(this.model, values);
             console.log("表单提交数据",formData)

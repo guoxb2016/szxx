@@ -10,7 +10,7 @@ var param = window.location.search;
 $(function(){
 	var storage = window.localStorage;
 	var orgCode = storage['orgCode'].toString();
-	if(orgCode = 'A02'){
+	if(orgCode == 'A02'){
 		orgCode = "";
 		//上报按钮隐藏
 		$('#footer').css('display','none');
