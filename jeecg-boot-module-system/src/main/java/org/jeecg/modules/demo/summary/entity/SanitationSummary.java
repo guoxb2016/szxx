@@ -28,23 +28,23 @@ public class SanitationSummary implements Serializable {
 	@TableId(type = IdType.ID_WORKER_STR)
     private java.lang.String id;
 	/**创建人*/
-	@Excel(name = "创建人", width = 15)
+	//@Excel(name = "创建人", width = 15)
     private java.lang.String createBy;
 	/**创建日期*/
-	@Excel(name = "创建日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	//@Excel(name = "创建日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private java.util.Date createTime;
 	/**更新人*/
-	@Excel(name = "更新人", width = 15)
+	//@Excel(name = "更新人", width = 15)
     private java.lang.String updateBy;
 	/**更新日期*/
-	@Excel(name = "更新日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	//@Excel(name = "更新日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private java.util.Date updateTime;
 	/**所属区县编码*/
-	@Excel(name = "所属区县编码", width = 15)
+	//@Excel(name = "所属区县编码", width = 15)
     private java.lang.String sysOrgCode;
 	/**所属区县*/
 	@Excel(name = "所属区县", width = 15)
@@ -80,7 +80,7 @@ public class SanitationSummary implements Serializable {
 	@Excel(name = "正式工", width = 15)
     private java.lang.Integer grZhengshg;
 	/**环卫管理人员*/
-	@Excel(name = "环卫管理人员", width = 15)
+	//@Excel(name = "环卫管理人员", width = 15)
     private java.lang.Integer grHuanwgl;
 	/**干扫车*/
 	@Excel(name = "干扫车", width = 15)
@@ -212,55 +212,55 @@ public class SanitationSummary implements Serializable {
 	@Excel(name = "服务外包经费标准（m）", width = 15)
     private java.lang.String bjWaibJinfbzh;
 	/**道路清扫保洁环卫市场化类别*/
-	@Excel(name = "道路清扫保洁环卫市场化类别", width = 15)
+	//@Excel(name = "道路清扫保洁环卫市场化类别", width = 15)
     private java.lang.String shichhLeib;
 	/**环卫市场化作业单位*/
-	@Excel(name = "环卫市场化作业单位", width = 15)
+	@Excel(name = "道路清扫保洁环卫市场化作业单位", width = 15)
     private java.lang.String shichhZuiyeDanwei;
 	/**经费标准（元）*/
 	@Excel(name = "经费标准（元）", width = 15)
     private java.lang.String shichhJinfeiBiaozh;
 	/**公厕管理环卫市场化*/
-	@Excel(name = "公厕管理环卫市场化", width = 15)
+	//@Excel(name = "公厕管理环卫市场化", width = 15)
     private java.lang.String shichhgcLeib;
 	/**环卫市场化作业单位*/
-	@Excel(name = "环卫市场化作业单位", width = 15)
+	@Excel(name = "公厕管理环卫市场化作业单位", width = 15)
     private java.lang.String shichhgcZuiyeDanwei;
 	/**经费标准（元）*/
 	@Excel(name = "经费标准（元）", width = 15)
     private java.lang.String shichhgcJinfeiBiaozh;
 	/**垃圾站环卫市场化*/
-	@Excel(name = "垃圾站环卫市场化", width = 15)
+	//@Excel(name = "垃圾站环卫市场化", width = 15)
     private java.lang.String shichhljzLeib;
 	/**环卫市场化作业单位*/
-	@Excel(name = "环卫市场化作业单位", width = 15)
+	@Excel(name = "垃圾站环卫市场化作业单位", width = 15)
     private java.lang.String shichhljzZuiyeDanwei;
 	/**经费标准（元）*/
 	@Excel(name = "经费标准（元）", width = 15)
     private java.lang.String shichhljzJinfeiBiaozh;
 	/**垃运输环卫市场化*/
-	@Excel(name = "垃运输环卫市场化", width = 15)
+	//@Excel(name = "垃运输环卫市场化", width = 15)
     private java.lang.String shichhljysLeib;
 	/**环卫市场化作业单位*/
-	@Excel(name = "环卫市场化作业单位", width = 15)
+	@Excel(name = "垃圾运输环卫市场化作业单位", width = 15)
     private java.lang.String shichhljysZuiyeDanwei;
 	/**经费标准（元）*/
 	@Excel(name = "经费标准（元）", width = 15)
     private java.lang.String shichhljysJinfeiBiaozh;
 	/**垃圾分类环卫市场化*/
-	@Excel(name = "垃圾分类环卫市场化", width = 15)
+	//@Excel(name = "垃圾分类环卫市场化", width = 15)
     private java.lang.String shichhljflLeib;
 	/**环卫市场化作业单位*/
-	@Excel(name = "环卫市场化作业单位", width = 15)
+	@Excel(name = "垃圾分类环卫市场化作业单位", width = 15)
     private java.lang.String shichhljflZuiyeDanwei;
 	/**经费标准（元）*/
 	@Excel(name = "经费标准（元）", width = 15)
     private java.lang.String shichhljflJinfeiBiaozh;
 	/**其他环卫市场化*/
-	@Excel(name = "其他环卫市场化", width = 15)
+	//@Excel(name = "其他环卫市场化", width = 15)
     private java.lang.String shichhqtLeib;
 	/**环卫市场化作业单位*/
-	@Excel(name = "环卫市场化作业单位", width = 15)
+	@Excel(name = "其他环卫市场化作业单位", width = 15)
     private java.lang.String shichhqtZuiyeDanwei;
 	/**经费标准（元）*/
 	@Excel(name = "经费标准（元）", width = 15)

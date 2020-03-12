@@ -177,7 +177,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
     */
     @RequestMapping(value = "/exportXls")
     public ModelAndView exportXls(HttpServletRequest request, ToiletSummary toiletSummary) {
-        return super.exportXls(request, toiletSummary, ToiletSummary.class, "新建公厕统计明细表");
+        return super.exportXls(request, toiletSummary, ToiletSummary.class, "公厕明细表");
     }
 
 	 @RequestMapping(value = "/exportXls2")
