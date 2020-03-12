@@ -29,6 +29,7 @@
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
       <a-button type="primary" v-has="'ss:export'" icon="download" @click="handleExportXls('环卫信息表')">导出</a-button>
+      <a-button type="primary" v-has="'ss:export:one'" icon="download" @click="handleExportXls1('环卫信息表')">导出</a-button>
      <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>-->
@@ -558,6 +559,7 @@
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
           exportXlsUrl: "/summary/sanitationSummary/exportXls3",
+          exportXlsUrl1: "/summary/toiletSummary/exportXls",
           importExcelUrl: "summary/sanitationSummary/importExcel",
         },
         dictOptions:{

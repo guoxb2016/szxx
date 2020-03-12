@@ -79,7 +79,9 @@
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
-      <a-button type="primary" v-has="'ts:export'" icon="download" @click="handleExportXls('新建公厕统计明细表')">导出</a-button>
+      <a-button type="primary" v-has="'ts:export'" icon="download" @click="handleExportXls('公厕统计明细表')">导出</a-button>
+
+      <a-button type="primary" v-has="'ts:export:one'" icon="download" @click="handleExportXls1('公厕统计明细表')">导出</a-button>
       <!--<a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>-->
@@ -378,6 +380,7 @@
           delete: "/summary/toiletSummary/delete",
           deleteBatch: "/summary/toiletSummary/deleteBatch",
           exportXlsUrl: "/summary/toiletSummary/exportXls2",
+          exportXlsUrl1: "/summary/toiletSummary/exportXls",
           importExcelUrl: "summary/toiletSummary/importExcel",
         },
         dictOptions:{

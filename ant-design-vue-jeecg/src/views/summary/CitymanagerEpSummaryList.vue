@@ -14,6 +14,7 @@
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
       <a-button type="primary" v-has="'ces:export'" icon="download" @click="handleExportXls('城管防疫汇总表')">导出</a-button>
+      <a-button type="primary" v-has="'ces:export:one'" icon="download" @click="handleExportXls1('环卫防疫汇总表')">导出</a-button>
      <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>-->
@@ -157,6 +158,7 @@
           list: "/summary/citymanagerEpSummary/listByPerm",
           delete: "/summary/citymanagerEpSummary/delete",
           deleteBatch: "/summary/citymanagerEpSummary/deleteBatch",
+          exportXlsUrl1: "/summary/toiletSummary/exportXls",
           exportXlsUrl: "/summary/citymanagerEpSummary/exportXls3",
           importExcelUrl: "summary/citymanagerEpSummary/importExcel",
         },

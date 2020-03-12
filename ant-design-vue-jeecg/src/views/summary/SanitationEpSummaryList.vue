@@ -29,7 +29,8 @@
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
       <a-button type="primary" v-has="'ses:export'" icon="download" @click="handleExportXls('环卫防疫汇总表')">导出</a-button>
-     <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
+      <a-button type="primary" v-has="'ses:export:one'" icon="download" @click="handleExportXls1('环卫防疫汇总表')">导出</a-button>
+      <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>-->
       <a-dropdown v-if="selectedRowKeys.length > 0">
@@ -252,6 +253,7 @@
           list: "/summary/sanitationEpSummary/listByPerm",
           delete: "/summary/sanitationEpSummary/delete",
           deleteBatch: "/summary/sanitationEpSummary/deleteBatch",
+          exportXlsUrl1: "/summary/toiletSummary/exportXls",
           exportXlsUrl: "/summary/citymanagerEpSummary/exportXls3",
           importExcelUrl: "summary/sanitationEpSummary/importExcel",
         },

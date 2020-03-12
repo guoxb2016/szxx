@@ -221,6 +221,35 @@ export const JeecgListMixin = {
       let url = `${window._CONFIG['domianURL']}/${this.url.exportXlsUrl}?paramsStr=${paramsStr}`;
       window.location.href = url;
     },
+    handleExportXls1(fileName){
+      if(!fileName || typeof fileName != "string"){
+        fileName = "导出文件"
+      }
+      let param = {...this.queryParam};
+      if(this.selectedRowKeys && this.selectedRowKeys.length>0){
+        param['selections'] = this.selectedRowKeys.join(",")
+      }
+      console.log("导出参数",param)
+      downFile(this.url.exportXlsUrl1,param).then((data)=>{
+        if (!data) {
+          this.$message.warning("文件下载失败")
+          return
+        }
+        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+          window.navigator.msSaveBlob(new Blob([data]), fileName+'.xls')
+        }else{
+          let url = window.URL.createObjectURL(new Blob([data]))
+          let link = document.createElement('a')
+          link.style.display = 'none'
+          link.href = url
+          link.setAttribute('download', fileName+'.xls')
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link); //下载完成移除元素
+          window.URL.revokeObjectURL(url); //释放掉blob对象
+        }
+      })
+    },
     handleExportXls(fileName){
       if(!fileName || typeof fileName != "string"){
         fileName = "导出文件"
