@@ -191,6 +191,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
     * @param sanitationEpSummary
     */
     @RequestMapping(value = "/exportXls")
+    @PermissionData
     public ModelAndView exportXls(HttpServletRequest request, SanitationEpSummary sanitationEpSummary) {
         return super.exportXls(request, sanitationEpSummary, SanitationEpSummary.class, "环卫防疫汇总表");
     }
@@ -199,7 +200,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 	 public void exportXls2(HttpServletRequest request, CitymanagerEpSummary citymanagerEpSummary, HttpServletResponse response) {
 		 //return super.exportXls(request, citymanagerEpSummary, CitymanagerEpSummary.class, "城管防疫汇总表");
 		 // Step.1 组装查询条件
-		 String title = "城管防疫汇总表";
+		 String title = "环卫防疫汇总表";
 		 String template = "C:/szxxTemplate/template.xls";
 		 CitymanagerEpSummary citySummary = citymanagerEpSummaryService.summaryByOrg();
 		 SanitationEpSummary sanitaSummary = sanitationEpSummaryService.summary();

@@ -197,6 +197,7 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
     * @param citymanagerEpSummary
     */
     @RequestMapping(value = "/exportXls")
+    @PermissionData
     public ModelAndView exportXls(HttpServletRequest request, CitymanagerEpSummary citymanagerEpSummary) {
         return super.exportXls(request, citymanagerEpSummary, CitymanagerEpSummary.class, "城管防疫汇总表");
     }

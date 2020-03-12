@@ -558,8 +558,8 @@
           list: "/summary/sanitationSummary/listByPerm",
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
-          exportXlsUrl: "/summary/sanitationSummary/exportXls3",
-          exportXlsUrl1: "/summary/toiletSummary/exportXls",
+          exportXlsUrl: "/summary/sanitationSummary/exportXls2",
+          exportXlsUrl1: "/summary/sanitationSummary/exportXls",
           importExcelUrl: "summary/sanitationSummary/importExcel",
         },
         dictOptions:{

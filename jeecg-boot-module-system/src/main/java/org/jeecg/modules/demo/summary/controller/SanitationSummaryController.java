@@ -188,6 +188,7 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
     * @param sanitationSummary
     */
     @RequestMapping(value = "/exportXls")
+    @PermissionData
     public ModelAndView exportXls(HttpServletRequest request, SanitationSummary sanitationSummary) {
         return super.exportXls(request, sanitationSummary, SanitationSummary.class, "环卫信息汇总表");
     }

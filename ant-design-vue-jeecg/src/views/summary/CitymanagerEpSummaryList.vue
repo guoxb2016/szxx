@@ -158,7 +158,7 @@
           list: "/summary/citymanagerEpSummary/listByPerm",
           delete: "/summary/citymanagerEpSummary/delete",
           deleteBatch: "/summary/citymanagerEpSummary/deleteBatch",
-          exportXlsUrl1: "/summary/toiletSummary/exportXls",
+          exportXlsUrl1: "/summary/citymanagerEpSummary/exportXls",
           exportXlsUrl: "/summary/citymanagerEpSummary/exportXls3",
           importExcelUrl: "summary/citymanagerEpSummary/importExcel",
         },
