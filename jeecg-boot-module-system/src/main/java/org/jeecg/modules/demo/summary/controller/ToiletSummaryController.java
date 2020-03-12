@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.aspect.annotation.PermissionData;
 import org.jeecg.common.system.query.QueryGenerator;
@@ -75,7 +79,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		IPage<ToiletSummary> pageList = toiletSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 * 分页列表查询，增加数据权限
 	 *
@@ -186,7 +190,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		 List<ToiletSummary> list = toiletSummaryService.list();
 
 		 String title = "城管防疫汇总表";
-		 String template = "C:/szxxTemplate/toiletTemplate.xls";
+		 String template = "C:/szxxTemplate/toiletTemplate1.1.xls";
 		 InputStream in;
 		 try {
 			 in = new FileInputStream(new File(template));
@@ -195,6 +199,11 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 			 HSSFSheet sheet = book.getSheetAt(0);
 			 for(int i=0; i < list.size(); i++){
 				 ToiletSummary toilet = list.get(i);
+				 if(sheet.getRow(4+i) == null){
+					 for(int j = 0; j< 23; j++){
+						this.createCell(sheet, 4+i, j, 4);
+					 }
+				 }
 				 sheet.getRow(4+i).getCell(0).setCellValue(i);
 				 sheet.getRow(4+i).getCell(1).setCellValue(toilet.getXianqu()==null? "" :toilet.getXianqu());
 				 sheet.getRow(4+i).getCell(2).setCellValue(toilet.getLeixing()==null? "" :toilet.getLeixing());
@@ -253,6 +262,17 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 		 } catch (FileNotFoundException e) {
 			 e.printStackTrace();
 		 }
+	 }
+
+
+	 public Cell createCell(Sheet sheet, int rowNum, int column, int styleRow){
+		 int rowIndex = sheet.getLastRowNum() + 1;
+		 Row row = sheet.getRow(rowNum) == null?sheet.createRow(rowIndex):sheet.getRow(rowNum);
+		 Cell cell=row.getCell(column)==null?row.createCell(column):row.getCell(column);  // 创建单元格
+
+		 CellStyle cellStyle=sheet.getRow(styleRow).getCell(column).getCellStyle();
+		 cell.setCellStyle(cellStyle);
+		 return cell;
 	 }
 
 }
