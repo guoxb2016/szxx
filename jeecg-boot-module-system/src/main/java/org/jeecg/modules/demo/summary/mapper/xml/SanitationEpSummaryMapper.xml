@@ -90,11 +90,11 @@
                 @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
                 @a := a1.sys_org_code
             FROM
-                sanitation_ep_summary a1
+                sanitation_ep_summary a1,
+                (SELECT @rank := 1 ,@a := NULL) tt
             ORDER BY
                 a1.sys_org_code, a1.create_time DESC
-        ) a,
-        (SELECT @rank := 1 ,@a := NULL) tt
+        ) a
         WHERE
             a.rank = 1
     </select>
