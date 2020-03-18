@@ -22,9 +22,9 @@
         <a-form-item label="其它流动摊贩" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'strvendOther', validatorRules.strvendOther]" placeholder="请输入其它流动摊贩" style="width: 100%"/>
         </a-form-item>
-        <a-form-item label="备注" :labelCol="labelCol" :wrapperCol="wrapperCol">
+     <!--   <a-form-item label="备注" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'remarks', validatorRules.remarks]" placeholder="请输入备注"></a-input>
-        </a-form-item>
+        </a-form-item>-->
 
       </a-form>
     </a-spin>

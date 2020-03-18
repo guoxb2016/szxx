@@ -81,6 +81,7 @@ public class CitymanagerEpSummaryController extends JeecgController<CitymanagerE
 								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
 								   HttpServletRequest req) {
 		QueryWrapper<CitymanagerEpSummary> queryWrapper = QueryGenerator.initQueryWrapper(citymanagerEpSummary, req.getParameterMap());
+		queryWrapper.orderByDesc("create_time");
 		Page<CitymanagerEpSummary> page = new Page<CitymanagerEpSummary>(pageNo, pageSize);
 		IPage<CitymanagerEpSummary> pageList = citymanagerEpSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);

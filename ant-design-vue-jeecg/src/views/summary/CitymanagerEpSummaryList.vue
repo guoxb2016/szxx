@@ -135,11 +135,11 @@
             align:"center",
             dataIndex: 'strvendOther'
           },
-          {
+          /*{
             title:'备注',
             align:"center",
             dataIndex: 'remarks'
-          },
+          },*/
           {
             title:'上报时间',
             align:"center",

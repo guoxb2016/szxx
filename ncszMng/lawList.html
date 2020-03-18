@@ -16,6 +16,14 @@
     <script src="js/wx/jquery-2.1.4.js"></script>
 </head>
 <body>
+<div class="weui-pull-to-refresh__layer">
+    <div class='weui-pull-to-refresh__arrow'></div>
+    <div class='weui-pull-to-refresh__preloader'></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新</div>
+</div>
+
 <header class="header" id="header"
         style="background-color: #fff !important;">
     <div class="weui-search-bar" id="searchBar" style="width: 100%;">
@@ -35,7 +43,7 @@
     </div>
 </header>
 <!--header-end-->
-<div class="container" id="container" style="margin-top: 55px;">
+<div class="container" id="container" style="margin-top: 75px;">
     <div id="my-order" class="my-order">
         <div id="menu_con"></div>
         <div class="weui-loadmore more">

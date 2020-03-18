@@ -17,6 +17,12 @@ $(function(){
 	}
 	//默认加载第一页
 	loadMore($('#searchInput').val(),orgCode);
+	$(document.body).pullToRefresh(function () {
+		// 下拉刷新触发时执行的操作放这里。
+		// 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
+		loadMore($('#searchInput').val(),orgCode);
+		$('body').css('transform','none');
+	});
 	//滚动加载
 	$(document.body).infinite().on("infinite", function() {
 		if(loading) {

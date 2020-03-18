@@ -172,8 +172,8 @@
         <a-form-item label="市场化作业单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'bjShichDanwei', validatorRules.bjShichDanwei]" placeholder="请输入市场化作业单位"></a-input>
         </a-form-item>
-        <a-form-item label="服务外包经费标准（m）" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input v-decorator="[ 'bjWaibJinfbzh', validatorRules.bjWaibJinfbzh]" placeholder="请输入服务外包经费标准（m）"></a-input>
+        <a-form-item label="服务外包经费标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input v-decorator="[ 'bjWaibJinfbzh', validatorRules.bjWaibJinfbzh]" placeholder="请输入服务外包经费标准（元）"></a-input>
         </a-form-item>
      <!--   <a-form-item label="道路清扫保洁环卫市场化类别" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'shichhLeib', validatorRules.shichhLeib]" placeholder="请输入道路清扫保洁环卫市场化类别"></a-input>

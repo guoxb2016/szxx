@@ -31,7 +31,7 @@ public class SanitationEpSummary implements Serializable {
 	//@Excel(name = "创建人", width = 15)
     private java.lang.String createBy;
 	/**创建日期*/
-	//@Excel(name = "创建日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	@Excel(name = "上报日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private java.util.Date createTime;

@@ -45,7 +45,9 @@ $(function(){
 					$('input').each(function () {
 						if($(this).attr("name")=='step'){
 							var $data = $(this).val();
-							$(this).val($data +"," + data.result[$(this).attr("name")]);
+							if($data !=null &&$data ==""){
+								$(this).val($data +"," + data.result[$(this).attr("name")]);
+							}
 						}else{
 							$(this).val(data.result[$(this).attr("name")]);
 						}

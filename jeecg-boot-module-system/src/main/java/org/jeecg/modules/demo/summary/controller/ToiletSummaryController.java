@@ -75,6 +75,7 @@ public class ToiletSummaryController extends JeecgController<ToiletSummary, IToi
 								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
 								   HttpServletRequest req) {
 		QueryWrapper<ToiletSummary> queryWrapper = QueryGenerator.initQueryWrapper(toiletSummary, req.getParameterMap());
+		queryWrapper.orderByDesc("create_time");
 		Page<ToiletSummary> page = new Page<ToiletSummary>(pageNo, pageSize);
 		IPage<ToiletSummary> pageList = toiletSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);

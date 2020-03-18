@@ -2,6 +2,7 @@
  * guoxb
  * 2019-09-11
  */
+var weburl = "http://10.10.11.153:8087/jeecg-boot/";
 $(function(){
 	var storage = window.localStorage;
 	for(var i=localStorage.length - 1 ; i >=0; i--){
@@ -28,7 +29,7 @@ $(function(){
 			var password = $('#loginPwd').val();
 			// 这里进行登录操作
 			$.ajax({
-				url: config.weburl + '/sys/mLogin',
+				url: weburl + '/sys/mLogin',
 				dataType: 'json',
 				type: 'post',
 				contentType: 'application/json',

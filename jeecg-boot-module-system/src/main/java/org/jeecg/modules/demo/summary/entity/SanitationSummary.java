@@ -31,7 +31,7 @@ public class SanitationSummary implements Serializable {
 	//@Excel(name = "创建人", width = 15)
     private java.lang.String createBy;
 	/**创建日期*/
-	//@Excel(name = "创建日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	@Excel(name = "上报日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private java.util.Date createTime;
@@ -147,7 +147,7 @@ public class SanitationSummary implements Serializable {
     private java.lang.Integer bjYlShul;
 	/**严控区道路长度（m）*/
 	@Excel(name = "严控区道路长度（m）", width = 15)
-    private java.lang.Integer bjYlChangd;
+    private java.lang.Double bjYlChangd;
 	/**严控区道路面积（m²）*/
 	@Excel(name = "严控区道路面积（m²）", width = 15)
     private java.lang.Double bjYlMianj;
@@ -159,7 +159,7 @@ public class SanitationSummary implements Serializable {
     private java.lang.Integer bjErlShul;
 	/**控制区道路长度（m）*/
 	@Excel(name = "控制区道路长度（m）", width = 15)
-    private java.lang.Integer bjErlChangd;
+    private java.lang.Double bjErlChangd;
 	/**控制区道路面积（m²）*/
 	@Excel(name = "控制区道路面积（m²）", width = 15)
     private java.lang.Double bjErlMianj;
@@ -171,7 +171,7 @@ public class SanitationSummary implements Serializable {
     private java.lang.Integer bjSslShul;
 	/**一般区道路长度（m）*/
 	@Excel(name = "一般区道路长度（m）", width = 15)
-    private java.lang.Integer bjSslChangd;
+    private java.lang.Double bjSslChangd;
 	/**一般区道路面积（m²）*/
 	@Excel(name = "一般区道路面积（m²）", width = 15)
     private java.lang.Double bjSslMianj;
@@ -198,7 +198,7 @@ public class SanitationSummary implements Serializable {
     private java.lang.Double bjJixhQingsMianj;
 	/**机械化清扫长度（m）*/
 	@Excel(name = "机械化清扫长度（m）", width = 15)
-    private java.lang.Integer bjJixhQingsCang;
+    private java.lang.Double bjJixhQingsCang;
 	/**市场化率*/
 	@Excel(name = "市场化率", width = 15)
     private java.lang.Double bjShichh;
@@ -290,7 +290,7 @@ public class SanitationSummary implements Serializable {
 	@Excel(name = "缴纳公积金人数", width = 15)
     private java.lang.Integer fulGongjijing;
 	/**完成步骤*/
-	@Excel(name = "完成步骤", width = 15)
+	//@Excel(name = "完成步骤", width = 15)
     private java.lang.String step;
 
 	public String getId() {
@@ -597,11 +597,11 @@ public class SanitationSummary implements Serializable {
 		this.bjYlShul = bjYlShul;
 	}
 
-	public Integer getBjYlChangd() {
+	public Double getBjYlChangd() {
 		return bjYlChangd;
 	}
 
-	public void setBjYlChangd(Integer bjYlChangd) {
+	public void setBjYlChangd(Double bjYlChangd) {
 		this.bjYlChangd = bjYlChangd;
 	}
 
@@ -629,11 +629,11 @@ public class SanitationSummary implements Serializable {
 		this.bjErlShul = bjErlShul;
 	}
 
-	public Integer getBjErlChangd() {
+	public Double getBjErlChangd() {
 		return bjErlChangd;
 	}
 
-	public void setBjErlChangd(Integer bjErlChangd) {
+	public void setBjErlChangd(Double bjErlChangd) {
 		this.bjErlChangd = bjErlChangd;
 	}
 
@@ -661,11 +661,11 @@ public class SanitationSummary implements Serializable {
 		this.bjSslShul = bjSslShul;
 	}
 
-	public Integer getBjSslChangd() {
+	public Double getBjSslChangd() {
 		return bjSslChangd;
 	}
 
-	public void setBjSslChangd(Integer bjSslChangd) {
+	public void setBjSslChangd(Double bjSslChangd) {
 		this.bjSslChangd = bjSslChangd;
 	}
 
@@ -733,11 +733,11 @@ public class SanitationSummary implements Serializable {
 		this.bjJixhQingsMianj = bjJixhQingsMianj;
 	}
 
-	public Integer getBjJixhQingsCang() {
+	public Double getBjJixhQingsCang() {
 		return bjJixhQingsCang;
 	}
 
-	public void setBjJixhQingsCang(Integer bjJixhQingsCang) {
+	public void setBjJixhQingsCang(Double bjJixhQingsCang) {
 		this.bjJixhQingsCang = bjJixhQingsCang;
 	}
 

@@ -76,6 +76,7 @@ public class SanitationEpSummaryController extends JeecgController<SanitationEpS
 								   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
 								   HttpServletRequest req) {
 		QueryWrapper<SanitationEpSummary> queryWrapper = QueryGenerator.initQueryWrapper(sanitationEpSummary, req.getParameterMap());
+		queryWrapper.orderByDesc("create_time");
 		Page<SanitationEpSummary> page = new Page<SanitationEpSummary>(pageNo, pageSize);
 		IPage<SanitationEpSummary> pageList = sanitationEpSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);

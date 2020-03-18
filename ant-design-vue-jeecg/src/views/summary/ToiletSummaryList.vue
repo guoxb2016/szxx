@@ -17,16 +17,16 @@
           <template v-if="toggleSearchStatus">
             <a-col :md="12" :sm="16">
               <a-form-item label="启用年月">
-                <j-date placeholder="请选择开始日期" class="query-group-cust" v-model="queryParam.qiyongNianyue_begin"></j-date>
+                <j-month placeholder="请选择开始日期" class="query-group-cust" v-model="queryParam.qiyongNianyue_begin"></j-month>
                 <span class="query-group-split-cust"></span>
-                <j-date placeholder="请选择结束日期" class="query-group-cust" v-model="queryParam.qiyongNianyue_end"></j-date>
+                <j-month placeholder="请选择结束日期" class="query-group-cust" v-model="queryParam.qiyongNianyue_end"></j-month>
               </a-form-item>
             </a-col>
             <a-col :md="12" :sm="16">
               <a-form-item label="开工年月">
-                <j-date placeholder="请选择开始日期" class="query-group-cust" v-model="queryParam.kaigongNianyue_begin"></j-date>
+                <j-month placeholder="请选择开始日期" class="query-group-cust" v-model="queryParam.kaigongNianyue_begin"></j-month>
                 <span class="query-group-split-cust"></span>
-                <j-date placeholder="请选择结束日期" class="query-group-cust" v-model="queryParam.kaigongNianyue_end"></j-date>
+                <j-month placeholder="请选择结束日期" class="query-group-cust" v-model="queryParam.kaigongNianyue_end"></j-month>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="8">
@@ -164,11 +164,13 @@
   import JDate from '@/components/jeecg/JDate.vue'
   import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
   import {initDictOptions, filterMultiDictText} from '@/components/dict/JDictSelectUtil'
+  import JMonth from '../../components/jeecg/JMonth'
 
   export default {
     name: "ToiletSummaryList",
     mixins:[JeecgListMixin],
     components: {
+      JMonth,
       JDictSelectTag,
       JDate,
       ToiletSummaryModal,

@@ -406,7 +406,7 @@
             dataIndex: 'bjShichDanwei'
           },
           {
-            title:'服务外包经费标准（m）',
+            title:'服务外包经费标准（元）',
             align:"center",
             dataIndex: 'bjWaibJinfbzh'
           },
@@ -506,7 +506,7 @@
             dataIndex: 'fulTijian'
           },
           {
-            title:'一年四节节日福利标准',
+            title:'一年四节节日福利标准（元）',
             align:"center",
             dataIndex: 'fulJiejia'
           },
@@ -558,7 +558,7 @@
           list: "/summary/sanitationSummary/listByPerm",
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
-          exportXlsUrl: "/summary/sanitationSummary/exportXls2",
+          exportXlsUrl: "/summary/sanitationSummary/exportXls3",
           exportXlsUrl1: "/summary/sanitationSummary/exportXls",
           importExcelUrl: "summary/sanitationSummary/importExcel",
         },

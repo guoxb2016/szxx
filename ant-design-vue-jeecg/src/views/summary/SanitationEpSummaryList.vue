@@ -226,12 +226,12 @@
             dataIndex: 'fywzXiaody'
           },
           {
-            title:'人流量，设施消杀及运行情况',
+            title:'人流量、设施消杀及运行情况',
             align:"center",
             dataIndex: 'gongyFyqk'
           },
           {
-            title:'其它',
+            title:'其他',
             align:"center",
             dataIndex: 'other'
           },

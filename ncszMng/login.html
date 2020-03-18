@@ -17,30 +17,6 @@
     <link rel="stylesheet" href="css/wx/jquery-weui.min.css">
     <link rel="stylesheet" href="css/loanLogin.css">
     <script src="js/wx/jquery-2.1.4.js"></script>
-	<style>
-		input::-webkit-input-placeholder {
-			color: #a6aebf;
-		}
-
-		input::-moz-placeholder { /* Mozilla Firefox 19+ */
-			color: #a6aebf;
-		}
-
-		input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-			color: #a6aebf;
-		}
-
-		input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-			color: #a6aebf;
-		}
-
-		input:-webkit-autofill { /* 取消Chrome记住密码的背景颜色 */
-			-webkit-box-shadow: 0 0 0 1000px white inset !important;
-		}
-		html {
-			height: 100%;
-		}
-	</style>
 </head>
 <body>
 <div class="main-body">
@@ -48,29 +24,28 @@
     <div class="new-login">
         <div class="top">
             登&emsp;&emsp;录
-            <span class="bg1"></span>
-            <span class="bg2"></span>
         </div>
-        <div class="bottom">
-            <div class="center">
-                <div class="item">
-                    <span class="icon icon-2"></span>
-                    <input type="text" id="loginSacct" placeholder="请输入帐号"
-                           maxlength="24">
-                </div>
-                <div class="item">
-                    <span class="icon icon-3"></span>
-                    <input type="password" id="loginPwd" placeholder="请输入密码" maxlength="20">
-                    <span class="icon icon-4"></span>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">帐号</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" id="loginSacct" placeholder="请输入帐号" maxlength="24">
                 </div>
             </div>
-            <div class="tip">
-                <span class="icon-nocheck" id="autoLogin"></span>
-                <span class="login-tip">自动登录</span>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" id="loginPwd" placeholder="请输入密码" maxlength="20">
+                </div>
             </div>
-            <div id="loginBtn" class="deal">
-                立即登录
-            </div>
+
+        </div>
+        <div class="tip">
+            <span class="icon-nocheck" id="autoLogin"></span>
+            <span class="login-tip">自动登录</span>
+        </div>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="loginBtn">立即登录</a>
         </div>
         <div class="footer" style="text-align: center;margin-top: 40px;">
             <span style="text-align: center;font-size: 14px;color: #9abcda;">航天鄱湖云 技术支持</span>
@@ -79,10 +54,10 @@
 </div>
 <!--container-end-->
 </body>
-<script src="js/config.js"></script>
+<!--<script src="js/config.js"></script>-->
 <script src="js/wx/jquery-weui.min.js"></script>
-<script src="js/login.js"></script>
-<!--<script>
+<!--<script src="js/login.js"></script>-->
+<script>
     document.write("<script src='js/login.js?v=" + new Date().getTime() + "'><\/script>");
-</script>-->
+</script>
 </html>

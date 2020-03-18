@@ -61,10 +61,10 @@
         <a-form-item label="消毒液" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'fywzXiaody', validatorRules.fywzXiaody]" placeholder="请输入消毒液" style="width: 100%"/>
         </a-form-item>
-        <a-form-item label="人流量，设施消杀及运行情况" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        <a-form-item label="人流量、设施消杀及运行情况" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'gongyFyqk', validatorRules.gongyFyqk]" placeholder="请输入人流量，设施消杀及运行情况"></a-input>
         </a-form-item>
-        <a-form-item label="其它" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        <a-form-item label="其他" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'other', validatorRules.other]" placeholder="请输入其它"></a-input>
         </a-form-item>
 
