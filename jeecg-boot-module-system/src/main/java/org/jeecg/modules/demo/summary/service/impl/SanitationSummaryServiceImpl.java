@@ -27,4 +27,9 @@ public class SanitationSummaryServiceImpl extends ServiceImpl<SanitationSummaryM
     public List<SanitationSummary> findGroupByOrg() {
         return baseMapper.findGroupByOrg();
     }
+
+	@Override
+	public SanitationSummary sumQuery(List<String> types) {
+		return baseMapper.sumQuery(types);
+	}
 }

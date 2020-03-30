@@ -9,9 +9,8 @@
     cancelText="关闭">
     <a-spin :spinning="confirmLoading">
       <a-form :form="form">
-
         <a-form-item label="县区" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-select-depart v-decorator="['sysOrgCode', validatorRules.sysOrgCode]" :trigger-change="true"  customReturnField="orgCode"/>
+          <j-select-depart v-if="!id" v-decorator="['sysOrgCode', validatorRules.sysOrgCode]" :trigger-change="true" customReturnField="orgCode"/>
         </a-form-item>
         <a-form-item label="公厕类型" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag type="list" v-decorator="['leixing', validatorRules.leixing]" :trigger-change="true" dictCode="toilet_type" placeholder="请选择公厕类型"/>
@@ -65,7 +64,7 @@
           <a-input-number v-decorator="[ 'xiaobiandou', validatorRules.xiaobiandou]" placeholder="请输入小便斗数量" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="附设功能（驿站、垃圾站、环卫管理用房等）" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input v-decorator="[ 'fushe', validatorRules.fushe]" placeholder="请输入附设功能（驿站、垃圾站、环卫管理用房等）"></a-input>
+          <j-dict-select-tag type="radio" v-decorator="[ 'fushe', validatorRules.fushe]" :trigger-change="true" dictCode="yes_or_no" placeholder="请输入附设功能（驿站、垃圾站、环卫管理用房等）"/>
         </a-form-item>
         <a-form-item label="是否安装空调" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag type="radio" v-decorator="['kongtiao', validatorRules.kongtiao]" :trigger-change="true" dictCode="yes_or_no" placeholder="请选择是否安装空调"/>
@@ -86,11 +85,10 @@
 
   import { httpAction } from '@/api/manage'
   import pick from 'lodash.pick'
-  import { validateDuplicateValue } from '@/utils/util'
   import JDate from '@/components/jeecg/JDate'  
   import JSelectDepart from '@/components/jeecgbiz/JSelectDepart'
   import JDictSelectTag from "@/components/dict/JDictSelectTag"
-  import JMonth from '../../../components/jeecg/JMonth'
+  import JMonth from '@/components/jeecg/JMonth'
 
   export default {
     name: "ToiletSummaryModal",
@@ -117,49 +115,49 @@
         },
         confirmLoading: false,
         validatorRules: {
-          xianqu: {rules: [
+          sysOrgCode: {rules: [{required: true,message:"请选择部门"}
           ]},
-          leixing: {rules: [
+          leixing: {rules: [{required: true,message:"请选择类型"}
           ]},
-          bianhao: {rules: [
+          bianhao: {rules: [{required: true,message:"请填写内容"}
           ]},
-          mingcheng: {rules: [
+          mingcheng: {rules: [{required: true,message:"请填写内容"}
           ]},
-          dizhi: {rules: [
+          dizhi: {rules: [{required: true,message:"请填写内容"}
           ]},
-          leibie: {rules: [
+          leibie: {rules: [{required: true,message:"请选择类别"}
           ]},
-          qiyongNianyue: {rules: [
+          qiyongNianyue: {rules: [{required: true,message:"请选择时间"}
           ]},
-          kaigongNianyue: {rules: [
+          kaigongNianyue: {rules: [{required: true,message:"请选择时间"}
           ]},
-          mianji: {rules: [
+          mianji: {rules: [{required: true,message:"请输入数量"}
           ]},
-          jianzhuDuli: {rules: [
+          jianzhuDuli: {rules: [{required: true,message:"请选择是否"}
           ]},
-          jianzhuFushu: {rules: [
+          jianzhuFushu: {rules: [{required: true,message:"请选择是否"}
           ]},
-          jiegouTujian: {rules: [
+          jiegouTujian: {rules: [{ required: true,message:"请选择是否"}
           ]},
-          jiegouZhuangpei: {rules: [
+          jiegouZhuangpei: {rules: [{ required: true,message:"请选择是否"}
           ]},
-          nan: {rules: [
+          nan: {rules: [{ required: true,message:"请输入数量"}
           ]},
-          nv: {rules: [
+          nv: {rules: [{ required: true,message:"请输入数量"}
           ]},
-          tongyong: {rules: [
+          tongyong: {rules: [{ required: true,message:"请输入数量"}
           ]},
-          wuzhangai: {rules: [
+          wuzhangai: {rules: [{ required: true,message:"请输入数量"}
           ]},
-          xiaobiandou: {rules: [
+          xiaobiandou: {rules: [{required: true,message:"请输入数量"}
           ]},
-          fushe: {rules: [
+          fushe: {rules: [{required: true,message:"请选择是否"}
           ]},
-          kongtiao: {rules: [
+          kongtiao: {rules: [{required: true,message:"请选择是否"}
           ]},
-          zhihui: {rules: [
+          zhihui: {rules: [{required: true,message:"请选择是否"}
           ]},
-          remarks: {rules: [
+          remarks: {rules: [{required: true,message:"请输入内容"}
           ]},
         },
         url: {
@@ -205,10 +203,10 @@
             console.log("表单提交数据",formData)
             httpAction(httpurl,formData,method).then((res)=>{
               if(res.success){
-                that.$message.success(res.message);
+                that.$message.success("数据保存成功！");
                 that.$emit('ok');
               }else{
-                that.$message.warning(res.message);
+                that.$message.warning("数据保存失败！");
               }
             }).finally(() => {
               that.confirmLoading = false;

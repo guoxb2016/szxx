@@ -12,7 +12,10 @@ import java.util.List;
  * @Version: V1.0
  */
 public interface ISanitationSummaryService extends IService<SanitationSummary> {
-    public SanitationSummary summaryByOrg();
+    
+	public SanitationSummary summaryByOrg();
 
     public List<SanitationSummary> findGroupByOrg();
+    
+    public SanitationSummary sumQuery(List<String> types);
 }

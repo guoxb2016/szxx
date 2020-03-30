@@ -59,14 +59,19 @@
         confirmLoading: false,
         validatorRules: {
           personTime: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           strvendPoultry: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           strvendWildlife: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           strvendOther: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           remarks: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
         },
         url: {
@@ -112,10 +117,10 @@
             console.log("表单提交数据",formData)
             httpAction(httpurl,formData,method).then((res)=>{
               if(res.success){
-                that.$message.success(res.message);
+                that.$message.success("数据保存成功！");
                 that.$emit('ok');
               }else{
-                that.$message.warning(res.message);
+                that.$message.warning("数据保存失败!");
               }
             }).finally(() => {
               that.confirmLoading = false;

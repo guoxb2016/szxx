@@ -91,6 +91,90 @@
         a.hwglry AS "hwglry"
     </sql>
 
+    <sql id="summary">
+        id AS "id",
+        create_by AS "createBy",
+        create_time AS "createTime",
+        update_by AS "updateBy",
+        update_time AS "updateTime",
+        sys_org_code AS "sysOrgCode",
+        SUM(gr_baojy) AS "grBaojy",
+        SUM(gr_siji_sais) AS "grSijiSais",
+        SUM(gr_siji_lajysh) AS "grSijiLajysh",
+        SUM(gr_nan) AS "grNan",
+        SUM(gr_nv) AS "grNv",
+        SUM(gr_lessand45) AS "grLessand45",
+        SUM(gr_more45) AS "grMore45",
+        SUM(gr_lingshg) AS "grLingshg",
+        SUM(gr_zhengshg) AS "grZhengshg",
+        SUM(hwglry) AS "hwglry",
+        SUM(chl_gans) AS "chlGans",
+        SUM(chl_xis) AS "chlXis",
+        SUM(chl_xich) AS "chlXich",
+        SUM(chl_saod_xiao) AS "chlSaodXiao",
+        SUM(chl_saod_da) AS "chlSaodDa",
+        SUM(chl_sash_xiao) AS "chlSashXiao",
+        SUM(chl_sash_da) AS "chlSashDa",
+        SUM(chl_wuc) AS "chlWuc",
+        SUM(chl_lajysh) AS "chlLajysh",
+        SUM(chl_diandbj) AS "chlDiandbj",
+        SUM(shsh_lajzh) AS "shshLajzh",
+        SUM(ydcsc) AS "ydcsc",
+        SUM(hlqxc) AS "hlqxc",
+        SUM(shsh_fenleilajzh) AS "shshFenleilajzh",
+        SUM(shsh_huanwgc_yil) AS "shshHuanwgcYil",
+        SUM(shsh_huanwgc_erl) AS "shshHuanwgcErl",
+        SUM(shsh_huanwgc_sl) AS "shshHuanwgcSl",
+        SUM(shsh_shehgc) AS "shshShehgc",
+        SUM(shsh_guokx) AS "shshGuokx",
+        SUM(shsh_lajt) AS "shshLajt",
+        SUM(bj_yl_shul) AS "bjYlShul",
+        SUM(bj_yl_changd) AS "bjYlChangd",
+        SUM(bj_yl_mianj) AS "bjYlMianj",
+        CONVERT(AVG(bj_yl_jinfbzh),DECIMAL(10,2)) AS "bjYlJinfbzh",
+        SUM(bj_erl_shul) AS "bjErlShul",
+        SUM(bj_erl_changd) AS "bjErlChangd",
+        SUM(bj_erl_mianj) AS "bjErlMianj",
+        CONVERT(AVG(bj_erl_jinfbzh),DECIMAL(10,2)) AS "bjErlJinfbzh",
+        SUM(bj_ssl_shul) AS "bjSslShul",
+        SUM(bj_ssl_changd) AS "bjSslChangd",
+        SUM(bj_ssl_mianj) AS "bjSslMianj",
+        CONVERT(AVG(bj_ssl_jinfbzh),DECIMAL(10,2)) AS "bjSslJinfbzh",
+        SUM(bj_shq_shul) AS "bjShqShul",
+        SUM(bj_shq_mianj) AS "bjShqMianj",
+        CONVERT(AVG(bj_shq_jinfbzh),DECIMAL(10,2)) AS "bjShqJinfbzh",
+        SUM(bj_zongmj) AS "bjZongmj",
+        SUM(bj_waibmj) AS "bjWaibmj",
+        SUM(bj_jixh_qings_mianj) AS "bjJixhQingsMianj",
+        SUM(bj_jixh_qings_cang) AS "bjJixhQingsCang",
+        CONVERT(AVG(bj_shichh),DECIMAL(10,2)) AS "bjShichh",
+        CONVERT(AVG(bj_jixieh),DECIMAL(10,2)) AS "bjJixieh",
+        "详见各区县上报明细" AS "bjShichDanwei",
+        "详见各区县上报明细" AS "bjWaibJinfbzh",
+        
+        "详见各区县上报明细" AS "shichhZuiyeDanwei",
+        "详见各区县上报明细" AS "shichhJinfeiBiaozh",
+        "详见各区县上报明细" AS "shichhgcZuiyeDanwei",
+        "详见各区县上报明细" AS "shichhgcJinfeiBiaozh",
+        "详见各区县上报明细" AS "shichhljzZuiyeDanwei",
+        "详见各区县上报明细" AS "shichhljzJinfeiBiaozh",
+        "详见各区县上报明细" AS "shichhljysZuiyeDanwei",
+        "详见各区县上报明细" AS "shichhljysJinfeiBiaozh",
+        "详见各区县上报明细" AS "shichhljflZuiyeDanwei",
+        "详见各区县上报明细" AS "shichhljflJinfeiBiaozh",
+        "详见各区县上报明细" AS "shichhqtZuiyeDanwei",
+        "详见各区县上报明细" AS "shichhqtJinfeiBiaozh",
+        
+        SUM(ful_tijian) AS "fulTijian",
+        CONVERT(AVG(ful_jiejia),DECIMAL(10,2)) AS "fulJiejia",
+        SUM(ful_yiwai_baoxian) AS "fulYiwaiBaoxian",
+        SUM(ful_shehui_baoxian) AS "fulShehuiBaoxian",
+        SUM(ful_yiwai_baoxian_jinge) AS "fulYiwaiBaoxianJinge",
+        CONVERT(AVG(ful_gongzbiaozh),DECIMAL(10,2)) AS "fulGongzbiaozh",
+        CONVERT(AVG(ful_gonglgzbiaozh),DECIMAL(10,2)) AS "fulGonglgzbiaozh",
+        SUM(ful_gongjijing) AS "fulGongjijing"
+    </sql>
+
     <sql id="summaryColumn">
         a.id AS "id",
         a.create_by AS "createBy",
@@ -158,7 +242,7 @@
         SUM(a.ful_gonglgzbiaozh) AS "fulGonglgzbiaozh",
         SUM(a.ful_gongjijing) AS "fulGongjijing"
     </sql>
-
+    
     <select id="summaryByOrg" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
         SELECT
         <include refid="summaryColumn"/>
@@ -182,7 +266,19 @@
                     a2.rank = 1
             ) a
     </select>
-
+	<select id="sumQuery" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
+		SELECT
+        <include refid="summary"/>
+        FROM
+        	sanitation_summary
+        where id IN (SELECT max(id) FROM sanitation_summary GROUP BY sys_org_code) 
+        <if test="type != null">
+          AND sys_org_code IN 
+			<foreach collection="type" item="t" index="index" open="(" close=")" separator=",">
+	 			#{t}
+			</foreach>
+		</if>
+	</select>
     <select id="findGroupByOrg" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
         SELECT
           <include refid="column"/>

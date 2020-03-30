@@ -40,9 +40,9 @@
         <a-form-item label="消杀-果壳箱与垃圾桶" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'xsGuokx', validatorRules.xsGuokx]" placeholder="请输入消杀-果壳箱与垃圾桶" style="width: 100%"/>
         </a-form-item>
-        <a-form-item label="生活垃圾无害化处理" :labelCol="labelCol" :wrapperCol="wrapperCol">
+    <!--    <a-form-item label="生活垃圾无害化处理" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'hjwsLajcl', validatorRules.hjwsLajcl]" placeholder="请输入生活垃圾无害化处理" style="width: 100%"/>
-        </a-form-item>
+        </a-form-item>-->
         <a-form-item label="单位内部疫情防控消杀处理情况" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'hjwsXiaoscc', validatorRules.hjwsXiaoscc]" placeholder="请输入单位内部疫情防控消杀处理情况" style="width: 100%"/>
         </a-form-item>
@@ -102,44 +102,44 @@
         },
         confirmLoading: false,
         validatorRules: {
-          sysOrgName: {rules: [
-            {required: true, message: '请输入所属区县!'},
+          sysOrgCode: {rules: [
+            {required: true, message: '请选择所属区县!'},
           ]},
-          vehicle: {rules: [
+          vehicle: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          personTime: {rules: [
+          personTime: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          garbageDisposal: {rules: [
+          garbageDisposal: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          kzKouzhFeiqt: {rules: [
+          kzKouzhFeiqt: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          kzYunsl: {rules: [
+          kzYunsl: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          xsGongc: {rules: [
+          xsGongc: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          xsLajz: {rules: [
+          xsLajz: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          xsHuanwcc: {rules: [
+          xsHuanwcc: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          xsGuokx: {rules: [
+          xsGuokx: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          hjwsLajcl: {rules: [
+          hjwsLajcl: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          hjwsXiaoscc: {rules: [
+          hjwsXiaoscc: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          hjwsHubeiJiecqk: {rules: [
+          hjwsHubeiJiecqk: {rules: [{required: true, message: '请输入内容'}
           ]},
-          fywzKouzh: {rules: [
+          fywzKouzh: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          fywzJiuj: {rules: [
+          fywzJiuj: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          fywzWendj: {rules: [
+          fywzWendj: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          fywzXiaody: {rules: [
+          fywzXiaody: {rules: [ {required: true, message: '请输入数量'}
           ]},
-          gongyFyqk: {rules: [
+          gongyFyqk: {rules: [{required: true, message: '请输入内容'}
           ]},
-          other: {rules: [
+          other: {rules: [ {required: true, message: '请输入内容'}
           ]},
         },
         url: {
@@ -185,10 +185,10 @@
             console.log("表单提交数据",formData)
             httpAction(httpurl,formData,method).then((res)=>{
               if(res.success){
-                that.$message.success(res.message);
+                that.$message.success("数据保存成功！");
                 that.$emit('ok');
               }else{
-                that.$message.warning(res.message);
+                that.$message.warning("数据保存失败！");
               }
             }).finally(() => {
               that.confirmLoading = false;

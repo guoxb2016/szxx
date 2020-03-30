@@ -19,7 +19,6 @@
               </a>
             </span>
           </a-col>
-
         </a-row>
       </a-form>
     </div>
@@ -190,11 +189,11 @@
             align:"center",
             dataIndex: 'xsGuokx'
           },
-          {
+         /* {
             title:'生活垃圾无害化处理',
             align:"center",
             dataIndex: 'hjwsLajcl'
-          },
+          },*/
           {
             title:'单位内部疫情防控消杀处理情况',
             align:"center",

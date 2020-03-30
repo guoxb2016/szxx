@@ -3,6 +3,9 @@ package org.jeecg.modules.demo.summary.entity;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+
+import javax.persistence.Transient;
+
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -22,7 +25,8 @@ import org.jeecg.common.aspect.annotation.Dict;
 @Data
 @TableName("sanitation_summary")
 public class SanitationSummary implements Serializable {
-    private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
 
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
@@ -292,6 +296,16 @@ public class SanitationSummary implements Serializable {
 	/**完成步骤*/
 	//@Excel(name = "完成步骤", width = 15)
     private java.lang.String step;
+    //统计范围
+    private String scope;
+    @Transient
+    public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
 
 	public String getId() {
 		return id;
@@ -988,4 +1002,5 @@ public class SanitationSummary implements Serializable {
 	public void setStep(String step) {
 		this.step = step;
 	}
+	
 }

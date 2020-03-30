@@ -15,6 +15,21 @@
             </a-form-item>
           </a-col>
           <template v-if="toggleSearchStatus">
+            <a-col :md="6" :sm="8">
+            <a-form-item label="公厕名称">
+              <a-input style="width: 120px;" placeholder="请输入公厕名称" v-model="queryParam.mingcheng"></a-input>
+            </a-form-item>
+          </a-col>
+            <a-col :md="6" :sm="8">
+              <a-form-item label="公厕编号">
+                <a-input style="width: 120px;" placeholder="请输入公厕编号" v-model="queryParam.bianhao"></a-input>
+              </a-form-item>
+            </a-col>
+            <a-col :md="6" :sm="8">
+              <a-form-item label="土建式">
+                <j-dict-select-tag placeholder="请选择土建式" v-model="queryParam.jiegouTujian" dictCode="yes_or_no"/>
+              </a-form-item>
+            </a-col>
             <a-col :md="12" :sm="16">
               <a-form-item label="启用年月">
                 <j-month placeholder="请选择开始日期" class="query-group-cust" v-model="queryParam.qiyongNianyue_begin"></j-month>

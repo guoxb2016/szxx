@@ -241,8 +241,8 @@
         <a-form-item label="社会保险缴纳人数" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number v-decorator="[ 'fulShehuiBaoxian', validatorRules.fulShehuiBaoxian]" placeholder="请输入社会保险缴纳人数" style="width: 100%"/>
         </a-form-item>
-        <a-form-item label="意外伤害险购买金额（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number v-decorator="[ 'fulYiwaiBaoxianJinge', validatorRules.fulYiwaiBaoxianJinge]" placeholder="请输入意外伤害险购买金额（元）" style="width: 100%"/>
+        <a-form-item label="意外伤害险购买额度（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input-number v-decorator="[ 'fulYiwaiBaoxianJinge', validatorRules.fulYiwaiBaoxianJinge]" placeholder="请输入意外伤害险购买额度（元）" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="基础工资标准（元）" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'fulGongzbiaozh', validatorRules.fulGongzbiaozh]" placeholder="请输入基础工资标准（元）"></a-input>
@@ -288,168 +288,243 @@
         },
         confirmLoading: false,
         validatorRules: {
-          sysOrgName: {rules: [
-            {required: true, message: '请输入所属区县!'},
+          sysOrgCode: {rules: [
+            {required: true, message: '请选择所属区县!'}
           ]},
           hwglry: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grBaojy: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grSijiSais: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grSijiLajysh: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grNan: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grNv: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grLessand45: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grMore45: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grLingshg: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grZhengshg: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           grHuanwgl: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlGans: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlXis: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlXich: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlSaodXiao: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlSaodDa: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlSashXiao: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
+
           chlSashDa: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlWuc: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlLajysh: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           chlDiandbj: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           ydcsc: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           hlqxc: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshLajzh: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshFenleilajzh: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshHuanwgcYil: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshHuanwgcErl: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshHuanwgcSl: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshShehgc: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshGuokx: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           shshLajt: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           bjYlShul: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           bjYlChangd: {rules: [
+              {required: true, message: '请输入长度'}
           ]},
           bjYlMianj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjYlJinfbzh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           bjErlShul: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           bjErlChangd: {rules: [
+              {required: true, message: '请输入长度'}
           ]},
           bjErlMianj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjErlJinfbzh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           bjSslShul: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           bjSslChangd: {rules: [
+              {required: true, message: '请输入长度'}
           ]},
           bjSslMianj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjSslJinfbzh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           bjShqShul: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           bjShqMianj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjShqJinfbzh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           bjZongmj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjWaibmj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjJixhQingsMianj: {rules: [
+              {required: true, message: '请输入面积'}
           ]},
           bjJixhQingsCang: {rules: [
+              {required: true, message: '请输入长度'}
           ]},
           bjShichh: {rules: [
+              {required: true, message: '请输入市场化率'}
           ]},
           bjJixieh: {rules: [
+              {required: true, message: '请输入机械化率'}
           ]},
           bjShichDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           bjWaibJinfbzh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           shichhLeib: {rules: [
           ]},
           shichhZuiyeDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           shichhJinfeiBiaozh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           shichhgcLeib: {rules: [
           ]},
           shichhgcZuiyeDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           shichhgcJinfeiBiaozh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           shichhljzLeib: {rules: [
           ]},
           shichhljzZuiyeDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           shichhljzJinfeiBiaozh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           shichhljysLeib: {rules: [
           ]},
           shichhljysZuiyeDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           shichhljysJinfeiBiaozh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           shichhljflLeib: {rules: [
           ]},
           shichhljflZuiyeDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           shichhljflJinfeiBiaozh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           shichhqtLeib: {rules: [
           ]},
           shichhqtZuiyeDanwei: {rules: [
+              {required: true, message: '请输入内容'}
           ]},
           shichhqtJinfeiBiaozh: {rules: [
+              {required: true, message: '请输入经费标准'}
           ]},
           fulTijian: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           fulJiejia: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           fulYiwaiBaoxian: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           fulShehuiBaoxian: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
           fulYiwaiBaoxianJinge: {rules: [
+              {required: true, message: '请输入额度'}
           ]},
           fulGongzbiaozh: {rules: [
+              {required: true, message: '请输入工资标准'}
           ]},
           fulGonglgzbiaozh: {rules: [
+              {required: true, message: '请输入工资标准'}
           ]},
           fulGongjijing: {rules: [
+              {required: true, message: '请输入数量'}
           ]},
         },
         url: {
@@ -495,10 +570,10 @@
             console.log("表单提交数据",formData)
             httpAction(httpurl,formData,method).then((res)=>{
               if(res.success){
-                that.$message.success(res.message);
+                that.$message.success("数据保存成功！");
                 that.$emit('ok');
               }else{
-                that.$message.warning(res.message);
+                that.$message.warning("数据保存失败！");
               }
             }).finally(() => {
               that.confirmLoading = false;
@@ -514,8 +589,6 @@
       popupCallback(row){
         this.form.setFieldsValue(pick(row,'sysOrgName','hwglry','grBaojy','grSijiSais','grSijiLajysh','grNan','grNv','grLessand45','grMore45','grLingshg','grZhengshg','grHuanwgl','chlGans','chlXis','chlXich','chlSaodXiao','chlSaodDa','chlSashXiao','chlSashDa','chlWuc','chlLajysh','chlDiandbj','ydcsc','hlqxc','shshLajzh','shshFenleilajzh','shshHuanwgcYil','shshHuanwgcErl','shshHuanwgcSl','shshShehgc','shshGuokx','shshLajt','bjYlShul','bjYlChangd','bjYlMianj','bjYlJinfbzh','bjErlShul','bjErlChangd','bjErlMianj','bjErlJinfbzh','bjSslShul','bjSslChangd','bjSslMianj','bjSslJinfbzh','bjShqShul','bjShqMianj','bjShqJinfbzh','bjZongmj','bjWaibmj','bjJixhQingsMianj','bjJixhQingsCang','bjShichh','bjJixieh','bjShichDanwei','bjWaibJinfbzh','shichhLeib','shichhZuiyeDanwei','shichhJinfeiBiaozh','shichhgcLeib','shichhgcZuiyeDanwei','shichhgcJinfeiBiaozh','shichhljzLeib','shichhljzZuiyeDanwei','shichhljzJinfeiBiaozh','shichhljysLeib','shichhljysZuiyeDanwei','shichhljysJinfeiBiaozh','shichhljflLeib','shichhljflZuiyeDanwei','shichhljflJinfeiBiaozh','shichhqtLeib','shichhqtZuiyeDanwei','shichhqtJinfeiBiaozh','fulTijian','fulJiejia','fulYiwaiBaoxian','fulShehuiBaoxian','fulYiwaiBaoxianJinge','fulGongzbiaozh','fulGonglgzbiaozh','fulGongjijing'))
       },
-
-      
     }
   }
 </script>

@@ -4,19 +4,24 @@
     <div class="table-page-search-wrapper">
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
-          <a-col :md="6" :sm="8">
-            <a-form-item label="所属区县">
-              <j-select-depart v-model="queryParam.sysOrgName"  customReturnField="departName"/>
+          <a-col :md="12" :sm="12">
+            <a-form-item label="请选择">
+              <a-radio-group name="scope" :defaultValue="100"  v-model="queryParam.scope">
+                <a-radio :value="100">全市</a-radio>
+                <a-radio :value="200">城区（含公司）</a-radio>
+                <a-radio :value="300">三县</a-radio>
+                <a-radio :value="400">公司</a-radio>
+              </a-radio-group>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8">
-            <a-form-item label="按类别显示">
-              <j-dict-select-tag placeholder="请选择" v-model="queryParam.type" dictCode="hw_type"/>
+            <a-form-item label="只显示">
+              <j-dict-select-tag placeholder="全部" v-model="queryParam.type" dictCode="hw_type"/>
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="8" >
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
-              <a-button type="primary" @click="searchQueryTxt" icon="search">查询</a-button>
+              <a-button type="primary" @click="searchQueryTxt" icon="search">统计</a-button>
               <a-button type="primary" @click="searchResetTxt" icon="reload" style="margin-left: 8px">重置</a-button>
               <a @click="handleToggleSearch" style="margin-left: 8px">
                 {{ toggleSearchStatus ? '收起' : '展开' }}
@@ -28,22 +33,6 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-
-    <!-- 操作按钮区域 -->
-    <div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
-      <a-button type="primary" v-has="'ss:export'" icon="download" @click="handleExportXls('环卫信息表')">导出</a-button>
-      <a-button type="primary" v-has="'ss:export:one'" icon="download" @click="handleExportXls1('环卫信息表')">导出</a-button>
-     <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
-        <a-button type="primary" icon="import">导入</a-button>
-      </a-upload>-->
-      <a-dropdown v-if="selectedRowKeys.length > 0">
-        <a-menu slot="overlay">
-          <a-menu-item key="1" @click="batchDel"><a-icon type="delete"/>删除</a-menu-item>
-        </a-menu>
-        <a-button style="margin-left: 8px"> 批量操作 <a-icon type="down" /></a-button>
-      </a-dropdown>
-    </div>
 
     <!-- table区域-begin -->
     <div>
@@ -135,19 +124,6 @@
             align:"center",
             customRender:function (t,r,index) {
               return parseInt(index)+1;
-            }
-          },
-          {
-            title:'所属区县',
-            align:"center",
-            fixed: 'left',
-            dataIndex: 'sysOrgName',
-            customRender:(text)=>{
-              if(!text){
-                return ''
-              }else{
-                return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-              }
             }
           },
           {
@@ -316,7 +292,7 @@
             dataIndex: 'bjYlMianj'
           },
           {
-            title:'严控区道路经费标准（元）',
+            title:'严控区道路经费平均标准（元）',
             align:"center",
             dataIndex: 'bjYlJinfbzh'
           },
@@ -336,7 +312,7 @@
             dataIndex: 'bjErlMianj'
           },
           {
-            title:'控制区道路经费标准（元）',
+            title:'控制区道路经费平均标准（元）',
             align:"center",
             dataIndex: 'bjErlJinfbzh'
           },
@@ -356,7 +332,7 @@
             dataIndex: 'bjSslMianj'
           },
           {
-            title:'一般区道路经费标准（元）',
+            title:'一般区道路经费平均标准（元）',
             align:"center",
             dataIndex: 'bjSslJinfbzh'
           },
@@ -371,7 +347,7 @@
             dataIndex: 'bjShqMianj'
           },
           {
-            title:'社区经费标准（元）',
+            title:'社区经费平均标准（元）',
             align:"center",
             dataIndex: 'bjShqJinfbzh'
           },
@@ -396,12 +372,12 @@
             dataIndex: 'bjJixhQingsCang'
           },
           {
-            title:'市场化率',
+            title:'平均市场化率',
             align:"center",
             dataIndex: 'bjShichh'
           },
           {
-            title:'机械化率',
+            title:'平均机械化率',
             align:"center",
             dataIndex: 'bjJixieh'
           },
@@ -556,23 +532,10 @@
             title:'缴纳公积金人数',
             align:"center",
             dataIndex: 'fulGongjijing'
-          },
-          {
-            title:'上报时间',
-            align:"center",
-            dataIndex: 'createTime'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' }
           }
         ],
         url: {
-          list: "/summary/sanitationSummary/listByPerm",
+          list: "/summary/sanitationSummary/sumQuery",
           delete: "/summary/sanitationSummary/delete",
           deleteBatch: "/summary/sanitationSummary/deleteBatch",
           exportXlsUrl: "/summary/sanitationSummary/exportXls3",
@@ -607,21 +570,7 @@
               customRender:function (t,r,index) {
                 return parseInt(index)+1;
               }
-            },
-            {
-              title:'所属区县',
-              align:"center",
-              fixed: 'left',
-              dataIndex: 'sysOrgName',
-              customRender:(text)=>{
-                if(!text){
-                  return ''
-                }else{
-                  return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                }
-              }
-            },
-            {
+            }, {
               title:'环卫管理人员',
               align:"center",
               dataIndex: 'hwglry'
@@ -787,7 +736,7 @@
               dataIndex: 'bjYlMianj'
             },
             {
-              title:'严控区道路经费标准（元）',
+              title:'严控区道路经费平均标准（元）',
               align:"center",
               dataIndex: 'bjYlJinfbzh'
             },
@@ -807,7 +756,7 @@
               dataIndex: 'bjErlMianj'
             },
             {
-              title:'控制区道路经费标准（元）',
+              title:'控制区道路经费平均标准（元）',
               align:"center",
               dataIndex: 'bjErlJinfbzh'
             },
@@ -827,7 +776,7 @@
               dataIndex: 'bjSslMianj'
             },
             {
-              title:'一般区道路经费标准（元）',
+              title:'一般区道路经费平均标准（元）',
               align:"center",
               dataIndex: 'bjSslJinfbzh'
             },
@@ -842,7 +791,7 @@
               dataIndex: 'bjShqMianj'
             },
             {
-              title:'社区经费标准（元）',
+              title:'社区经费平均标准（元）',
               align:"center",
               dataIndex: 'bjShqJinfbzh'
             },
@@ -867,12 +816,12 @@
               dataIndex: 'bjJixhQingsCang'
             },
             {
-              title:'市场化率',
+              title:'平均市场化率',
               align:"center",
               dataIndex: 'bjShichh'
             },
             {
-              title:'机械化率',
+              title:'平均机械化率',
               align:"center",
               dataIndex: 'bjJixieh'
             },
@@ -991,7 +940,7 @@
               dataIndex: 'fulTijian'
             },
             {
-              title:'一年四节节日福利标准（元）',
+              title:'一年四节节日福利平均标准（元）',
               align:"center",
               ellipsis: true,
               dataIndex: 'fulJiejia'
@@ -1012,13 +961,13 @@
               dataIndex: 'fulYiwaiBaoxianJinge'
             },
             {
-              title:'基础工资标准（元）',
+              title:'基础工资平均标准（元）',
               align:"center",
               ellipsis: true,
               dataIndex: 'fulGongzbiaozh'
             },
             {
-              title:'工龄工资标准（元）',
+              title:'工龄工资平均标准（元）',
               align:"center",
               dataIndex: 'fulGonglgzbiaozh',
               ellipsis: true
@@ -1027,24 +976,11 @@
               title:'缴纳公积金人数',
               align:"center",
               dataIndex: 'fulGongjijing'
-            },
-            {
-              title:'上报时间',
-              align:"center",
-              dataIndex: 'createTime'
-            },
-            {
-              title: '操作',
-              dataIndex: 'action',
-              align:"center",
-              fixed:"right",
-              width:147,
-              scopedSlots: { customRender: 'action' }
             }
           ];
         }
         if(type === '环卫职工'){
-          this.tableScroll = {x :1360};
+          this.tableScroll = {x :900};
           //保留开头序号、区县和尾部的操作按钮
             this.columns = [
               {
@@ -1056,20 +992,6 @@
                 align:"center",
                 customRender:function (t,r,index) {
                   return parseInt(index)+1;
-                }
-              },
-              {
-                title:'所属区县',
-                align:"center",
-                fixed: 'left',
-                dataIndex: 'sysOrgName',
-                width:120,
-                customRender:(text)=>{
-                  if(!text){
-                    return ''
-                  }else{
-                    return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                  }
                 }
               }, {
                 title:'环卫管理人员',
@@ -1130,22 +1052,11 @@
                 align:"center",
                 width:80,
                 dataIndex: 'grZhengshg'
-              }, {
-                title:'上报时间',
-                align:"center",
-                width:180,
-                dataIndex: 'createTime'
-              }, {
-                title: '操作',
-                dataIndex: 'action',
-                align:"center",
-                width:140,
-                scopedSlots: { customRender: 'action' }
               }
             ];
         }
         if(type === '环卫车辆'){
-          this.tableScroll = {x :1440};
+          this.tableScroll = {x :1380};
           this.columns = [
             {
               title: '#',
@@ -1156,19 +1067,6 @@
               align:"center",
               customRender:function (t,r,index) {
                 return parseInt(index)+1;
-              }
-            },
-            {
-              title:'所属区县',
-              align:"center",
-              fixed: 'left',
-              dataIndex: 'sysOrgName',
-              customRender:(text)=>{
-                if(!text){
-                  return ''
-                }else{
-                  return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                }
               }
             },  {
               title:'干扫车',
@@ -1229,22 +1127,11 @@
               title:'护栏清洗车',
               align:"center",
               dataIndex: 'hlqxc'
-            }, {
-              title:'上报时间',
-              align:"center",
-              width:160,
-              dataIndex: 'createTime'
-            },{
-              title: '操作',
-              dataIndex: 'action',
-              align:"center",
-              width:147,
-              scopedSlots: { customRender: 'action' }
             }
           ];
         }
         if(type === '环卫设施'){
-          this.tableScroll = {x :1240};
+          this.tableScroll = {x :1160};
           this.columns = [
             {
               title: '#',
@@ -1255,19 +1142,6 @@
               align:"center",
               customRender:function (t,r,index) {
                 return parseInt(index)+1;
-              }
-            },
-            {
-              title:'所属区县',
-              align:"center",
-              fixed: 'left',
-              dataIndex: 'sysOrgName',
-              customRender:(text)=>{
-                if(!text){
-                  return ''
-                }else{
-                  return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                }
               }
             }, {
               title:'普通垃圾站',
@@ -1308,21 +1182,11 @@
               title:'分类垃圾桶',
               align:"center",
               dataIndex: 'shshLajt'
-            }, {
-              title:'上报时间',
-              align:"center",
-              dataIndex: 'createTime'
-            },{
-              title: '操作',
-              dataIndex: 'action',
-              align:"center",
-              width:147,
-              scopedSlots: { customRender: 'action' }
             }
           ];
         }
         if(type === '道路清扫'){
-          this.tableScroll = {x :3680};
+          this.tableScroll = {x :3480};
           this.columns = [
             {
               title: '#',
@@ -1333,19 +1197,6 @@
               align:"center",
               customRender:function (t,r,index) {
                 return parseInt(index)+1;
-              }
-            },
-            {
-              title:'所属区县',
-              align:"center",
-              fixed: 'left',
-              dataIndex: 'sysOrgName',
-              customRender:(text)=>{
-                if(!text){
-                  return ''
-                }else{
-                  return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                }
               }
             },  {
               title:'严控区道路数量',
@@ -1364,7 +1215,7 @@
               dataIndex: 'bjYlMianj'
             },
             {
-              title:'严控区道路经费标准（元）',
+              title:'严控区道路经费平均标准（元）',
               align:"center",
               dataIndex: 'bjYlJinfbzh'
             },
@@ -1385,7 +1236,7 @@
               dataIndex: 'bjErlMianj'
             },
             {
-              title:'控制区道路经费标准（元）',
+              title:'控制区道路经费平均标准（元）',
               align:"center",
               dataIndex: 'bjErlJinfbzh'
             },
@@ -1406,7 +1257,7 @@
               dataIndex: 'bjSslMianj'
             },
             {
-              title:'一般区道路经费标准（元）',
+              title:'一般区道路经费平均标准（元）',
               align:"center",
               dataIndex: 'bjSslJinfbzh'
             },
@@ -1421,7 +1272,7 @@
               dataIndex: 'bjShqMianj'
             },
             {
-              title:'社区经费标准（元）',
+              title:'社区经费平均标准（元）',
               align:"center",
               dataIndex: 'bjShqJinfbzh'
             },
@@ -1446,12 +1297,12 @@
               dataIndex: 'bjJixhQingsCang'
             },
             {
-              title:'市场化率',
+              title:'平均市场化率',
               align:"center",
               dataIndex: 'bjShichh'
             },
             {
-              title:'机械化率',
+              title:'平均机械化率',
               align:"center",
               dataIndex: 'bjJixieh'
             },
@@ -1468,22 +1319,11 @@
               width:360,
               ellipsis: true,
               dataIndex: 'bjWaibJinfbzh'
-            }, {
-              title:'上报时间',
-              align:"center",
-              width:180,
-              dataIndex: 'createTime'
-            },{
-              title: '操作',
-              dataIndex: 'action',
-              align:"center",
-              width:147,
-              scopedSlots: { customRender: 'action' }
             }
           ];
         }
         if(type === '环卫市场化'){
-          this.tableScroll = {x :3410};
+          this.tableScroll = {x :2980};
           this.columns = [
             {
               title: '#',
@@ -1494,19 +1334,6 @@
               align:"center",
               customRender:function (t,r,index) {
                 return parseInt(index)+1;
-              }
-            },
-            {
-              title:'所属区县',
-              align:"center",
-              fixed: 'left',
-              dataIndex: 'sysOrgName',
-              customRender:(text)=>{
-                if(!text){
-                  return ''
-                }else{
-                  return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                }
               }
             }, {
               title:'道路清扫保洁环卫市场化作业单位',
@@ -1591,17 +1418,6 @@
               width:240,
               ellipsis: true,
               dataIndex: 'shichhqtJinfeiBiaozh'
-            }, {
-              title:'上报时间',
-              align:"center",
-              width:160,
-              dataIndex: 'createTime'
-            },{
-              title: '操作',
-              dataIndex: 'action',
-              align:"center",
-              width:147,
-              scopedSlots: { customRender: 'action' }
             }
           ];
         }
@@ -1618,26 +1434,13 @@
               customRender:function (t,r,index) {
                 return parseInt(index)+1;
               }
-            },
-            {
-              title:'所属区县',
-              align:"center",
-              fixed: 'left',
-              dataIndex: 'sysOrgName',
-              customRender:(text)=>{
-                if(!text){
-                  return ''
-                }else{
-                  return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-                }
-              }
             }, {
               title:'单位组织体检人数',
               align:"center",
               dataIndex: 'fulTijian'
             },
             {
-              title:'一年四节节日福利标准（元）',
+              title:'一年四节节日福利平均标准（元）',
               align:"center",
               ellipsis: true,
               dataIndex: 'fulJiejia'
@@ -1658,13 +1461,13 @@
               dataIndex: 'fulYiwaiBaoxianJinge'
             },
             {
-              title:'基础工资标准（元）',
+              title:'基础工资平均标准（元）',
               align:"center",
               ellipsis: true,
               dataIndex: 'fulGongzbiaozh'
             },
             {
-              title:'工龄工资标准（元）',
+              title:'工龄工资平均标准（元）',
               align:"center",
               dataIndex: 'fulGonglgzbiaozh',
               ellipsis: true
@@ -1673,18 +1476,6 @@
               title:'缴纳公积金人数',
               align:"center",
               dataIndex: 'fulGongjijing'
-            },
-            {
-              title:'上报时间',
-              align:"center",
-              dataIndex: 'createTime'
-            },{
-              title: '操作',
-              dataIndex: 'action',
-              align:"center",
-              fixed:"right",
-              width:147,
-              scopedSlots: { customRender: 'action' }
             }
           ];
         }
@@ -1702,19 +1493,6 @@
             align:"center",
             customRender:function (t,r,index) {
               return parseInt(index)+1;
-            }
-          },
-          {
-            title:'所属区县',
-            align:"center",
-            fixed: 'left',
-            dataIndex: 'sysOrgName',
-            customRender:(text)=>{
-              if(!text){
-                return ''
-              }else{
-                return filterMultiDictText(this.dictOptions['sysOrgName'], text+"")
-              }
             }
           },
           {
@@ -1883,7 +1661,7 @@
             dataIndex: 'bjYlMianj'
           },
           {
-            title:'严控区道路经费标准（元）',
+            title:'严控区道路经费平均标准（元）',
             align:"center",
             dataIndex: 'bjYlJinfbzh'
           },
@@ -1903,7 +1681,7 @@
             dataIndex: 'bjErlMianj'
           },
           {
-            title:'控制区道路经费标准（元）',
+            title:'控制区道路经费平均标准（元）',
             align:"center",
             dataIndex: 'bjErlJinfbzh'
           },
@@ -1923,7 +1701,7 @@
             dataIndex: 'bjSslMianj'
           },
           {
-            title:'一般区道路经费标准（元）',
+            title:'一般区道路经费平均标准（元）',
             align:"center",
             dataIndex: 'bjSslJinfbzh'
           },
@@ -1938,7 +1716,7 @@
             dataIndex: 'bjShqMianj'
           },
           {
-            title:'社区经费标准（元）',
+            title:'社区经费平均标准（元）',
             align:"center",
             dataIndex: 'bjShqJinfbzh'
           },
@@ -1963,12 +1741,12 @@
             dataIndex: 'bjJixhQingsCang'
           },
           {
-            title:'市场化率',
+            title:'平均市场化率',
             align:"center",
             dataIndex: 'bjShichh'
           },
           {
-            title:'机械化率',
+            title:'平均机械化率',
             align:"center",
             dataIndex: 'bjJixieh'
           },
@@ -2087,7 +1865,7 @@
             dataIndex: 'fulTijian'
           },
           {
-            title:'一年四节节日福利标准（元）',
+            title:'一年四节节日福利平均标准（元）',
             align:"center",
             ellipsis: true,
             dataIndex: 'fulJiejia'
@@ -2108,13 +1886,13 @@
             dataIndex: 'fulYiwaiBaoxianJinge'
           },
           {
-            title:'基础工资标准（元）',
+            title:'基础工资平均标准（元）',
             align:"center",
             ellipsis: true,
             dataIndex: 'fulGongzbiaozh'
           },
           {
-            title:'工龄工资标准（元）',
+            title:'工龄工资平均标准（元）',
             align:"center",
             dataIndex: 'fulGonglgzbiaozh',
             ellipsis: true
@@ -2123,19 +1901,6 @@
             title:'缴纳公积金人数',
             align:"center",
             dataIndex: 'fulGongjijing'
-          },
-          {
-            title:'上报时间',
-            align:"center",
-            dataIndex: 'createTime'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' }
           }
         ];
         this.searchReset();

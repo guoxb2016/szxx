@@ -13,7 +13,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @Version: V1.0
  */
 public interface SanitationSummaryMapper extends BaseMapper<SanitationSummary> {
+	
     public SanitationSummary summaryByOrg();
 
     public List<SanitationSummary> findGroupByOrg();
+    
+    public SanitationSummary sumQuery(@Param("type") List<String> types);
 }

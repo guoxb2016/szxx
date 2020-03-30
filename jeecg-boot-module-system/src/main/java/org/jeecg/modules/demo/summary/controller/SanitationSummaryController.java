@@ -1,26 +1,19 @@
 package org.jeecg.modules.demo.summary.controller;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.net.URLDecoder;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.aspect.annotation.PermissionData;
 import org.jeecg.common.system.query.QueryGenerator;
-import org.jeecg.common.util.oConvertUtils;
-import org.jeecg.modules.demo.summary.entity.SanitationEpSummary;
 import org.jeecg.modules.demo.summary.entity.SanitationSummary;
 import org.jeecg.modules.demo.summary.service.ISanitationSummaryService;
 import org.jeecg.modules.system.entity.SysDepart;
@@ -31,18 +24,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
-import org.jeecgframework.poi.excel.ExcelImportUtil;
-import org.jeecgframework.poi.excel.def.NormalExcelConstants;
-import org.jeecgframework.poi.excel.entity.ExportParams;
-import org.jeecgframework.poi.excel.entity.ImportParams;
-import org.jeecgframework.poi.excel.view.JeecgEntityExcelView;
 import org.jeecg.common.system.base.controller.JeecgController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import com.alibaba.fastjson.JSON;
 
  /**
  * @Description: 环卫信息汇总表
@@ -98,6 +83,67 @@ public class SanitationSummaryController extends JeecgController<SanitationSumma
 		Page<SanitationSummary> page = new Page<SanitationSummary>(pageNo, pageSize);
 		IPage<SanitationSummary> pageList = sanitationSummaryService.page(page, queryWrapper);
 		return Result.ok(pageList);
+	}
+	/**
+	 * 按市区、城区、县区、公司统计总数
+	 * @param sanitationSummary
+	 * @param pageNo
+	 * @param pageSize
+	 * @param req
+	 * @return
+	 * id IN (SELECT max(id) FROM sanitation_summary GROUP BY sys_org_code )
+	 */
+	@GetMapping("/sumQuery")
+	public Result<?> query(SanitationSummary sanitationSummary, 
+			   @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+			   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+			   HttpServletRequest req){
+		QueryWrapper<SanitationSummary> queryWrapper = QueryGenerator.initQueryWrapper(new SanitationSummary(), req.getParameterMap());
+		//queryWrapper.inSql("id", "(SELECT max(id) FROM sanitation_summary GROUP BY sys_org_code )");
+		//queryWrapper.orderByDesc("create_time");
+		List<String> types = new ArrayList<String>();
+		String scope = "100";
+		if(sanitationSummary.getScope() != null) {
+			scope = sanitationSummary.getScope();
+		}
+		switch (scope){
+			//城区+公司
+			case "200":
+				types.add("A02A01");
+				types.add("A02A02");
+				types.add("A02A03");
+				types.add("A02A04");
+				types.add("A02A05");
+				types.add("A02A06");
+				types.add("A02A07");
+				types.add("A02A08");
+				types.add("A02A15");
+				sanitationSummary = sanitationSummaryService.sumQuery(types);
+				break;
+			//三县
+			case "300":
+				types.add("A02A14");
+				types.add("A02A12");
+				types.add("A02A13");
+				sanitationSummary = sanitationSummaryService.sumQuery(types);
+				break;
+			//公司
+			case "400":
+				types.add("A02A09");
+				types.add("A02A10");
+				types.add("A02A11");
+				sanitationSummary = sanitationSummaryService.sumQuery(types);
+				break;
+			default :
+				sanitationSummary = sanitationSummaryService.sumQuery(null);
+				break;
+		}
+		List<SanitationSummary> list = new ArrayList<SanitationSummary>();
+		Page<SanitationSummary> page = new Page<SanitationSummary>(pageNo, pageSize);
+		IPage<SanitationSummary> pageList = sanitationSummaryService.page(page, queryWrapper);
+		//根据条件求和
+		list.add(sanitationSummary);
+		return Result.ok(pageList.setRecords(list));
 	}
 
 	/**
