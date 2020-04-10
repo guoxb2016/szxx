@@ -46,7 +46,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	 * @return
 	 */
 	@Override
-	@Cacheable(value = CacheConstant.SYS_DICT_CACHE,key = "#code")
+	//@Cacheable(value = CacheConstant.SYS_DICT_CACHE,key = "#code")
 	public List<DictModel> queryDictItemsByCode(String code) {
 		log.info("无缓存dictCache的时候调用这里！");
 		return sysDictMapper.queryDictItemsByCode(code);

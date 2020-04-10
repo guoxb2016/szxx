@@ -10,17 +10,17 @@
     <a-spin :spinning="confirmLoading">
       <a-form :form="form">
 
-        <a-form-item label="出动执法人员次数" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number v-decorator="[ 'personTime', validatorRules.personTime]" placeholder="请输入出动执法人员次数" style="width: 100%"/>
+        <a-form-item label="出动执法人员次数" :labelCol="labelCol" :wrapperCol="wrapperCol" style="width: 125%">
+          <a-input-number v-decorator="[ 'personTime', validatorRules.personTime]" placeholder="请输入出动执法人员次数" style="width: 70%"/>
         </a-form-item>
-        <a-form-item label="活禽宰杀流动摊贩管理" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number v-decorator="[ 'strvendPoultry', validatorRules.strvendPoultry]" placeholder="请输入活禽宰杀流动摊贩管理" style="width: 100%"/>
+        <a-form-item label="活禽宰杀流动摊贩管理" :labelCol="labelCol" :wrapperCol="wrapperCol" style="width: 125%">
+          <a-input-number v-decorator="[ 'strvendPoultry', validatorRules.strvendPoultry]" placeholder="请输入活禽宰杀流动摊贩管理" style="width: 70%"/>
         </a-form-item>
-        <a-form-item label="贩卖野生动物流动摊贩管理" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number v-decorator="[ 'strvendWildlife', validatorRules.strvendWildlife]" placeholder="请输入贩卖野生动物流动摊贩管理" style="width: 100%"/>
+        <a-form-item label="贩卖野生动物流动摊贩管理" :labelCol="labelCol" :wrapperCol="wrapperCol" style="width: 125%">
+          <a-input-number v-decorator="[ 'strvendWildlife', validatorRules.strvendWildlife]" placeholder="请输入贩卖野生动物流动摊贩管理" style="width: 70%"/>
         </a-form-item>
-        <a-form-item label="其它流动摊贩" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number v-decorator="[ 'strvendOther', validatorRules.strvendOther]" placeholder="请输入其它流动摊贩" style="width: 100%"/>
+        <a-form-item label="其它流动摊贩" :labelCol="labelCol" :wrapperCol="wrapperCol" style="width: 125%">
+          <a-input-number v-decorator="[ 'strvendOther', validatorRules.strvendOther]" placeholder="请输入其它流动摊贩" style="width: 70%"/>
         </a-form-item>
      <!--   <a-form-item label="备注" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input v-decorator="[ 'remarks', validatorRules.remarks]" placeholder="请输入备注"></a-input>

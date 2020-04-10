@@ -16,7 +16,7 @@ public interface SanitationSummaryMapper extends BaseMapper<SanitationSummary> {
 	
     public SanitationSummary summaryByOrg();
 
-    public List<SanitationSummary> findGroupByOrg();
+    public List<SanitationSummary> findGroupByOrg(@Param("sysOrgCode")String sysOrgCode);
     
     public SanitationSummary sumQuery(@Param("type") List<String> types);
 }

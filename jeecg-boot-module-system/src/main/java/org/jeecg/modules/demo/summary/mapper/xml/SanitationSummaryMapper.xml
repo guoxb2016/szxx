@@ -1,300 +1,308 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.jeecg.modules.demo.summary.mapper.SanitationSummaryMapper">
-    <sql id="column">
-        a.id AS "id",
-        a.create_by AS "createBy",
-        a.create_time AS "createTime",
-        a.update_by AS "updateBy",
-        a.update_time AS "updateTime",
-        a.sys_org_code AS "sysOrgCode",
-        a.sys_org_name AS "sysOrgName",
-        a.gr_baojy AS "grBaojy",
-        a.gr_siji_sais AS "grSijiSais",
-        a.gr_siji_lajysh AS "grSijiLajysh",
-        a.gr_nan AS "grNan",
-        a.gr_nv AS "grNv",
-        a.gr_lessand45 AS "grLessand45",
-        a.gr_more45 AS "grMore45",
-        a.gr_lingshg AS "grLingshg",
-        a.gr_zhengshg AS "grZhengshg",
-        a.gr_huanwgl AS "grHuanwgl",
-        a.chl_gans AS "chlGans",
-        a.chl_xis AS "chlXis",
-        a.chl_xich AS "chlXich",
-        a.chl_saod_xiao AS "chlSaodXiao",
-        a.chl_saod_da AS "chlSaodDa",
-        a.chl_sash_xiao AS "chlSashXiao",
-        a.chl_sash_da AS "chlSashDa",
-        a.chl_wuc AS "chlWuc",
-        a.chl_lajysh AS "chlLajysh",
-        a.chl_diandbj AS "chlDiandbj",
-        a.ydcsc AS "ydcsc",
-        a.hlqxc AS "hlqxc",
-        a.shsh_lajzh AS "shshLajzh",
-        a.shsh_fenleilajzh AS "shshFenleilajzh",
-        a.shsh_huanwgc_yil AS "shshHuanwgcYil",
-        a.shsh_huanwgc_erl AS "shshHuanwgcErl",
-        a.shsh_huanwgc_sl AS "shshHuanwgcSl",
-        a.shsh_shehgc AS "shshShehgc",
-        a.shsh_guokx AS "shshGuokx",
-        a.shsh_lajt AS "shshLajt",
-        a.bj_yl_shul AS "bjYlShul",
-        a.bj_yl_changd AS "bjYlChangd",
-        a.bj_yl_mianj AS "bjYlMianj",
-        a.bj_yl_jinfbzh AS "bjYlJinfbzh",
-        a.bj_erl_shul AS "bjErlShul",
-        a.bj_erl_changd AS "bjErlChangd",
-        a.bj_erl_mianj AS "bjErlMianj",
-        a.bj_erl_jinfbzh AS "bjErlJinfbzh",
-        a.bj_ssl_shul AS "bjSslShul",
-        a.bj_ssl_changd AS "bjSslChangd",
-        a.bj_ssl_mianj AS "bjSslMianj",
-        a.bj_ssl_jinfbzh AS "bjSslJinfbzh",
-        a.bj_shq_shul AS "bjShqShul",
-        a.bj_shq_mianj AS "bjShqMianj",
-        a.bj_shq_jinfbzh AS "bjShqJinfbzh",
-        a.bj_zongmj AS "bjZongmj",
-        a.bj_waibmj AS "bjWaibmj",
-        a.bj_jixh_qings_mianj AS "bjJixhQingsMianj",
-        a.bj_jixh_qings_cang AS "bjJixhQingsCang",
-        a.bj_shichh AS "bjShichh",
-        a.bj_jixieh AS "bjJixieh",
-        a.bj_shich_danwei AS "bjShichDanwei",
-        a.bj_waib_jinfbzh AS "bjWaibJinfbzh",
-        a.shichh_leib AS "shichhLeib",
-        a.shichh_zuiye_danwei AS "shichhZuiyeDanwei",
-        a.shichh_jinfei_biaozh AS "shichhJinfeiBiaozh",
-        a.ful_tijian AS "fulTijian",
-        a.ful_jiejia AS "fulJiejia",
-        a.ful_yiwai_baoxian AS "fulYiwaiBaoxian",
-        a.ful_shehui_baoxian AS "fulShehuiBaoxian",
-        a.ful_yiwai_baoxian_jinge AS "fulYiwaiBaoxianJinge",
-        a.ful_gongzbiaozh AS "fulGongzbiaozh",
-        a.ful_gonglgzbiaozh AS "fulGonglgzbiaozh",
-        a.ful_gongjijing AS "fulGongjijing",
-        a.shichhgc_leib AS "shichhgcLeib",
-        a.shichhgc_zuiye_danwei AS "shichhgcZuiyeDanwei",
-        a.shichhgc_jinfei_biaozh AS "shichhgcJinfeiBiaozh",
-        a.shichhljz_leib AS "shichhljzLeib",
-        a.shichhljz_zuiye_danwei AS "shichhljzZuiyeDanwei",
-        a.shichhljz_jinfei_biaozh AS "shichhljzJinfeiBiaozh",
-        a.shichhljys_leib AS "shichhljysLeib",
-        a.shichhljys_zuiye_danwei AS "shichhljysZuiyeDanwei",
-        a.shichhljys_jinfei_biaozh AS "shichhljysJinfeiBiaozh",
-        a.shichhljfl_leib AS "shichhljflLeib",
-        a.shichhljfl_zuiye_danwei AS "shichhljflZuiyeDanwei",
-        a.shichhljfl_jinfei_biaozh AS "shichhljflJinfeiBiaozh",
-        a.shichhqt_leib AS "shichhqtLeib",
-        a.shichhqt_zuiye_danwei AS "shichhqtZuiyeDanwei",
-        a.shichhqt_jinfei_biaozh AS "shichhqtJinfeiBiaozh",
-        a.hwglry AS "hwglry"
-    </sql>
+<mapper
+	namespace="org.jeecg.modules.demo.summary.mapper.SanitationSummaryMapper">
+	<sql id="column">
+		a.id AS "id",
+		a.create_by AS "createBy",
+		a.create_time AS "createTime",
+		a.update_by AS "updateBy",
+		a.update_time AS "updateTime",
+		a.sys_org_code AS "sysOrgCode",
+		a.sys_org_name AS "sysOrgName",
+		a.gr_baojy AS "grBaojy",
+		a.gr_siji_sais AS "grSijiSais",
+		a.gr_siji_lajysh AS "grSijiLajysh",
+		a.gr_nan AS "grNan",
+		a.gr_nv AS "grNv",
+		a.gr_lessand45 AS "grLessand45",
+		a.gr_more45 AS "grMore45",
+		a.gr_lingshg AS "grLingshg",
+		a.gr_zhengshg AS "grZhengshg",
+		a.gr_huanwgl AS "grHuanwgl",
+		a.chl_gans AS "chlGans",
+		a.chl_xis AS "chlXis",
+		a.chl_xich AS "chlXich",
+		a.chl_saod_xiao AS "chlSaodXiao",
+		a.chl_saod_da AS "chlSaodDa",
+		a.chl_sash_xiao AS "chlSashXiao",
+		a.chl_sash_da AS "chlSashDa",
+		a.chl_wuc AS "chlWuc",
+		a.chl_lajysh AS "chlLajysh",
+		a.chl_diandbj AS "chlDiandbj",
+		a.ydcsc AS "ydcsc",
+		a.hlqxc AS "hlqxc",
+		a.shsh_lajzh AS "shshLajzh",
+		a.shsh_fenleilajzh AS "shshFenleilajzh",
+		a.shsh_huanwgc_yil AS "shshHuanwgcYil",
+		a.shsh_huanwgc_erl AS "shshHuanwgcErl",
+		a.shsh_huanwgc_sl AS "shshHuanwgcSl",
+		a.shsh_shehgc AS "shshShehgc",
+		a.shsh_guokx AS "shshGuokx",
+		a.shsh_lajt AS "shshLajt",
+		a.bj_yl_shul AS "bjYlShul",
+		a.bj_yl_changd AS "bjYlChangd",
+		a.bj_yl_mianj AS "bjYlMianj",
+		a.bj_yl_jinfbzh AS "bjYlJinfbzh",
+		a.bj_erl_shul AS "bjErlShul",
+		a.bj_erl_changd AS "bjErlChangd",
+		a.bj_erl_mianj AS "bjErlMianj",
+		a.bj_erl_jinfbzh AS "bjErlJinfbzh",
+		a.bj_ssl_shul AS "bjSslShul",
+		a.bj_ssl_changd AS "bjSslChangd",
+		a.bj_ssl_mianj AS "bjSslMianj",
+		a.bj_ssl_jinfbzh AS "bjSslJinfbzh",
+		a.bj_shq_shul AS "bjShqShul",
+		a.bj_shq_mianj AS "bjShqMianj",
+		a.bj_shq_jinfbzh AS "bjShqJinfbzh",
+		a.bj_zongmj AS "bjZongmj",
+		a.bj_waibmj AS "bjWaibmj",
+		a.bj_jixh_qings_mianj AS "bjJixhQingsMianj",
+		a.bj_jixh_qings_cang AS "bjJixhQingsCang",
+		a.bj_shichh AS "bjShichh",
+		a.bj_jixieh AS "bjJixieh",
+		a.bj_shich_danwei AS "bjShichDanwei",
+		a.bj_waib_jinfbzh AS "bjWaibJinfbzh",
+		a.shichh_leib AS "shichhLeib",
+		a.shichh_zuiye_danwei AS "shichhZuiyeDanwei",
+		a.shichh_jinfei_biaozh AS "shichhJinfeiBiaozh",
+		a.ful_tijian AS "fulTijian",
+		a.ful_jiejia AS "fulJiejia",
+		a.ful_yiwai_baoxian AS "fulYiwaiBaoxian",
+		a.ful_shehui_baoxian AS "fulShehuiBaoxian",
+		a.ful_yiwai_baoxian_jinge AS "fulYiwaiBaoxianJinge",
+		a.ful_gongzbiaozh AS "fulGongzbiaozh",
+		a.ful_gonglgzbiaozh AS "fulGonglgzbiaozh",
+		a.ful_gongjijing AS "fulGongjijing",
+		a.shichhgc_leib AS "shichhgcLeib",
+		a.shichhgc_zuiye_danwei AS "shichhgcZuiyeDanwei",
+		a.shichhgc_jinfei_biaozh AS "shichhgcJinfeiBiaozh",
+		a.shichhljz_leib AS "shichhljzLeib",
+		a.shichhljz_zuiye_danwei AS "shichhljzZuiyeDanwei",
+		a.shichhljz_jinfei_biaozh AS "shichhljzJinfeiBiaozh",
+		a.shichhljys_leib AS "shichhljysLeib",
+		a.shichhljys_zuiye_danwei AS "shichhljysZuiyeDanwei",
+		a.shichhljys_jinfei_biaozh AS "shichhljysJinfeiBiaozh",
+		a.shichhljfl_leib AS "shichhljflLeib",
+		a.shichhljfl_zuiye_danwei AS "shichhljflZuiyeDanwei",
+		a.shichhljfl_jinfei_biaozh AS "shichhljflJinfeiBiaozh",
+		a.shichhqt_leib AS "shichhqtLeib",
+		a.shichhqt_zuiye_danwei AS "shichhqtZuiyeDanwei",
+		a.shichhqt_jinfei_biaozh AS "shichhqtJinfeiBiaozh",
+		a.hwglry AS "hwglry"
+	</sql>
 
-    <sql id="summary">
-        id AS "id",
-        create_by AS "createBy",
-        create_time AS "createTime",
-        update_by AS "updateBy",
-        update_time AS "updateTime",
-        sys_org_code AS "sysOrgCode",
-        SUM(gr_baojy) AS "grBaojy",
-        SUM(gr_siji_sais) AS "grSijiSais",
-        SUM(gr_siji_lajysh) AS "grSijiLajysh",
-        SUM(gr_nan) AS "grNan",
-        SUM(gr_nv) AS "grNv",
-        SUM(gr_lessand45) AS "grLessand45",
-        SUM(gr_more45) AS "grMore45",
-        SUM(gr_lingshg) AS "grLingshg",
-        SUM(gr_zhengshg) AS "grZhengshg",
-        SUM(hwglry) AS "hwglry",
-        SUM(chl_gans) AS "chlGans",
-        SUM(chl_xis) AS "chlXis",
-        SUM(chl_xich) AS "chlXich",
-        SUM(chl_saod_xiao) AS "chlSaodXiao",
-        SUM(chl_saod_da) AS "chlSaodDa",
-        SUM(chl_sash_xiao) AS "chlSashXiao",
-        SUM(chl_sash_da) AS "chlSashDa",
-        SUM(chl_wuc) AS "chlWuc",
-        SUM(chl_lajysh) AS "chlLajysh",
-        SUM(chl_diandbj) AS "chlDiandbj",
-        SUM(shsh_lajzh) AS "shshLajzh",
-        SUM(ydcsc) AS "ydcsc",
-        SUM(hlqxc) AS "hlqxc",
-        SUM(shsh_fenleilajzh) AS "shshFenleilajzh",
-        SUM(shsh_huanwgc_yil) AS "shshHuanwgcYil",
-        SUM(shsh_huanwgc_erl) AS "shshHuanwgcErl",
-        SUM(shsh_huanwgc_sl) AS "shshHuanwgcSl",
-        SUM(shsh_shehgc) AS "shshShehgc",
-        SUM(shsh_guokx) AS "shshGuokx",
-        SUM(shsh_lajt) AS "shshLajt",
-        SUM(bj_yl_shul) AS "bjYlShul",
-        SUM(bj_yl_changd) AS "bjYlChangd",
-        SUM(bj_yl_mianj) AS "bjYlMianj",
-        CONVERT(AVG(bj_yl_jinfbzh),DECIMAL(10,2)) AS "bjYlJinfbzh",
-        SUM(bj_erl_shul) AS "bjErlShul",
-        SUM(bj_erl_changd) AS "bjErlChangd",
-        SUM(bj_erl_mianj) AS "bjErlMianj",
-        CONVERT(AVG(bj_erl_jinfbzh),DECIMAL(10,2)) AS "bjErlJinfbzh",
-        SUM(bj_ssl_shul) AS "bjSslShul",
-        SUM(bj_ssl_changd) AS "bjSslChangd",
-        SUM(bj_ssl_mianj) AS "bjSslMianj",
-        CONVERT(AVG(bj_ssl_jinfbzh),DECIMAL(10,2)) AS "bjSslJinfbzh",
-        SUM(bj_shq_shul) AS "bjShqShul",
-        SUM(bj_shq_mianj) AS "bjShqMianj",
-        CONVERT(AVG(bj_shq_jinfbzh),DECIMAL(10,2)) AS "bjShqJinfbzh",
-        SUM(bj_zongmj) AS "bjZongmj",
-        SUM(bj_waibmj) AS "bjWaibmj",
-        SUM(bj_jixh_qings_mianj) AS "bjJixhQingsMianj",
-        SUM(bj_jixh_qings_cang) AS "bjJixhQingsCang",
-        CONVERT(AVG(bj_shichh),DECIMAL(10,2)) AS "bjShichh",
-        CONVERT(AVG(bj_jixieh),DECIMAL(10,2)) AS "bjJixieh",
-        "详见各区县上报明细" AS "bjShichDanwei",
-        "详见各区县上报明细" AS "bjWaibJinfbzh",
-        
-        "详见各区县上报明细" AS "shichhZuiyeDanwei",
-        "详见各区县上报明细" AS "shichhJinfeiBiaozh",
-        "详见各区县上报明细" AS "shichhgcZuiyeDanwei",
-        "详见各区县上报明细" AS "shichhgcJinfeiBiaozh",
-        "详见各区县上报明细" AS "shichhljzZuiyeDanwei",
-        "详见各区县上报明细" AS "shichhljzJinfeiBiaozh",
-        "详见各区县上报明细" AS "shichhljysZuiyeDanwei",
-        "详见各区县上报明细" AS "shichhljysJinfeiBiaozh",
-        "详见各区县上报明细" AS "shichhljflZuiyeDanwei",
-        "详见各区县上报明细" AS "shichhljflJinfeiBiaozh",
-        "详见各区县上报明细" AS "shichhqtZuiyeDanwei",
-        "详见各区县上报明细" AS "shichhqtJinfeiBiaozh",
-        
-        SUM(ful_tijian) AS "fulTijian",
-        CONVERT(AVG(ful_jiejia),DECIMAL(10,2)) AS "fulJiejia",
-        SUM(ful_yiwai_baoxian) AS "fulYiwaiBaoxian",
-        SUM(ful_shehui_baoxian) AS "fulShehuiBaoxian",
-        SUM(ful_yiwai_baoxian_jinge) AS "fulYiwaiBaoxianJinge",
-        CONVERT(AVG(ful_gongzbiaozh),DECIMAL(10,2)) AS "fulGongzbiaozh",
-        CONVERT(AVG(ful_gonglgzbiaozh),DECIMAL(10,2)) AS "fulGonglgzbiaozh",
-        SUM(ful_gongjijing) AS "fulGongjijing"
-    </sql>
+	<sql id="summary">
+		id AS "id",
+		create_by AS "createBy",
+		create_time AS "createTime",
+		update_by AS "updateBy",
+		update_time AS "updateTime",
+		sys_org_code AS "sysOrgCode",
+		SUM(gr_baojy) AS "grBaojy",
+		SUM(gr_siji_sais) AS "grSijiSais",
+		SUM(gr_siji_lajysh) AS "grSijiLajysh",
+		SUM(gr_nan) AS "grNan",
+		SUM(gr_nv) AS "grNv",
+		SUM(gr_lessand45) AS "grLessand45",
+		SUM(gr_more45) AS "grMore45",
+		SUM(gr_lingshg) AS "grLingshg",
+		SUM(gr_zhengshg) AS "grZhengshg",
+		SUM(hwglry) AS "hwglry",
+		SUM(chl_gans) AS "chlGans",
+		SUM(chl_xis) AS "chlXis",
+		SUM(chl_xich) AS "chlXich",
+		SUM(chl_saod_xiao) AS "chlSaodXiao",
+		SUM(chl_saod_da) AS "chlSaodDa",
+		SUM(chl_sash_xiao) AS "chlSashXiao",
+		SUM(chl_sash_da) AS "chlSashDa",
+		SUM(chl_wuc) AS "chlWuc",
+		SUM(chl_lajysh) AS "chlLajysh",
+		SUM(chl_diandbj) AS "chlDiandbj",
+		SUM(shsh_lajzh) AS "shshLajzh",
+		SUM(ydcsc) AS "ydcsc",
+		SUM(hlqxc) AS "hlqxc",
+		SUM(shsh_fenleilajzh) AS "shshFenleilajzh",
+		SUM(shsh_huanwgc_yil) AS "shshHuanwgcYil",
+		SUM(shsh_huanwgc_erl) AS "shshHuanwgcErl",
+		SUM(shsh_huanwgc_sl) AS "shshHuanwgcSl",
+		SUM(shsh_shehgc) AS "shshShehgc",
+		SUM(shsh_guokx) AS "shshGuokx",
+		SUM(shsh_lajt) AS "shshLajt",
+		SUM(bj_yl_shul) AS "bjYlShul",
+		SUM(bj_yl_changd) AS "bjYlChangd",
+		SUM(bj_yl_mianj) AS "bjYlMianj",
+		CONVERT(AVG(bj_yl_jinfbzh),DECIMAL(10,2)) AS "bjYlJinfbzh",
+		SUM(bj_erl_shul) AS "bjErlShul",
+		SUM(bj_erl_changd) AS "bjErlChangd",
+		SUM(bj_erl_mianj) AS "bjErlMianj",
+		CONVERT(AVG(bj_erl_jinfbzh),DECIMAL(10,2)) AS "bjErlJinfbzh",
+		SUM(bj_ssl_shul) AS "bjSslShul",
+		SUM(bj_ssl_changd) AS "bjSslChangd",
+		SUM(bj_ssl_mianj) AS "bjSslMianj",
+		CONVERT(AVG(bj_ssl_jinfbzh),DECIMAL(10,2)) AS "bjSslJinfbzh",
+		SUM(bj_shq_shul) AS "bjShqShul",
+		SUM(bj_shq_mianj) AS "bjShqMianj",
+		CONVERT(AVG(bj_shq_jinfbzh),DECIMAL(10,2)) AS "bjShqJinfbzh",
+		SUM(bj_zongmj) AS "bjZongmj",
+		SUM(bj_waibmj) AS "bjWaibmj",
+		SUM(bj_jixh_qings_mianj) AS "bjJixhQingsMianj",
+		SUM(bj_jixh_qings_cang) AS "bjJixhQingsCang",
+		CONVERT(AVG(bj_shichh),DECIMAL(10,2)) AS "bjShichh",
+		CONVERT(AVG(bj_jixieh),DECIMAL(10,2)) AS "bjJixieh",
+		"详见各区县上报明细" AS "bjShichDanwei",
+		"详见各区县上报明细" AS "bjWaibJinfbzh",
 
-    <sql id="summaryColumn">
-        a.id AS "id",
-        a.create_by AS "createBy",
-        a.create_time AS "createTime",
-        a.update_by AS "updateBy",
-        a.update_time AS "updateTime",
-        a.sys_org_code AS "sysOrgCode",
-        SUM(a.gr_baojy) AS "grBaojy",
-        SUM(a.gr_siji_sais) AS "grSijiSais",
-        SUM(a.gr_siji_lajysh) AS "grSijiLajysh",
-        SUM(a.gr_nan) AS "grNan",
-        SUM(a.gr_nv) AS "grNv",
-        SUM(a.gr_lessand45) AS "grLessand45",
-        SUM(a.gr_more45) AS "grMore45",
-        SUM(a.gr_lingshg) AS "grLingshg",
-        SUM(a.gr_zhengshg) AS "grZhengshg",
-        SUM(a.gr_huanwgl) AS "grHuanwgl",
-        SUM(a.chl_gans) AS "chlGans",
-        SUM(a.chl_xis) AS "chlXis",
-        SUM(a.chl_xich) AS "chlXich",
-        SUM(a.chl_saod_xiao) AS "chlSaodXiao",
-        SUM(a.chl_saod_da) AS "chlSaodDa",
-        SUM(a.chl_sash_xiao) AS "chlSashXiao",
-        SUM(a.chl_sash_da) AS "chlSashDa",
-        SUM(a.chl_wuc) AS "chlWuc",
-        SUM(a.chl_lajysh) AS "chlLajysh",
-        SUM(a.chl_diandbj) AS "chlDiandbj",
-        SUM(a.shsh_lajzh) AS "shshLajzh",
-        SUM(a.shsh_fenleilajzh) AS "shshFenleilajzh",
-        SUM(a.shsh_huanwgc_yil) AS "shshHuanwgcYil",
-        SUM(a.shsh_huanwgc_erl) AS "shshHuanwgcErl",
-        SUM(a.shsh_huanwgc_sl) AS "shshHuanwgcSl",
-        SUM(a.shsh_shehgc) AS "shshShehgc",
-        SUM(a.shsh_guokx) AS "shshGuokx",
-        SUM(a.shsh_lajt) AS "shshLajt",
-        SUM(a.bj_yl_shul) AS "bjYlShul",
-        SUM(a.bj_yl_changd) AS "bjYlChangd",
-        SUM(a.bj_yl_mianj) AS "bjYlMianj",
-        SUM(a.bj_yl_jinfbzh) AS "bjYlJinfbzh",
-        SUM(a.bj_erl_shul) AS "bjErlShul",
-        SUM(a.bj_erl_changd) AS "bjErlChangd",
-        SUM(a.bj_erl_mianj) AS "bjErlMianj",
-        SUM(a.bj_erl_jinfbzh) AS "bjErlJinfbzh",
-        SUM(a.bj_ssl_shul) AS "bjSslShul",
-        SUM(a.bj_ssl_changd) AS "bjSslChangd",
-        SUM(a.bj_ssl_mianj) AS "bjSslMianj",
-        SUM(a.bj_ssl_jinfbzh) AS "bjSslJinfbzh",
-        SUM(a.bj_shq_shul) AS "bjShqShul",
-        SUM(a.bj_shq_mianj) AS "bjShqMianj",
-        SUM(a.bj_shq_jinfbzh) AS "bjShqJinfbzh",
-        SUM(a.bj_zongmj) AS "bjZongmj",
-        SUM(a.bj_waibmj) AS "bjWaibmj",
-        SUM(a.bj_jixh_qings_mianj) AS "bjJixhQingsMianj",
-        SUM(a.bj_jixh_qings_cang) AS "bjJixhQingsCang",
-        SUM(a.bj_shichh) AS "bjShichh",
-        SUM(a.bj_jixieh) AS "bjJixieh",
-        SUM(a.bj_shich_danwei) AS "bjShichDanwei",
-        SUM(a.bj_waib_jinfbzh) AS "bjWaibJinfbzh",
-        SUM(a.ful_tijian) AS "fulTijian",
-        SUM(a.ful_jiejia) AS "fulJiejia",
-        SUM(a.ful_yiwai_baoxian) AS "fulYiwaiBaoxian",
-        SUM(a.ful_shehui_baoxian) AS "fulShehuiBaoxian",
-        SUM(a.ful_yiwai_baoxian_jinge) AS "fulYiwaiBaoxianJinge",
-        SUM(a.ful_gongzbiaozh) AS "fulGongzbiaozh",
-        SUM(a.ful_gonglgzbiaozh) AS "fulGonglgzbiaozh",
-        SUM(a.ful_gongjijing) AS "fulGongjijing"
-    </sql>
-    
-    <select id="summaryByOrg" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
-        SELECT
-        <include refid="summaryColumn"/>
-        FROM
-            (
-                SELECT
-                  *
-                FROM
-                    (
-                        SELECT
-                            a1.*,
-                            @rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
-                            @a := a1.sys_org_code
-                        FROM
-                            sanitation_summary a1
-                        ORDER BY
-                            a1.sys_org_code, a1.create_time DESC
-                    ) a2,
-                    (SELECT @rank := 1 ,@a := NULL) tt
-                WHERE
-                    a2.rank = 1
-            ) a
-    </select>
-	<select id="sumQuery" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
+		"详见各区县上报明细" AS "shichhZuiyeDanwei",
+		"详见各区县上报明细" AS "shichhJinfeiBiaozh",
+		"详见各区县上报明细" AS "shichhgcZuiyeDanwei",
+		"详见各区县上报明细" AS "shichhgcJinfeiBiaozh",
+		"详见各区县上报明细" AS "shichhljzZuiyeDanwei",
+		"详见各区县上报明细" AS "shichhljzJinfeiBiaozh",
+		"详见各区县上报明细" AS "shichhljysZuiyeDanwei",
+		"详见各区县上报明细" AS "shichhljysJinfeiBiaozh",
+		"详见各区县上报明细" AS "shichhljflZuiyeDanwei",
+		"详见各区县上报明细" AS "shichhljflJinfeiBiaozh",
+		"详见各区县上报明细" AS "shichhqtZuiyeDanwei",
+		"详见各区县上报明细" AS "shichhqtJinfeiBiaozh",
+
+		SUM(ful_tijian) AS "fulTijian",
+		CONVERT(AVG(ful_jiejia),DECIMAL(10,2)) AS "fulJiejia",
+		SUM(ful_yiwai_baoxian) AS "fulYiwaiBaoxian",
+		SUM(ful_shehui_baoxian) AS "fulShehuiBaoxian",
+		SUM(ful_yiwai_baoxian_jinge) AS "fulYiwaiBaoxianJinge",
+		CONVERT(AVG(ful_gongzbiaozh),DECIMAL(10,2)) AS "fulGongzbiaozh",
+		CONVERT(AVG(ful_gonglgzbiaozh),DECIMAL(10,2)) AS "fulGonglgzbiaozh",
+		SUM(ful_gongjijing) AS "fulGongjijing"
+	</sql>
+
+	<sql id="summaryColumn">
+		a.id AS "id",
+		a.create_by AS "createBy",
+		a.create_time AS "createTime",
+		a.update_by AS "updateBy",
+		a.update_time AS "updateTime",
+		a.sys_org_code AS "sysOrgCode",
+		SUM(a.gr_baojy) AS "grBaojy",
+		SUM(a.gr_siji_sais) AS "grSijiSais",
+		SUM(a.gr_siji_lajysh) AS "grSijiLajysh",
+		SUM(a.gr_nan) AS "grNan",
+		SUM(a.gr_nv) AS "grNv",
+		SUM(a.gr_lessand45) AS "grLessand45",
+		SUM(a.gr_more45) AS "grMore45",
+		SUM(a.gr_lingshg) AS "grLingshg",
+		SUM(a.gr_zhengshg) AS "grZhengshg",
+		SUM(a.gr_huanwgl) AS "grHuanwgl",
+		SUM(a.chl_gans) AS "chlGans",
+		SUM(a.chl_xis) AS "chlXis",
+		SUM(a.chl_xich) AS "chlXich",
+		SUM(a.chl_saod_xiao) AS "chlSaodXiao",
+		SUM(a.chl_saod_da) AS "chlSaodDa",
+		SUM(a.chl_sash_xiao) AS "chlSashXiao",
+		SUM(a.chl_sash_da) AS "chlSashDa",
+		SUM(a.chl_wuc) AS "chlWuc",
+		SUM(a.chl_lajysh) AS "chlLajysh",
+		SUM(a.chl_diandbj) AS "chlDiandbj",
+		SUM(a.shsh_lajzh) AS "shshLajzh",
+		SUM(a.shsh_fenleilajzh) AS "shshFenleilajzh",
+		SUM(a.shsh_huanwgc_yil) AS "shshHuanwgcYil",
+		SUM(a.shsh_huanwgc_erl) AS "shshHuanwgcErl",
+		SUM(a.shsh_huanwgc_sl) AS "shshHuanwgcSl",
+		SUM(a.shsh_shehgc) AS "shshShehgc",
+		SUM(a.shsh_guokx) AS "shshGuokx",
+		SUM(a.shsh_lajt) AS "shshLajt",
+		SUM(a.bj_yl_shul) AS "bjYlShul",
+		SUM(a.bj_yl_changd) AS "bjYlChangd",
+		SUM(a.bj_yl_mianj) AS "bjYlMianj",
+		SUM(a.bj_yl_jinfbzh) AS "bjYlJinfbzh",
+		SUM(a.bj_erl_shul) AS "bjErlShul",
+		SUM(a.bj_erl_changd) AS "bjErlChangd",
+		SUM(a.bj_erl_mianj) AS "bjErlMianj",
+		SUM(a.bj_erl_jinfbzh) AS "bjErlJinfbzh",
+		SUM(a.bj_ssl_shul) AS "bjSslShul",
+		SUM(a.bj_ssl_changd) AS "bjSslChangd",
+		SUM(a.bj_ssl_mianj) AS "bjSslMianj",
+		SUM(a.bj_ssl_jinfbzh) AS "bjSslJinfbzh",
+		SUM(a.bj_shq_shul) AS "bjShqShul",
+		SUM(a.bj_shq_mianj) AS "bjShqMianj",
+		SUM(a.bj_shq_jinfbzh) AS "bjShqJinfbzh",
+		SUM(a.bj_zongmj) AS "bjZongmj",
+		SUM(a.bj_waibmj) AS "bjWaibmj",
+		SUM(a.bj_jixh_qings_mianj) AS "bjJixhQingsMianj",
+		SUM(a.bj_jixh_qings_cang) AS "bjJixhQingsCang",
+		SUM(a.bj_shichh) AS "bjShichh",
+		SUM(a.bj_jixieh) AS "bjJixieh",
+		SUM(a.bj_shich_danwei) AS "bjShichDanwei",
+		SUM(a.bj_waib_jinfbzh) AS "bjWaibJinfbzh",
+		SUM(a.ful_tijian) AS "fulTijian",
+		SUM(a.ful_jiejia) AS "fulJiejia",
+		SUM(a.ful_yiwai_baoxian) AS "fulYiwaiBaoxian",
+		SUM(a.ful_shehui_baoxian) AS "fulShehuiBaoxian",
+		SUM(a.ful_yiwai_baoxian_jinge) AS "fulYiwaiBaoxianJinge",
+		SUM(a.ful_gongzbiaozh) AS "fulGongzbiaozh",
+		SUM(a.ful_gonglgzbiaozh) AS "fulGonglgzbiaozh",
+		SUM(a.ful_gongjijing) AS "fulGongjijing"
+	</sql>
+
+	<select id="summaryByOrg"
+		resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
 		SELECT
-        <include refid="summary"/>
-        FROM
-        	sanitation_summary
-        where id IN (SELECT max(id) FROM sanitation_summary GROUP BY sys_org_code) 
-        <if test="type != null">
-          AND sys_org_code IN 
-			<foreach collection="type" item="t" index="index" open="(" close=")" separator=",">
-	 			#{t}
+		<include refid="summaryColumn" />
+		FROM
+		(
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		a1.*,
+		@rank := IF (@a = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+		@a := a1.sys_org_code
+		FROM
+		sanitation_summary a1
+		ORDER BY
+		a1.sys_org_code, a1.create_time DESC
+		) a2,
+		(SELECT @rank := 1 ,@a := NULL) tt
+		WHERE
+		a2.rank = 1
+		) a
+	</select>
+	<select id="sumQuery"
+		resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
+		SELECT
+		<include refid="summary" />
+		FROM
+		sanitation_summary
+		where id IN (SELECT max(id) FROM sanitation_summary GROUP BY sys_org_code)
+		<if test="type != null">
+			AND sys_org_code IN
+			<foreach collection="type" item="t" index="index" open="("
+				close=")" separator=",">
+				#{t}
 			</foreach>
 		</if>
 	</select>
-    <select id="findGroupByOrg" resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
-        SELECT
-          <include refid="column"/>
-        FROM
-            (
-                SELECT
-                    a1.*,
-                    @rank := IF (@aa = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
-                    @aa := a1.sys_org_code
-                FROM
-                    sanitation_summary a1,
-                    (SELECT @rank := 1 ,@aa := NULL) tt
-                ORDER BY
-                    a1.sys_org_code, a1.create_time DESC
-            ) a
-        WHERE
-            a.rank = 1
-    </select>
+	<select id="findGroupByOrg"
+		resultType="org.jeecg.modules.demo.summary.entity.SanitationSummary">
+		SELECT
+		<include refid="column" />
+		FROM
+		(
+		SELECT
+		a1.*,
+		@rank := IF (@aa = a1.sys_org_code ,@rank + 1, 1) AS 'rank' ,
+		@aa := a1.sys_org_code
+		FROM
+		sanitation_summary a1,
+		(SELECT @rank := 1 ,@aa := NULL) tt
+		ORDER BY
+		a1.sys_org_code, a1.create_time DESC
+		) a
+		WHERE
+		a.rank = 1
+		<if test="sysOrgCode != null">
+			and a.sys_org_name = #{sysOrgCode}
+		</if>
+	</select>
 </mapper>

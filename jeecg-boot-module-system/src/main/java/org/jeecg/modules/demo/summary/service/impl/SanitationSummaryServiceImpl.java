@@ -24,8 +24,8 @@ public class SanitationSummaryServiceImpl extends ServiceImpl<SanitationSummaryM
     }
 
     @Override
-    public List<SanitationSummary> findGroupByOrg() {
-        return baseMapper.findGroupByOrg();
+    public List<SanitationSummary> findGroupByOrg(String sysOrgCode) {
+        return baseMapper.findGroupByOrg(sysOrgCode);
     }
 
 	@Override

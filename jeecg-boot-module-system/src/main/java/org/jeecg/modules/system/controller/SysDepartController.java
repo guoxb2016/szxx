@@ -18,6 +18,7 @@ import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.system.util.JwtUtil;
 import org.jeecg.common.system.vo.LoginUser;
 import org.jeecg.modules.system.entity.SysDepart;
+import org.jeecg.modules.system.entity.SysRole;
 import org.jeecg.modules.system.model.DepartIdModel;
 import org.jeecg.modules.system.model.SysDepartTreeModel;
 import org.jeecg.modules.system.service.ISysDepartService;
@@ -39,7 +40,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -216,7 +219,24 @@ public class SysDepartController {
 		}
 		return result;
 	}
-	 
+	/**
+	  * 通过id查询
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/queryByOrgCode", method = RequestMethod.GET)
+	public Result<SysDepart> queryById(@RequestParam(name="sysOrgCode",required=true) String sysOrgCode) {
+		Result<SysDepart> result = new Result<SysDepart>();
+		SysDepart sysDepart = sysDepartService.getOne(new QueryWrapper<SysDepart>().lambda().eq(SysDepart::getOrgCode,sysOrgCode));
+		if(sysDepart==null) {
+			result.error500("未找到对应实体");
+		}else {
+			result.setResult(sysDepart);
+			result.setSuccess(true);
+		}
+		return result;
+	}
+	
 	/**
 	 * <p>
 	 * 部门搜索功能方法,根据关键字模糊搜索相关部门

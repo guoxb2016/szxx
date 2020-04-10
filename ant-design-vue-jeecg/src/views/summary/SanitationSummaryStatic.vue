@@ -1911,6 +1911,11 @@
             this.$set(this.dictOptions, 'sysOrgName', res.result)
           }
         });
+        initDictOptions('hw_type').then((res) => {
+          if (res.success) {
+            this.$set(this.dictOptions, 'type', res.result)
+          }
+        });
       }
 
     }

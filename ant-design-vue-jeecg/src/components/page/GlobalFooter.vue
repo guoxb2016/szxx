@@ -6,7 +6,7 @@
     <div class="copyright">
       Copyright
       <a-icon type="copyright"/>
-      2020 <span>江西航天鄱湖云科技有限公司 出品</span>
+      2020 <span>航天鄱湖云 技术支持</span>
     </div>
   </div>
 </template>

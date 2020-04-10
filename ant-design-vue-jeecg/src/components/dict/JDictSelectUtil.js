@@ -88,3 +88,21 @@ export async function ajaxFilterDictText(dictCode, key) {
     return '';
   }
 }
+
+/**
+ * 根据departCode获取部门名称
+ * @param sysOrgCode
+ * @returns {Promise<void>}
+ */
+export async function ajaxFilterDepartText(sysOrgCode) {
+  if (!sysOrgCode) {
+    return '部门Code不能为空!';
+  }
+  //通过请求读取部门文本
+  let res = await getAction(`/sys/sysDepart/queryByOrgCode?sysOrgCode=${sysOrgCode}`);
+  if (res.success) {
+    return res.result.departName;
+  } else {
+    return '';
+  }
+}

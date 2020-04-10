@@ -56,7 +56,7 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '/jeecg-boot': ''  //默认所有请求都加了jeecg-boot前缀，需要去掉
-        }
+        }117.40.142.28
       },*/
       '/jeecg-boot': {
         target: 'http://127.0.0.1:8087', //请求本地 需要jeecg-boot后台项目

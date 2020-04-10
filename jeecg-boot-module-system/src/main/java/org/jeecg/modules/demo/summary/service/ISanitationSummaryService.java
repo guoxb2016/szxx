@@ -15,7 +15,7 @@ public interface ISanitationSummaryService extends IService<SanitationSummary> {
     
 	public SanitationSummary summaryByOrg();
 
-    public List<SanitationSummary> findGroupByOrg();
+    public List<SanitationSummary> findGroupByOrg(String sysOrgCode);
     
     public SanitationSummary sumQuery(List<String> types);
 }

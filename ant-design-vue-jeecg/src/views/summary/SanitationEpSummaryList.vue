@@ -253,7 +253,7 @@
           delete: "/summary/sanitationEpSummary/delete",
           deleteBatch: "/summary/sanitationEpSummary/deleteBatch",
           exportXlsUrl1: "/summary/sanitationEpSummary/exportXls",
-          exportXlsUrl: "/summary/sanitationEpSummary/exportXls2",
+          exportXlsUrl: "/summary/citymanagerEpSummary/exportXls3",
           importExcelUrl: "summary/sanitationEpSummary/importExcel",
         },
         dictOptions:{

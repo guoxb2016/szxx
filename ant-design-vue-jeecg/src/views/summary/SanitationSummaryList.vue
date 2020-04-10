@@ -32,7 +32,7 @@
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
-      <a-button type="primary" v-has="'ss:export'" icon="download" @click="handleExportXls('环卫信息表')">导出</a-button>
+      <a-button type="primary" v-has="'ss:export'" icon="download" @click="handleExportXlsExt('环卫信息表')">导出</a-button>
       <a-button type="primary" v-has="'ss:export:one'" icon="download" @click="handleExportXls1('环卫信息表')">导出</a-button>
      <!-- <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
@@ -591,8 +591,13 @@
       }
     },
     methods: {
+      handleExportXlsExt(s){
+        this.queryParam['scope'] = this.queryParam['type'];
+        this.handleExportXls(s);
+      },
       searchQueryTxt(){
       //  this.key = 1;
+        this.queryParam['scope'] = null;
         var type = this.queryParam['type'];
         if(typeof type === "undefined"||type ===""){
           this.tableScroll={x :81*147+50};
@@ -2144,6 +2149,11 @@
         initDictOptions('sys_depart,depart_name,id').then((res) => {
           if (res.success) {
             this.$set(this.dictOptions, 'sysOrgName', res.result)
+          }
+        });
+        initDictOptions('hw_type').then((res) => {
+          if (res.success) {
+            this.$set(this.dictOptions, 'type', res.result)
           }
         });
       }
